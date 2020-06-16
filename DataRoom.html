@@ -1,65 +1,530 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
-        <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
-        <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script> 
-        <script src="DataRoom.js"></script>
-    </head>
 
-    <body id='body'>
-        <a-scene id='a-scene'
-        stats>
+<head>
+  <meta charset="utf-8">
+  <title>Data Room</title>
+  <meta name="description" content="Basic example of data museum"></meta>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+  <script src="https://babiaxr.gitlab.io/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
+  <script src="https://unpkg.com/aframe-environment-component@1.0.0/dist/aframe-environment-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-geometry-merger-component/dist/aframe-geometry-merger-component.min.js"></script>
+  <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script> 
+  <script src="DataRoom.js"></script>
+</head>
 
-            <a-assets>
-                <canvas id="wallCam"></canvas>
-            </a-assets>
+<body>
 
-            <!--Sky-->
-            <a-sky id='sky'
-            color="lightblue">
-            </a-sky>
+  <a-scene id="scene"
+  stats
+  physics="debug: true">
 
-            <!--Plane-->
-            <a-plane id="plane"
-            position="0 -0.5 0"
-            color="#98FB98"
-            width="1000"
-            height="1000"
-            rotation="270 0 0"
-            static-body>
-            </a-plane>
+    <a-assets>
+        <canvas id="wallCam"></canvas>
 
-            <!--Walls-->
-            <a-plane position="0 0 -5" width="10" height="10" rotation="0 0 0" side="double" static-body></a-plane>
+        <img id="bitergia1" src="bitergia1.png">
 
-            <a-plane position="0 0 5" width="10" height="10" rotation="0 0 0" side="double" static-body></a-plane>
+        <a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
 
-            <a-plane position="5 0 0" width="10" height="10" rotation="0 90 0" side="double" static-body></a-plane>
+        <!--*nature-->
 
-            <a-plane position="-5 0 0" width="10" height="10" rotation="0 90 0" side="double" static-body></a-plane>
+        <a-asset-item id="cherryTreeSrc"
+        src="gltfModels/nature/cherryTreeMine/cherryTree2.gltf">
+        </a-asset-item>
 
-            <a-plane position="0 5 0" width="10" height="10" rotation="90 0 0" side="double" static-body></a-plane>
+        <a-asset-item id="spruceTreeSrc"
+        src="gltfModels/nature/spruceTreeMine/spruceTree2.gltf">
+        </a-asset-item>
 
-            <!--Wall camera-->
-            <a-entity camera="active: false" camrender="cid:wallCam"
-            position="0 10 0" rotation="-90 -90 0">
-            </a-entity>
+        <a-asset-item id="oakTreeSrc"
+        src="gltfModels/nature/oakTreeMine/oakTree2.gltf">
+        </a-asset-item>
 
-            <a-plane position="0 3 -4.99" rotation="0 0 0" width="3" height="2"
-            material="src: #wallCam">
-            </a-plane>
+        <a-asset-item id="palmTreeSrc"
+        src="gltfModels/nature/palmTree/palmTree.gltf">
+        </a-asset-item>
 
-            <!--Controllers-->
-            <a-entity kinematic-body="radius: 0.8" movement-controls="fly: false; speed: 0.1">
-                <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
-                <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" laser-controls="hand:right" raycaster="showline: true"></a-entity>
-                <!--<a-entity id="raycaster" cursor raycaster="far: 100; interval: 1000; objects: .clickable"></a-entity>-->
-                <a-entity id="camera" camera position="0 1.8 0" look-controls="pointerLockEnabled: false;" wasd-controls>
-                    <!--<a-cursor></a-cursor>-->
-                </a-entity>
-            </a-entity>
-        </a-scene>
-    </body>
+        <a-asset-item id="treeLogSrc"
+        src="gltfModels/nature/treeLogMine/log.gltf">
+        </a-asset-item>
+
+        <a-asset-item id="treeTrunkSrc"
+        src="gltfModels/nature/treeTrunkMine/treeTrunk2.gltf">
+        </a-asset-item>
+
+        <!--*buildings-->
+        <a-asset-item id="stairsSrc"
+        src="gltfModels/buildings/stairs/stairs.gltf">
+        </a-asset-item>
+
+        <!--*room-->
+        <a-asset-item id="lampSrc"
+        src="gltfModels/room/lamp.gltf">
+        </a-asset-item>
+
+    </a-assets>
+
+    <!--?sky-->
+    <a-sky id='sky'
+    color="lightblue">
+    </a-sky>
+
+    <!--?plane-->
+    <a-plane id="plane"
+    position="0 -4 0"
+    color="lightgreen"
+    width="1000"
+    height="1000"
+    rotation="270 0 0"
+    roughness="0.5"
+    static-body>
+    </a-plane>
+
+    <!--?stairs-->
+    <a-entity gltf-model="#stairsSrc" 
+    position="18.01 -2.9 0"
+    scale="3 3 3.35"
+    rotation="0 0 0">
+    </a-entity>
+
+    <!--?stairs physics-->
+    <a-plane id="stairs physics"
+    position="19.75 -1.85 0"
+    width="9"
+    height="10"
+    rotation="-250 90 180"
+    static-body>
+    </a-plane>
+
+    <a-plane id="stairs physics"
+    position="22.5 -1 5"
+    width="15"
+    height="9"
+    rotation="0 0 0"
+    static-body>
+    </a-plane>
+
+    <a-plane id="stairs physics"
+    position="22.5 -1 -5"
+    width="15"
+    height="9"
+    rotation="0 180 0"
+    static-body>
+    </a-plane>
+
+    <a-plane id="stairs physics"
+    position="29.5 -1 0"
+    width="15"
+    height="9"
+    rotation="0 90 0"
+    static-body>
+    </a-plane>
+
+    <a-entity gltf-model="#spruceTreeSrc" 
+    position="35 -5 -3"
+    scale="1.75 1.75 1.75"
+    rotation="0 90 0">
+    </a-entity>
+
+    <a-entity gltf-model="#oakTreeSrc" 
+    position="26 -4 6"
+    scale="1 1 1"
+    rotation="0 90 0">
+    </a-entity>
+
+    <a-entity gltf-model="#treeLogSrc" 
+    position="28 -3 -15"
+    scale="3 4 3"
+    rotation="90 35 0">
+    </a-entity>
+
+    <!--?room plane-->
+    <a-plane id="roomPlane"
+    position="0 -0.5 0"
+    color="grey"
+    width="30"
+    height="30"
+    rotation="270 0 0"
+    roughness="1"
+    static-body>
+    </a-plane>
+
+    <!--TODO: ui-bar-->
+    <!--<a-entity id="navigationbar" 
+    ui-navigation-bar="size: 8; 'to: left; start_point: 58; points_by_line:30'" 
+    position='-20 15 0' 
+    scale="3 3 3">
+    </a-entity>-->
+
+
+
+    <!--?Walls-->
+    <a-plane position="0 -1 -15" width="30" height="14" rotation="0 0 0" side="double" static-body></a-plane>
+    <a-plane position="0 2.5 -14.99" width="4.52" height="4.52" src="#bitergia1"></a-plane>
+
+    <a-plane position="0 -1 15" width="30" height="14" rotation="0 0 0" side="double" static-body></a-plane>
+
+    <!--<a-plane position="15 2.5 0" width="30" height="7" rotation="0 90 0" side="double" static-body></a-plane>-->
+        <!--*window wall-->
+    <a-plane class="windowPlane"
+    width="30" height="5"
+    position="15 -2.5 0"
+    rotation="0 90 0"
+    side="double"
+    static-body>
+    </a-plane>
+
+    <a-plane class="windowPlane"
+    width="30" height="2.5"
+    position="15 4.75 0"
+    rotation="0 90 0"
+    side="double"
+    static-body>
+        <a-text value="Data Room"
+        align="center"
+        color="black"
+        scale="5 5 1" 
+        rotation="0 0 0">
+        </a-text>
+    </a-plane>
+
+    <a-box
+    scale="0.2 0.2 10"
+    position="15 3.5 0"
+    color="grey">
+    </a-box>
+
+    <a-box
+    scale="0.2 4.25 0.2"
+    position="15 1.5 -5"
+    color="grey">
+    </a-box>
+
+    <a-box
+    scale="0.2 4.25 0.2"
+    position="15 1.5 5"
+    color="grey">
+    </a-box>
+
+    <a-box
+    scale="0.2 0.5 10"
+    position="15 -0.25 0"
+    color="grey">
+    </a-box>
+
+    <a-plane class="windowPlane"
+    width="10" height="7"
+    position="15 2.5 -10"
+    rotation="0 90 0"
+    side="double"
+    static-body>
+    </a-plane>
+
+    <a-plane class="windowPlane"
+    width="10" height="7"
+    position="15 2 10"
+    rotation="0 90 0"
+    side="double"
+    static-body>
+    </a-plane>
+
+    <!--
+    <a-plane class="windowPlane"
+    width="25" height="25"
+    position="15 2 0"
+    rotation="0 90 0"
+    transparent="true" 
+    static-body>
+    </a-plane>-->
+
+    <a-plane position="-15 -1 0" width="30" height="14" rotation="0 90 0" side="double" static-body></a-plane>
+
+    <a-plane position="0 6 0" width="30" height="30" rotation="90 0 0" side="double" static-body>
+        <!--<a-entity gltf-model="#lampSrc" position="0 -1.5 0" rotation="-90 0 0"></a-entity>-->
+    </a-plane>
+    <a-light type="point" color="lightgrey" intensity="0.5" position="0 5.5 0"></a-light>
+
+    <!--Wall camera-->
+    <!--<a-entity camera="active: false" camrender="cid:wallCam"
+    position="0 8 -15" rotation="-25 0 0">
+    </a-entity>
+
+    <!--!<a-plane position="0 3 -4.99" rotation="0 0 0" width="3" height="2"
+    material="src: #wallCam">
+    </a-plane>-->
+
+    <a-text id="project information text"
+    value="Here it goes the \n project's information 
+    \n bla bla bla bla blablabla \n bla bla bla bla bla bla bla
+    \n bla bla bla bla blablabla \n bla bla bla bla bla bla bla
+    \n bla bla bla bla blablabla \n bla bla bla bla bla bla bla"
+    position="-8 1.5 -7"
+    rotation="0 35 0"
+    color="black">
+    </a-text>
+
+    <!--?CodeCity-->
+    <a-box id="firstCityPodium"
+    scale="2.75 1.5 2.75"
+    position="3 0 -11.5"
+    color="grey"
+    static-body>
+        <a-text value="city's \n information"
+        scale="0.7 1 0.7"
+        align="center"
+        position="0 0.15 .5">
+        </a-text>
+    </a-box>
+
+    <a-entity position="3 0.75 -11.5" rotation="0 0 0" scale="0.15 0.15 0.15"
+
+                codecity='width: 20; depth: 20; streets: true; color: green;
+                          extra: 1.5; base_thick: 0.3; split: naive; fmaxarea: area;
+                          data:
+        {"id": "Root",
+        "children":
+            [{"id": "BlockA",
+            "children": [{"id": "BlockA0",
+                    "children": [{"id": "A0A", "area": 2, "height": 1}]},
+                    {"id": "BlockA1",
+                    "children": [{"id": "A1A", "area": 2, "height": 1},
+                                {"id": "A1B", "area": 5, "height": 4},
+                                {"id": "A1C", "area": 4, "height": 6},
+                                {"id": "A1D", "area": 6, "height": 2}]},
+                    {"id": "BlockA2",
+                    "children": [{"id": "A2A", "area": 1, "height": 3},
+                                {"id": "A2B", "area": 5, "height": 6},
+                                {"id": "A2C", "area": 8, "height": 4}]},
+                    {"id": "BlockA3",
+                    "children": [{"id": "A3A", "area": 4, "height": 7},
+                                {"id": "A3B", "area": 5, "height": 3},
+                                {"id": "A3C", "area": 8, "height": 1}]}
+                    ]},
+            {"id": "BlockB",
+            "children": [{"id": "BlockB1",
+                    "children": [{"id": "B1A", "area": 3, "height": 5},
+                                {"id": "B1B", "area": 5, "height": 4},
+                                {"id": "B1C", "area": 1, "height": 3},
+                                {"id": "B1D", "area": 6, "height": 2},
+                                {"id": "B1E", "area": 4, "height": 6},
+                                {"id": "B1F", "area": 3, "height": 1},
+                                {"id": "B1G", "area": 2, "height": 5},
+                                {"id": "B1H", "area": 1, "height": 3}]},
+                    {"id": "BlockB2",
+                    "children": [{"id": "B2A", "area": 2, "height": 9},
+                                {"id": "B2B", "area": 6, "height": 3},
+                                {"id": "B2C", "area": 1, "height": 3},
+                                {"id": "B2D", "area": 8, "height": 1},
+                                {"id": "B2E", "area": 3, "height": 6},
+                                {"id": "B2F", "area": 1, "height": 7}]},
+                    {"id": "Block3",
+                    "children": [{"id": "B3A", "area": 6, "height": 2},
+                                {"id": "B3B", "area": 8, "height": 4},
+                                {"id": "B3C", "area": 3, "height": 6}]},
+                    {"id": "Block4",
+                    "children": [{"id": "B4A", "area": 2, "height": 9},
+                                {"id": "B4B", "area": 6, "height": 1},
+                                {"id": "B4C", "area": 7, "height": 6},
+                                {"id": "B4D", "area": 8, "height": 5},
+                                {"id": "B4E", "area": 3, "height": 6},
+                                {"id": "B4F", "area": 9, "height": 4}]},
+                    {"id": "Block5",
+                    "children": [{"id": "B5A", "area": 2, "height": 9},
+                                {"id": "B5B", "area": 6, "height": 3},
+                                {"id": "B5C", "area": 5, "height": 8},
+                                {"id": "B5D", "area": 5, "height": 7}]},
+                    {"id": "Block6",
+                    "children": [{"id": "B6A", "area": 2, "height": 9},
+                                {"id": "B6B", "area": 6, "height": 3},
+                                {"id": "B6C", "area": 2, "height": 6},
+                                {"id": "B6D", "area": 4, "height": 1},
+                                {"id": "B6E", "area": 6, "height": 6},
+                                {"id": "B6F", "area": 1, "height": 7},
+                                {"id": "B6G", "area": 4, "height": 3},
+                                {"id": "B6H", "area": 2, "height": 5},
+                                {"id": "B6I", "area": 7, "height": 1},
+                                {"id": "B6J", "area": 3, "height": 2},
+                                {"id": "B6K", "area": 1, "height": 3}]}
+                    ]}
+            ]
+        }'>
+        </a-entity>
+
+        <a-box id="secondCityPodium"
+        scale="2.75 1.5 2.75"
+        position="-3 0 -11.5"
+        color="grey"
+        static-body>
+            <a-text value="city's \n information"
+            scale="0.7 1 0.7"
+            align="center"
+            position="0 0.15 .5">
+            </a-text>
+        </a-box>
+
+        <a-entity position="-3 0.75 -11.5" rotation="0 90 0" scale="0.15 0.15 0.15"
+
+                codecity='width: 20; depth: 20; streets: true; color: green;
+                        extra: 1.5; base_thick: 0.3; split: naive; fmaxarea: area;
+                        data:
+        {"id": "Root",
+        "children":
+            [{"id": "BlockA",
+            "children": [{"id": "BlockA0",
+                    "children": [{"id": "A0A", "area": 2, "height": 1}]},
+                    {"id": "BlockA1",
+                    "children": [{"id": "A1A", "area": 2, "height": 1},
+                                {"id": "A1B", "area": 5, "height": 4},
+                                {"id": "A1C", "area": 4, "height": 6},
+                                {"id": "A1D", "area": 6, "height": 2}]},
+                    {"id": "BlockA2",
+                    "children": [{"id": "A2A", "area": 1, "height": 3},
+                                {"id": "A2B", "area": 5, "height": 6},
+                                {"id": "A2C", "area": 8, "height": 4}]},
+                    {"id": "BlockA3",
+                    "children": [{"id": "A3A", "area": 4, "height": 7},
+                                {"id": "A3B", "area": 5, "height": 3},
+                                {"id": "A3C", "area": 8, "height": 1}]}
+                    ]},
+            {"id": "BlockB",
+            "children": [{"id": "BlockB1",
+                    "children": [{"id": "B1A", "area": 3, "height": 5},
+                                {"id": "B1B", "area": 5, "height": 4},
+                                {"id": "B1C", "area": 1, "height": 3},
+                                {"id": "B1D", "area": 6, "height": 2},
+                                {"id": "B1E", "area": 4, "height": 6},
+                                {"id": "B1F", "area": 3, "height": 1},
+                                {"id": "B1G", "area": 2, "height": 5},
+                                {"id": "B1H", "area": 1, "height": 3}]},
+                    {"id": "BlockB2",
+                    "children": [{"id": "B2A", "area": 2, "height": 9},
+                                {"id": "B2B", "area": 6, "height": 3},
+                                {"id": "B2C", "area": 1, "height": 3},
+                                {"id": "B2D", "area": 8, "height": 1},
+                                {"id": "B2E", "area": 3, "height": 6},
+                                {"id": "B2F", "area": 1, "height": 7}]},
+                    {"id": "Block3",
+                    "children": [{"id": "B3A", "area": 6, "height": 2},
+                                {"id": "B3B", "area": 8, "height": 4},
+                                {"id": "B3C", "area": 3, "height": 6}]},
+                    {"id": "Block4",
+                    "children": [{"id": "B4A", "area": 2, "height": 9},
+                                {"id": "B4B", "area": 6, "height": 1},
+                                {"id": "B4C", "area": 7, "height": 6},
+                                {"id": "B4D", "area": 8, "height": 5},
+                                {"id": "B4E", "area": 3, "height": 6},
+                                {"id": "B4F", "area": 9, "height": 4}]},
+                    {"id": "Block5",
+                    "children": [{"id": "B5A", "area": 2, "height": 9},
+                                {"id": "B5B", "area": 6, "height": 3},
+                                {"id": "B5C", "area": 5, "height": 8},
+                                {"id": "B5D", "area": 5, "height": 7}]},
+                    {"id": "Block6",
+                    "children": [{"id": "B6A", "area": 2, "height": 9},
+                                {"id": "B6B", "area": 6, "height": 3},
+                                {"id": "B6C", "area": 2, "height": 6},
+                                {"id": "B6D", "area": 4, "height": 1},
+                                {"id": "B6E", "area": 6, "height": 6},
+                                {"id": "B6F", "area": 1, "height": 7},
+                                {"id": "B6G", "area": 4, "height": 3},
+                                {"id": "B6H", "area": 2, "height": 5},
+                                {"id": "B6I", "area": 7, "height": 1},
+                                {"id": "B6J", "area": 3, "height": 2},
+                                {"id": "B6K", "area": 1, "height": 3}]}
+                    ]}
+            ]
+        }'>
+        </a-entity>
+
+        <!--?3dChart-->
+        <!--*First-->
+        <a-box id="secondChartPodium"
+        scale="2 1.5 2"
+        position="-13.5 0 -3"
+        roation="0 0 0"
+        color="grey"
+        static-body>
+            <a-text value="chart's \n information"
+            scale="0.7 1 0.7"
+            align="center"
+            rotation="0 90 0"
+            position="0.5 0.15 0">
+            </a-text>
+        </a-box>
+
+        <a-entity geo3dbarchart='legend: true; palette: bussiness; title: geo3dbarchart; animation: true;
+            titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -6.6 0.5 -0.8; heightMax:15;
+            data:[{"key":"David","key2":"2019","size":90},{"key":"David","key2":"2018","size":8},{"key":"David","key2":"2017","size":70},{"key":"David","key2":"2016","size":65},{"key":"David","key2":"2015","size":5},{"key":"Pete","key2":"2011","size":80},{"key":"Pete","key2":"2014","size":7},{"key":"Josh","key2":"2016","size":65},{"key":"Josh","key2":"2015","size":55},{"key":"Jesus","key2":"2016","size":90},{"key":"Jesus","key2":"2011","size":80},{"key":"Jesus","key2":"2014","size":75},{"key":"Jesus","key2":"2016","size":60},{"key":"Jesus","key2":"2015","size":5},{"key":"Jesus","key2":"2016","size":95},{"key":"Steve","key2":"2016","size":90},{"key":"Steve","key2":"2017","size":8},{"key":"Steve","key2":"2014","size":7},{"key":"Steve","key2":"2013","size":60},{"key":"Moreno","key2":"2015","size":45},{"key":"Jesus","key2":"2019","size":100},{"key":"Pete","key2":"2019","size":10}]' 
+        position="-14 0.75 -2.5" 
+        rotation="0 90 0"
+        scale="0.15 0.15 0.15">
+        </a-entity>
+
+        <!--*Second-->
+        <a-box id="secondChartPodium"
+        scale="2 1.5 2"
+        position="-13.5 0 2.5"
+        roation="0 0 0"
+        color="grey"
+        static-body>
+            <a-text value="chart's \n information"
+            scale="0.7 1 0.7"
+            align="center"
+            rotation="0 90 0"
+            position="0.5 0.15 0">
+            </a-text>
+        </a-box>
+
+        <a-entity geo3dbarchart='legend: true; palette: bussiness; title: geo3dbarchart; animation: true;
+            titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -6.6 0.5 -0.8; heightMax:15;
+            data:[{"key":"David","key2":"2019","size":90},{"key":"David","key2":"2018","size":8},{"key":"David","key2":"2017","size":70},{"key":"David","key2":"2016","size":65},{"key":"David","key2":"2015","size":5},{"key":"Pete","key2":"2011","size":80},{"key":"Pete","key2":"2014","size":7},{"key":"Josh","key2":"2016","size":65},{"key":"Josh","key2":"2015","size":55},{"key":"Jesus","key2":"2016","size":90},{"key":"Jesus","key2":"2011","size":80},{"key":"Jesus","key2":"2014","size":75},{"key":"Jesus","key2":"2016","size":60},{"key":"Jesus","key2":"2015","size":5},{"key":"Jesus","key2":"2016","size":95},{"key":"Steve","key2":"2016","size":90},{"key":"Steve","key2":"2017","size":8},{"key":"Steve","key2":"2014","size":7},{"key":"Steve","key2":"2013","size":60},{"key":"Moreno","key2":"2015","size":45},{"key":"Jesus","key2":"2019","size":100},{"key":"Pete","key2":"2019","size":10}]' 
+        position="-14 0.75 3" 
+        rotation="0 90 0"
+        scale="0.15 0.15 0.15">
+        </a-entity>
+
+        <!--?Sofa-->
+        <a-box class="seat1"
+        position="2 -0.25 2"
+        rotation="0 45 0"
+        scale="2 1 1"
+        static-body>
+        </a-box>
+
+        <a-box class="seat1"
+        position="2.5 0.25 2.5"
+        rotation="0 45 0"
+        scale="2 2 0.5"
+        static-body>
+        </a-box>
+
+        <a-box class="seat1"
+        position="2.7 0.5 1.3"
+        rotation="0 45 0"
+        scale="0.25 0.5 1"
+        static-body>
+        </a-box>
+
+        <a-box class="seat1"
+        position="1.3 0.5 2.7"
+        rotation="0 45 0"
+        scale="0.25 0.5 1"
+        static-body>
+        </a-box>
+
+
+
+        <a-entity kinematic-body="radius: 0.9" movement-controls="fly: false" rotation="0 90 0" position="27 -4 0">
+            <a-entity cursor="rayOrigin:mouse"></a-entity>
+            <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc" interface-container-displayer world-map-displayer></a-entity>
+            <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" laser-controls="hand:right" raycaster="showline: true"></a-entity>
+            <a-entity id="camera" camera position="0 1.2 0" look-controls="pointerLockEnabled: false;">
+        </a-entity>
+
+        <a-light type="ambient" intensity="0.75"></a-light>
+
+    </a-scene>
+</body>
+
 </html>
