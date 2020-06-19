@@ -29,11 +29,11 @@
 
         <img id="nightSky" src="textures/nightTexture.jpg">
 
-        <img id="terraceFloor" src="textures/floor.jpeg">
+        <img id="terraceFloor" src="textures/freeFloor2.jpg">
 
-        <img id="interiorFloor" src="textures/interiorFloor.jpeg">
+        <img id="interiorFloor" src="textures/interiorFloorFree2.jpg">
 
-        <img id="wall" src="textures/wall.jpeg">
+        <img id="wall" src="textures/freeWall.jpg">
 
         <img id="ceiling" src="textures/ceiling.jpeg">
 
@@ -97,7 +97,7 @@
     <!--?room plane-->
     <a-plane id="roomPlane"
     src="#interiorFloor"
-    repeat="10 10 8"
+    repeat="1 1 1"
     position="0 -0.5 0"
     color="grey"
     width="30"
@@ -108,14 +108,14 @@
     </a-plane>
 
     <!--?Walls-->
-    <a-plane src="#wall" position="0 -1 -15" width="30" height="20" rotation="0 0 0" side="double" static-body></a-plane>
+    <a-plane src="#wall" repeat="20 20 1" position="0 -1 -15" width="30" height="20" rotation="0 0 0" side="double" static-body></a-plane>
     <!--<a-plane position="0 2.5 -14.99" width="4.52" height="4.52" src="#bitergia1"></a-plane>-->
 
-    <a-plane src="#wall" position="0 -1 15" width="30" height="20" rotation="0 0 0" side="double" static-body></a-plane>
+    <a-plane src="#wall" repeat="20 20 1" position="0 -1 15" width="30" height="20" rotation="0 0 0" side="double" static-body></a-plane>
 
     <a-plane position="15 -5.5 0" width="30" height="10" rotation="0 90 0" static-body></a-plane>
 
-    <a-plane src="#wall" position="-15 -1 0" width="30" height="20" rotation="0 90 0" side="double" static-body></a-plane>
+    <a-plane src="#wall" repeat="20 20 1" position="-15 -1 0" width="30" height="20" rotation="0 90 0" side="double" static-body></a-plane>
 
     <a-plane position="0 9 0" width="30" height="30" rotation="90 0 0" side="double" static-body roughness="0.5">
         <!--<a-entity gltf-model="#lampSrc" position="0 -1.5 0" rotation="-90 0 0"></a-entity>-->
@@ -125,10 +125,10 @@
     <!--?terrace-->
     <a-plane id="terrace"
     src="#terraceFloor"
-    repeat="5 7 5"
-    width="8"
-    height="30"
-    rotation="270 0 0"
+    repeat="12 2 1"
+    width="30"
+    height="8"
+    rotation="270 90 0"
     position="19 -0.5 0"
     roughness="1"
     static-body>
