@@ -109,7 +109,7 @@
 
     <a-plane src="#wall" position="0 -1 15" width="30" height="20" rotation="0 0 0" side="double" static-body></a-plane>
 
-    <!--<a-plane position="15 2.5 0" width="30" height="7" rotation="0 90 0" transparent="true" static-body></a-plane>-->
+    <a-plane position="15 -5.5 0" width="30" height="10" rotation="0 90 0" static-body></a-plane>
 
     <a-plane src="#wall" position="-15 -1 0" width="30" height="20" rotation="0 90 0" side="double" static-body></a-plane>
 
@@ -121,7 +121,7 @@
     <!--?terrace-->
     <a-plane id="terrace"
     src="#terraceFloor"
-    repeat="3 7 5"
+    repeat="5 7 5"
     width="8"
     height="30"
     rotation="270 0 0"
@@ -191,14 +191,47 @@
     static-body>
     </a-box>
 
+    <a-box class="glassPaneMarks"
+    color="grey"
+    scale="0.03 1 0.03"
+    position="23 0 15"
+    opacity="0.75"
+    static-body>
+    </a-box>
+
+    <a-box class="glassPaneMarks"
+    color="grey"
+    scale="0.03 1 0.03"
+    position="23 0 -15"
+    opacity="0.75"
+    static-body>
+    </a-box>
+
+    <!--?supports-->
+    <a-box class="terraceSupports"
+    scale="1 100 1"
+    position="22.5 -50.55 0">
+    </a-box>
+
+    <a-box class="terraceSupports"
+    scale="1 100 1"
+    position="22.5 -50.55 14.5">
+    </a-box>
+
+    <a-box class="terraceSupports"
+    scale="1 100 1"
+    position="22.5 -50.55 -14.5">
+    </a-box>
+
     <!--?information text-->
     <a-text id="project information text"
     value="Here it goes the \n project's information 
     \n bla bla bla bla bla bla bla \n bla bla bla bla bla bla bla
     \n bla bla bla bla bla bla bla \n bla bla bla bla bla bla bla
     \n bla bla bla bla bla bla bla \n bla bla bla bla bla bla bla"
-    position="-3 1.5 -1.5"
-    rotation="0 35 0"
+    align="center"
+    position="-1.5 1.5 -1.5"
+    rotation="0 45 0"
     color="black">
     </a-text>
 
@@ -335,7 +368,7 @@
         <!--?bubble chart podium-->
         <a-box id="bubblePodium"
         scale="5 1 5"
-        position="-6 0 10.75"
+        position="-5 0 10.75"
         color="grey"
         static-body>
             <a-text value="pie's \n information"
@@ -350,12 +383,12 @@
         <a-entity geobubbleschart='legend: true; palette: foxy; animation: false; title: geobubbleschart;
             titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -7.5 0.5 0; heightMax: 15; radiusMax: 1;
             data: [{"key":"David","key2":"2019","height":1,"radius":9},{"key":"David","key2":"2018","height":20,"radius":8},{"key":"David","key2":"2017","height":3,"radius":7},{"key":"David","key2":"2016","height":7,"radius":6},{"key":"David","key2":"2015","height":10,"radius":5},{"key":"Pete","key2":"2011","height":7,"radius":8},{"key":"Pete","key2":"2014","height":3,"radius":7},{"key":"Josh","key2":"2016","height":8,"radius":6},{"key":"Josh","key2":"2015","height":11,"radius":5},{"key":"Jesus","key2":"2016","height":9,"radius":9},{"key":"Jesus","key2":"2011","height":3,"radius":8},{"key":"Jesus","key2":"2014","height":12,"radius":7},{"key":"Jesus","key2":"2000","height":6,"radius":6},{"key":"Jesus","key2":"2015","height":1,"radius":5},{"key":"Jesus","key2":"2008","height":5,"radius":9},{"key":"Steve","key2":"2016","height":6,"radius":9},{"key":"Steve","key2":"2017","height":8,"radius":8},{"key":"Steve","key2":"2014","height":0,"radius":7},{"key":"Steve","key2":"2013","height":3,"radius":6},{"key":"Moreno","key2":"2015","height":2,"radius":5},{"key":"Jesus","key2":"2019","height":9,"radius":10},{"key":"Pete","key2":"2019","height":12,"radius":10}]'
-        position="-5 0.5 12.5" rotation="0 180 0" scale="0.2 0.2 0.2"></a-entity>
+        position="-4 0.5 12.5" rotation="0 180 0" scale="0.2 0.2 0.2"></a-entity>
 
         <!--?doughnut chart podium-->
         <a-box id="bubblePodium"
         scale="5 1 5"
-        position="-6 0 -10"
+        position="-4 0 -10"
         rotation="0 180 0"
         color="grey"
         static-body>
@@ -371,11 +404,11 @@
         <a-entity geodoughnutchart='legend: true; palette: flat; title: geodoughnutchart; titleColor: #FFFFFF;
         titleFont: #optimerBoldFont; titlePosition: -2.65 0 2.2; animation: false;
         data: [{"key":"kbn_network","size":10},{"key":"Maria","size":5},{"key":"Dave","size":9},{"key":"Jhon","size":12},{"key":"Sara","size":16},{"key":"Lemar","size":2},{"key":"Dawn","size":1},{"key":"Jesus","size":8},{"key":"Bitergia","size":3},{"key":"URJC","size":6},{"key":"Alice","size":22},{"key":"Pete","size":2},{"key":"Seth","size":6},{"key":"Martin","size":9}]'
-        position="-6 3 -10" scale="1.5 1.5 1.5" rotation="90 0 0"></a-entity>
+        position="-4 3 -10" scale="1.5 1.5 1.5" rotation="90 0 0"></a-entity>
 
         <!--?3d cylinder chart podium-->
         <a-box id="cylinderChartPodium"
-        scale="4 1 4.25"
+        scale="4.25 1 4.25"
         position="-11.5 0 -4"
         roation="0 0 0"
         color="grey"
@@ -393,7 +426,7 @@
         <a-entity scale = "0.15 0.15 0.15" geo3dcylinderchart='legend: true; animation: false; title: geo3dcylinderchart;
         titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -13 0.5 -5.5; heightMax: 40; radiusMax: 2;
         data: [{"key":"Andrea","key2":"2018","height":15,"radius":2},{"key":"Jesus","key2":"2018","height":3,"radius":5},{"key":"David","key2":"2021","height":5,"radius":1},{"key":"Jesus","key2":"2020","height":25,"radius":1},{"key":"Jesus","key2":"2021","height":10,"radius":4},{"key":"Andrea","key2":"2020","height":6,"radius":4},{"key":"David","key2":"2019","height":17,"radius":3}]'
-        position="-12.5 0.5 -3" rotation="0 90 0"></a-entity>
+        position="-12.275 0.5 -3" rotation="0 90 0"></a-entity>
 
         <!--?Sofa-->
         <a-box class="seat1"
@@ -402,6 +435,15 @@
         scale="2 1 1"
         static-body>
         </a-box>
+
+        <a-plane id="chairPhyiscs"
+        width="2"
+        height="1.25"
+        position="1.6 -0.1 1.6"
+        rotation="35 45 0"
+        opacity="0"
+        static-body>
+        </a-plane>
 
         <a-box class="seat1"
         position="2.5 0.25 2.5"
@@ -426,7 +468,7 @@
 
 
 
-        <a-entity kinematic-body="radius: 0.9" movement-controls="fly: false" rotation="0 0 0" position="0 0 0">
+        <a-entity kinematic-body="radius: 0.3" movement-controls="fly: false" rotation="0 45 0" position="1.7 1.5 1.7">
             <a-entity cursor="rayOrigin:mouse"></a-entity>
             <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc" interface-container-displayer world-map-displayer></a-entity>
             <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" laser-controls="hand:right" raycaster="showline: true"></a-entity>
