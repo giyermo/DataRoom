@@ -20,7 +20,7 @@
 
   <a-scene id="scene"
   stats
-  physics="debug: false">
+  physics="debug: true">
 
     <a-assets>
         <canvas id="wallCam"></canvas>
@@ -250,9 +250,8 @@
         align="center"
         position="0 0.15 .5">
         </a-text>
-    </a-box>
 
-    <a-entity position="7.5 0.5 -10" rotation="0 0 0" scale="0.3 0.3 0.3"
+        <a-entity position="0 0.5 0" rotation="0 0 0" scale="0.05 0.2 0.05"
 
                 codecity='width: 20; depth: 20; streets: true; color: green;
                           extra: 1.5; base_thick: 0.3; split: naive; fmaxarea: area;
@@ -325,8 +324,9 @@
             ]
         }'>
         </a-entity>
+    </a-box>
 
-        <!--?3dBarChart-->
+        <!--?3dBarChart podium-->
         <a-box id="barChartPodium"
         scale="4 1 4"
         position="-11.5 0 4.5"
@@ -339,15 +339,16 @@
             rotation="0 90 0"
             position="0.5 0.15 0">
             </a-text>
-        </a-box>
 
-        <a-entity geo3dbarchart='legend: true; palette: bussiness; title: ; animation: true;
+            <!--?3d bar chart-->
+            <a-entity geo3dbarchart='legend: true; palette: bussiness; title: ; animation: true;
             titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -6.6 0.5 -0.8; heightMax:15;
             data:[{"key":"David","key2":"2019","size":90},{"key":"David","key2":"2018","size":8},{"key":"David","key2":"2017","size":70},{"key":"David","key2":"2016","size":65},{"key":"David","key2":"2015","size":5},{"key":"Pete","key2":"2011","size":80},{"key":"Pete","key2":"2014","size":7},{"key":"Josh","key2":"2016","size":65},{"key":"Josh","key2":"2015","size":55},{"key":"Jesus","key2":"2016","size":90},{"key":"Jesus","key2":"2011","size":80},{"key":"Jesus","key2":"2014","size":75},{"key":"Jesus","key2":"2016","size":60},{"key":"Jesus","key2":"2015","size":5},{"key":"Jesus","key2":"2016","size":95},{"key":"Steve","key2":"2016","size":90},{"key":"Steve","key2":"2017","size":8},{"key":"Steve","key2":"2014","size":7},{"key":"Steve","key2":"2013","size":60},{"key":"Moreno","key2":"2015","size":45},{"key":"Jesus","key2":"2019","size":100},{"key":"Pete","key2":"2019","size":10}]' 
-        position="-12.75 0.25 5.5" 
-        rotation="0 90 0"
-        scale="0.3 0.3 0.3">
-        </a-entity>
+            position="-0.25 0.5 0.25" 
+            rotation="0 90 0"
+            scale="0.075 0.3 0.075">
+            </a-entity>
+        </a-box>
 
         <!--?geo pie chart podium-->
         <a-box id="piePodium"
@@ -361,13 +362,13 @@
             rotation="0 180 0"
             position="0 0 -0.5">
             </a-text>
-        </a-box>
 
-        <!--?geo pie chart-->
-        <a-entity geopiechart='legend: true; palette: blues; title: ; titleColor: #FFFFFF;
-        titleFont: #optimerBoldFont; titlePosition: -5 0.5 0; animation: false;
-        data: [{"key":"kbn_network","size":10},{"key":"Maria","size":5},{"key":"Dave","size":9},{"key":"Jhon","size":12},{"key":"Sara","size":16},{"key":"Lemar","size":2},{"key":"Dawn","size":1},{"key":"Jesus","size":8},{"key":"Bitergia","size":3},{"key":"URJC","size":6},{"key":"Alice","size":22},{"key":"Pete","size":2},{"key":"Seth","size":6},{"key":"Martin","size":9}]'
-        position="7 2.5 11" rotation="90 0 0" scale="2 2 2"></a-entity>
+            <!--?geo pie chart-->
+            <a-entity geopiechart='legend: true; palette: blues; title: ; titleColor: #FFFFFF;
+            titleFont: #optimerBoldFont; titlePosition: -5 0.5 0; animation: false;
+            data: [{"key":"kbn_network","size":10},{"key":"Maria","size":5},{"key":"Dave","size":9},{"key":"Jhon","size":12},{"key":"Sara","size":16},{"key":"Lemar","size":2},{"key":"Dawn","size":1},{"key":"Jesus","size":8},{"key":"Bitergia","size":3},{"key":"URJC","size":6},{"key":"Alice","size":22},{"key":"Pete","size":2},{"key":"Seth","size":6},{"key":"Martin","size":9}]'
+            position="0 2.5 0" rotation="90 180 0" scale="0.35 0.35 1.4"></a-entity>
+        </a-box>
 
         <!--?bubble chart podium-->
         <a-box id="bubblePodium"
@@ -381,13 +382,13 @@
             rotation="0 180 0"
             position="0 0 -0.5">
             </a-text>
-        </a-box>
 
-        <!--?bubble chart-->
-        <a-entity geobubbleschart='legend: true; palette: foxy; animation: false; title: geobubbleschart;
+            <!--?bubble chart-->
+            <a-entity geobubbleschart='legend: true; palette: foxy; animation: false; title: geobubbleschart;
             titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -7.5 0.5 0; heightMax: 15; radiusMax: 1;
             data: [{"key":"David","key2":"2019","height":1,"radius":9},{"key":"David","key2":"2018","height":20,"radius":8},{"key":"David","key2":"2017","height":3,"radius":7},{"key":"David","key2":"2016","height":7,"radius":6},{"key":"David","key2":"2015","height":10,"radius":5},{"key":"Pete","key2":"2011","height":7,"radius":8},{"key":"Pete","key2":"2014","height":3,"radius":7},{"key":"Josh","key2":"2016","height":8,"radius":6},{"key":"Josh","key2":"2015","height":11,"radius":5},{"key":"Jesus","key2":"2016","height":9,"radius":9},{"key":"Jesus","key2":"2011","height":3,"radius":8},{"key":"Jesus","key2":"2014","height":12,"radius":7},{"key":"Jesus","key2":"2000","height":6,"radius":6},{"key":"Jesus","key2":"2015","height":1,"radius":5},{"key":"Jesus","key2":"2008","height":5,"radius":9},{"key":"Steve","key2":"2016","height":6,"radius":9},{"key":"Steve","key2":"2017","height":8,"radius":8},{"key":"Steve","key2":"2014","height":0,"radius":7},{"key":"Steve","key2":"2013","height":3,"radius":6},{"key":"Moreno","key2":"2015","height":2,"radius":5},{"key":"Jesus","key2":"2019","height":9,"radius":10},{"key":"Pete","key2":"2019","height":12,"radius":10}]'
-        position="-4 0.5 12.5" rotation="0 180 0" scale="0.2 0.2 0.2"></a-entity>
+            position="0.25 0.5 0.4" rotation="0 180 0" scale="0.045 0.18 0.045"></a-entity>
+        </a-box>
 
         <!--?doughnut chart podium-->
         <a-box id="bubblePodium"
@@ -402,13 +403,13 @@
             rotation="0 180 0"
             position="0 0 -0.5">
             </a-text>
-        </a-box>
 
-        <!--?doughnut chart-->
-        <a-entity geodoughnutchart='legend: true; palette: flat; title: geodoughnutchart; titleColor: #FFFFFF;
-        titleFont: #optimerBoldFont; titlePosition: -2.65 0 2.2; animation: false;
-        data: [{"key":"kbn_network","size":10},{"key":"Maria","size":5},{"key":"Dave","size":9},{"key":"Jhon","size":12},{"key":"Sara","size":16},{"key":"Lemar","size":2},{"key":"Dawn","size":1},{"key":"Jesus","size":8},{"key":"Bitergia","size":3},{"key":"URJC","size":6},{"key":"Alice","size":22},{"key":"Pete","size":2},{"key":"Seth","size":6},{"key":"Martin","size":9}]'
-        position="-4 3 -10" scale="1.5 1.5 1.5" rotation="90 0 0"></a-entity>
+            <!--?doughnut chart-->
+            <a-entity geodoughnutchart='legend: true; palette: flat; title: geodoughnutchart; titleColor: #FFFFFF;
+            titleFont: #optimerBoldFont; titlePosition: -2.65 0 2.2; animation: false;
+            data: [{"key":"kbn_network","size":10},{"key":"Maria","size":5},{"key":"Dave","size":9},{"key":"Jhon","size":12},{"key":"Sara","size":16},{"key":"Lemar","size":2},{"key":"Dawn","size":1},{"key":"Jesus","size":8},{"key":"Bitergia","size":3},{"key":"URJC","size":6},{"key":"Alice","size":22},{"key":"Pete","size":2},{"key":"Seth","size":6},{"key":"Martin","size":9}]'
+            position="0 3.25 0" scale="0.35 0.35 1.6" rotation="90 180 0"></a-entity>
+        </a-box>
 
         <!--?3d cylinder chart podium-->
         <a-box id="cylinderChartPodium"
@@ -423,16 +424,16 @@
             rotation="0 90 0"
             position="0.5 0.15 0">
             </a-text>
+
+            <!--?3d cylinder chart-->
+            <a-entity scale = "0.035 0.14 0.035" geo3dcylinderchart='legend: true; animation: false; title: geo3dcylinderchart;
+            titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -13 0.5 -5.5; heightMax: 40; radiusMax: 2;
+            data: [{"key":"Andrea","key2":"2018","height":15,"radius":2},{"key":"Jesus","key2":"2018","height":3,"radius":5},{"key":"David","key2":"2021","height":5,"radius":1},{"key":"Jesus","key2":"2020","height":25,"radius":1},{"key":"Jesus","key2":"2021","height":10,"radius":4},{"key":"Andrea","key2":"2020","height":6,"radius":4},{"key":"David","key2":"2019","height":17,"radius":3}]'
+            position="-0.2 0.5 0.15" rotation="0 90 0"></a-entity>
         </a-box>
 
 
-        <!--?3d cylinder chart-->
-        <a-entity scale = "0.15 0.15 0.15" geo3dcylinderchart='legend: true; animation: false; title: geo3dcylinderchart;
-        titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -13 0.5 -5.5; heightMax: 40; radiusMax: 2;
-        data: [{"key":"Andrea","key2":"2018","height":15,"radius":2},{"key":"Jesus","key2":"2018","height":3,"radius":5},{"key":"David","key2":"2021","height":5,"radius":1},{"key":"Jesus","key2":"2020","height":25,"radius":1},{"key":"Jesus","key2":"2021","height":10,"radius":4},{"key":"Andrea","key2":"2020","height":6,"radius":4},{"key":"David","key2":"2019","height":17,"radius":3}]'
-        position="-12.275 0.5 -3" rotation="0 90 0"></a-entity>
-
-        <!--?Sofa physics-->
+        <!--?Sofa physics
         <a-box class="seat1"
         position="2 -0.25 2"
         rotation="0 45 0"
@@ -444,7 +445,7 @@
         <a-plane id="chairPhyiscs"
         width="2"
         height="1.25"
-        position="1.6 -0.1 1.6"
+        position="1.6 -0.15 1.6"
         rotation="35 45 0"
         opacity="0"
         static-body>
@@ -474,12 +475,12 @@
         static-body>
         </a-box>
 
-        <!--?sofa-->
+        <!--?sofa
         <a-entity gltf-model="#sofaSrc"
         scale="0.015 0.02 0.02"
         rotation="0 -135 0"
         position="4.75 1.75 2.75">
-        </a-entity>
+        </a-entity>-->
 
         <a-entity kinematic-body="radius: 0.3" movement-controls="fly: false" rotation="0 45 0" position="1.7 1.5 1.7">
             <a-entity cursor="rayOrigin:mouse"></a-entity>
