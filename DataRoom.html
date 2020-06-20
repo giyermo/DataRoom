@@ -243,7 +243,7 @@
             <a-text value="city's \n information"
             scale="2 2 2"
             align="center"
-            position="0 0 2.75">
+            position="0 0 2.8">
             </a-text>
 
             <a-entity position="0 0.5 0" rotation="0 0 0" scale="0.275 0.275 0.275"
@@ -325,13 +325,13 @@
         <!--?3dBarChart podium-->
         <a-entity id="barChartPodium"
         info-podium="podiumWidth: 4; podiumHeight: 1; podiumDepth: 4"
-        position="-11.5 0 4.5"
+        position="-11.5 0 6.5"
         rotation="0 90 0">
             <a-text value="chart's \n information"
             scale="2 2 2"
             align="center"
             rotation="0 0 0"
-            position="0 0 2">
+            position="0 0 2.05">
             </a-text>
 
             <!--?3d bar chart-->
@@ -352,7 +352,7 @@
             scale="2 2 2"
             align="center"
             rotation="0 180 0"
-            position="0 0 -2">
+            position="0 0 -2.05">
             </a-text>
 
             <!--?geo pie chart-->
@@ -364,32 +364,32 @@
 
         <!--?bubble chart podium-->
         <a-entity id="bubblePodium"
-        info-podium="podiumWidth: 5; podiumHeight: 1; podiumDepth: 5"
-        position="-5 0 10.75">
+        info-podium="podiumWidth: 4.5; podiumHeight: 1; podiumDepth: 5"
+        position="-2 0 10.75">
             <a-text value="pie's \n information"
             scale="2 2 2"
             align="center"
             rotation="0 180 0"
-            position="0 0 -2.5">
+            position="0 0 -2.55">
             </a-text>
 
             <!--?bubble chart-->
             <a-entity geobubbleschart='legend: true; palette: foxy; animation: false; title: geobubbleschart;
             titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -7.5 0.5 0; heightMax: 15; radiusMax: 1;
             data: [{"key":"David","key2":"2019","height":1,"radius":9},{"key":"David","key2":"2018","height":20,"radius":8},{"key":"David","key2":"2017","height":3,"radius":7},{"key":"David","key2":"2016","height":7,"radius":6},{"key":"David","key2":"2015","height":10,"radius":5},{"key":"Pete","key2":"2011","height":7,"radius":8},{"key":"Pete","key2":"2014","height":3,"radius":7},{"key":"Josh","key2":"2016","height":8,"radius":6},{"key":"Josh","key2":"2015","height":11,"radius":5},{"key":"Jesus","key2":"2016","height":9,"radius":9},{"key":"Jesus","key2":"2011","height":3,"radius":8},{"key":"Jesus","key2":"2014","height":12,"radius":7},{"key":"Jesus","key2":"2000","height":6,"radius":6},{"key":"Jesus","key2":"2015","height":1,"radius":5},{"key":"Jesus","key2":"2008","height":5,"radius":9},{"key":"Steve","key2":"2016","height":6,"radius":9},{"key":"Steve","key2":"2017","height":8,"radius":8},{"key":"Steve","key2":"2014","height":0,"radius":7},{"key":"Steve","key2":"2013","height":3,"radius":6},{"key":"Moreno","key2":"2015","height":2,"radius":5},{"key":"Jesus","key2":"2019","height":9,"radius":10},{"key":"Pete","key2":"2019","height":12,"radius":10}]'
-            position="0.75 0.5 1.25" rotation="0 180 0" scale="0.18 0.18 0.18"></a-entity>
+            position="0.75 0.5 2.25" rotation="0 180 0" scale="0.23 0.23 0.23"></a-entity>
         </a-entity>
 
         <!--?doughnut chart podium-->
         <a-entity id="bubblePodium"
         info-podium="podiumWidth: 5; podiumHeight: 1; podiumDepth: 5"
-        position="-4 0 -10"
+        position="-2 0 -10"
         rotation="0 180 0">
             <a-text value="doughnut's \n information"
             scale="2 2 2"
             align="center"
             rotation="0 180 0"
-            position="0 0 -2.5">
+            position="0 0 -2.55">
             </a-text>
 
             <!--?doughnut chart-->
@@ -402,12 +402,12 @@
         <!--?3d cylinder chart podium-->
         <a-entity id="cylinderChartPodium"
         info-podium="podiumWidth: 4.25; podiumHeight: 1; podiumDepth: 4.25"
-        position="-11.5 0 -4">
+        position="-11.5 0 -6.5">
             <a-text value="chart's \n information"
             scale="2 2 2"
             align="center"
             rotation="0 90 0"
-            position="2.125 0 0">
+            position="2.175 0 0">
             </a-text>
 
             <!--?3d cylinder chart-->
@@ -470,7 +470,7 @@
         <a-entity kinematic-body="radius: 0.3" movement-controls="fly: false" rotation="0 45 0" position="1.7 1.5 1.7">
             <a-entity cursor="rayOrigin:mouse"></a-entity>
             <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc" time-changer></a-entity>
-            <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" laser-controls="hand:right" raycaster="showline: true"></a-entity>
+            <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" laser-controls="hand:right" raycaster="showline: true" line="color: orange; opacity: 1"></a-entity>
             <a-entity id="camera" camera position="0 1.2 0" look-controls="pointerLockEnabled: false;">
         </a-entity>
 
