@@ -18,419 +18,407 @@
 
 <body>
 
-  <a-scene id="scene"
-  stats
-  physics="debug: true">
+    <a-scene id="scene"
+    stats
+    physics="debug: false">
 
-    <a-assets>
-        <canvas id="wallCam"></canvas>
+        <a-assets>
+            <canvas id="wallCam"></canvas>
 
-        <img id="bitergia1" src="textures/bitergia1.png">
+            <img id="bitergia1" src="textures/bitergia1.png">
 
-        <img id="nightSky" src="textures/nightTexture.jpg">
+            <img id="nightSky" src="textures/nightTexture.jpg">
 
-        <img id="terraceFloor" src="textures/freeFloor2.jpg">
+            <img id="terraceFloor" src="textures/freeFloor2.jpg">
 
-        <img id="interiorFloor" src="textures/interiorFloorFree2.jpg">
+            <img id="interiorFloor" src="textures/interiorFloorFree2.jpg">
 
-        <img id="wall" src="textures/freeWall.jpg">
+            <img id="wall" src="textures/freeWall.jpg">
 
-        <img id="ceiling" src="textures/ceiling.jpeg">
+            <img id="ceiling" src="textures/ceiling.jpeg">
 
-        <a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
+            <a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
 
-        <!--*nature-->
+            <!--*nature-->
 
-        <a-asset-item id="cherryTreeSrc"
-        src="gltfModels/nature/cherryTreeMine/cherryTree2.gltf">
-        </a-asset-item>
+            <a-asset-item id="cherryTreeSrc"
+            src="gltfModels/nature/cherryTreeMine/cherryTree2.gltf">
+            </a-asset-item>
 
-        <a-asset-item id="spruceTreeSrc"
-        src="gltfModels/nature/spruceTreeMine/spruceTree2.gltf">
-        </a-asset-item>
+            <a-asset-item id="spruceTreeSrc"
+            src="gltfModels/nature/spruceTreeMine/spruceTree2.gltf">
+            </a-asset-item>
 
-        <a-asset-item id="oakTreeSrc"
-        src="gltfModels/nature/oakTreeMine/oakTree2.gltf">
-        </a-asset-item>
+            <a-asset-item id="oakTreeSrc"
+            src="gltfModels/nature/oakTreeMine/oakTree2.gltf">
+            </a-asset-item>
 
-        <a-asset-item id="palmTreeSrc"
-        src="gltfModels/nature/palmTree/palmTree.gltf">
-        </a-asset-item>
+            <a-asset-item id="palmTreeSrc"
+            src="gltfModels/nature/palmTree/palmTree.gltf">
+            </a-asset-item>
 
-        <a-asset-item id="treeLogSrc"
-        src="gltfModels/nature/treeLogMine/log.gltf">
-        </a-asset-item>
+            <a-asset-item id="treeLogSrc"
+            src="gltfModels/nature/treeLogMine/log.gltf">
+            </a-asset-item>
 
-        <a-asset-item id="treeTrunkSrc"
-        src="gltfModels/nature/treeTrunkMine/treeTrunk2.gltf">
-        </a-asset-item>
+            <a-asset-item id="treeTrunkSrc"
+            src="gltfModels/nature/treeTrunkMine/treeTrunk2.gltf">
+            </a-asset-item>
 
-        <!--*buildings-->
-        <a-asset-item id="stairsSrc"
-        src="gltfModels/buildings/stairs/stairs.gltf">
-        </a-asset-item>
+            <!--*buildings-->
+            <a-asset-item id="stairsSrc"
+            src="gltfModels/buildings/stairs/stairs.gltf">
+            </a-asset-item>
 
-        <!--*room-->
-        <a-asset-item id="lampSrc"
-        src="gltfModels/room/lamp.gltf">
-        </a-asset-item>
+            <!--*room-->
+            <a-asset-item id="lampSrc"
+            src="gltfModels/room/lamp.gltf">
+            </a-asset-item>
 
-        <a-asset-item id="sofaSrc"
-        src="gltfModels/room/sofa/scene.gltf">
-        </a-asset-item>
+            <a-asset-item id="sofaSrc"
+            src="gltfModels/room/sofa/scene.gltf">
+            </a-asset-item>
 
-    </a-assets>
+        </a-assets>
 
-    <!--?sky-->
-    <a-sky id='sky'
-    color="#141852">
-    </a-sky>
+        <!--?sky-->
+        <a-sky id='sky'
+        color="#141852">
+        </a-sky>
 
-    <a-sky id='sky2'
-    src="#nightSky"
-    rotation="0 270 0"
-    color="#855988"
-    opacity="1"
-    scale="0.2 0.2 0.2">
-    </a-sky>
+        <a-sky id='sky2'
+        src="#nightSky"
+        rotation="0 270 0"
+        color="#855988"
+        opacity="1"
+        scale="0.2 0.2 0.2">
+        </a-sky>
 
-    <!--?room plane-->
-    <a-plane id="roomPlane"
-    src="#interiorFloor"
-    repeat="1 1 1"
-    position="0 -0.5 0"
-    color="grey"
-    width="30"
-    height="30"
-    rotation="270 0 0"
-    roughness="0.5"
-    static-body>
-    </a-plane>
+        <!--?room plane-->
+        <a-plane id="roomPlane"
+        src="#interiorFloor"
+        repeat="1 1 1"
+        position="0 -0.5 0"
+        color="grey"
+        width="30"
+        height="30"
+        rotation="270 0 0"
+        roughness="0.5"
+        static-body>
+        </a-plane>
 
-    <!--?Walls-->
-    <a-plane src="#wall" repeat="20 20 1" position="0 -1 -15" width="30" height="20" rotation="0 0 0" side="double" static-body></a-plane>
-    <!--<a-plane position="0 2.5 -14.99" width="4.52" height="4.52" src="#bitergia1"></a-plane>-->
+        <!--?Walls-->
+        <a-plane src="#wall" repeat="20 20 1" position="0 -1 -15" width="30" height="20" rotation="0 0 0" side="double" static-body></a-plane>
+        <!--<a-plane position="0 2.5 -14.99" width="4.52" height="4.52" src="#bitergia1"></a-plane>-->
 
-    <a-plane src="#wall" repeat="20 20 1" position="0 -1 15" width="30" height="20" rotation="0 0 0" side="double" static-body></a-plane>
+        <a-plane src="#wall" repeat="20 20 1" position="0 -1 15" width="30" height="20" rotation="0 0 0" side="double" static-body></a-plane>
 
-    <a-plane position="15 -5.5 0" width="30" height="10" rotation="0 90 0" static-body></a-plane>
+        <a-plane position="15 -5.5 0" width="30" height="10" rotation="0 90 0" static-body></a-plane>
 
-    <a-plane src="#wall" repeat="20 20 1" position="-15 -1 0" width="30" height="20" rotation="0 90 0" side="double" static-body></a-plane>
+        <a-plane src="#wall" repeat="20 20 1" position="-15 -1 0" width="30" height="20" rotation="0 90 0" side="double" static-body></a-plane>
 
-    <a-plane position="0 9 0" width="30" height="30" rotation="90 0 0" side="double" static-body roughness="0.5">
-        <!--<a-entity gltf-model="#lampSrc" position="0 -1.5 0" rotation="-90 0 0"></a-entity>-->
-    </a-plane>
-    <a-light type="point" color="lightgrey" intensity="0.5" position="0 8.5 0"></a-light>
+        <a-plane position="0 9 0" width="30" height="30" rotation="90 0 0" side="double" static-body roughness="0.5">
+            <!--<a-entity gltf-model="#lampSrc" position="0 -1.5 0" rotation="-90 0 0"></a-entity>-->
+        </a-plane>
+        <a-light type="point" color="lightgrey" intensity="0.5" position="0 8.5 0"></a-light>
 
-    <!--?terrace-->
-    <a-plane id="terrace"
-    src="#terraceFloor"
-    repeat="12 2 1"
-    width="30"
-    height="8"
-    rotation="270 90 0"
-    position="19 -0.5 0"
-    roughness="1"
-    static-body>
-    </a-plane>
+        <!--?terrace-->
+        <a-plane id="terrace"
+        src="#terraceFloor"
+        repeat="12 2 1"
+        width="30"
+        height="8"
+        rotation="270 90 0"
+        position="19 -0.5 0"
+        roughness="1"
+        static-body>
+        </a-plane>
 
-    <!--?terrace glass-->
-    <a-plane class="glassPanes"
-    width="30"
-    height="1"
-    opacity="0.05"
-    side="double"
-    rotation="0 90 0"
-    position="23 0 0"
-    static-body>
-    </a-plane>
+        <!--?terrace glass-->
+        <a-plane class="glassPanes"
+        width="30"
+        height="1"
+        opacity="0.05"
+        side="double"
+        rotation="0 90 0"
+        position="23 0 0"
+        static-body>
+        </a-plane>
 
-    <a-plane class="glassPanes"
-    width="8"
-    height="1"
-    opacity="0.05"
-    side="double"
-    rotation="0 0 0"
-    position="19 0 15"
-    static-body>
-    </a-plane>
+        <a-plane class="glassPanes"
+        width="8"
+        height="1"
+        opacity="0.05"
+        side="double"
+        rotation="0 0 0"
+        position="19 0 15"
+        static-body>
+        </a-plane>
 
-    <a-plane class="glassPanes"
-    width="8"
-    height="1"
-    opacity="0.05"
-    side="double"
-    rotation="0 0 0"
-    position="19 0 -15"
-    static-body>
-    </a-plane>
+        <a-plane class="glassPanes"
+        width="8"
+        height="1"
+        opacity="0.05"
+        side="double"
+        rotation="0 0 0"
+        position="19 0 -15"
+        static-body>
+        </a-plane>
 
-    <!--?separation-->
-    <a-box id="separation"
-    color="lightgrey"
-    scale="0.1 0.1 30"
-    position="15 -0.5 0"
-    static-body>
-    </a-box>
+        <!--?separation-->
+        <a-box id="separation"
+        color="lightgrey"
+        scale="0.1 0.1 30"
+        position="15 -0.5 0"
+        static-body>
+        </a-box>
 
-    <!--?glass pane marks-->
-    <a-box class="glassPaneMarks"
-    color="grey"
-    scale="0.1 0.1 30"
-    position="23 -0.5 0"
-    static-body>
-    </a-box>
+        <!--?glass pane marks-->
+        <a-box class="glassPaneMarks"
+        color="grey"
+        scale="0.1 0.1 30"
+        position="23 -0.5 0"
+        static-body>
+        </a-box>
 
-    <a-box class="glassPaneMarks"
-    color="grey"
-    scale="8 0.1 0.1"
-    position="19 -0.5 -15"
-    static-body>
-    </a-box>
+        <a-box class="glassPaneMarks"
+        color="grey"
+        scale="8 0.1 0.1"
+        position="19 -0.5 -15"
+        static-body>
+        </a-box>
 
-    <a-box class="glassPaneMarks"
-    color="grey"
-    scale="8 0.1 0.1"
-    position="19 -0.5 15"
-    static-body>
-    </a-box>
+        <a-box class="glassPaneMarks"
+        color="grey"
+        scale="8 0.1 0.1"
+        position="19 -0.5 15"
+        static-body>
+        </a-box>
 
-    <a-box class="glassPaneMarks"
-    color="grey"
-    scale="0.03 1 0.03"
-    position="23 0 15"
-    opacity="0.75"
-    static-body>
-    </a-box>
+        <a-box class="glassPaneMarks"
+        color="grey"
+        scale="0.03 1 0.03"
+        position="23 0 15"
+        opacity="0.75"
+        static-body>
+        </a-box>
 
-    <a-box class="glassPaneMarks"
-    color="grey"
-    scale="0.03 1 0.03"
-    position="23 0 -15"
-    opacity="0.75"
-    static-body>
-    </a-box>
+        <a-box class="glassPaneMarks"
+        color="grey"
+        scale="0.03 1 0.03"
+        position="23 0 -15"
+        opacity="0.75"
+        static-body>
+        </a-box>
 
-    <!--?supports-->
-    <a-box class="terraceSupports"
-    scale="1 100 1"
-    position="22.5 -50.55 0">
-    </a-box>
+        <!--?supports-->
+        <a-box class="terraceSupports"
+        scale="1 100 1"
+        position="22.5 -50.55 0">
+        </a-box>
 
-    <a-box class="terraceSupports"
-    scale="1 100 1"
-    position="22.5 -50.55 14.5">
-    </a-box>
+        <a-box class="terraceSupports"
+        scale="1 100 1"
+        position="22.5 -50.55 14.5">
+        </a-box>
 
-    <a-box class="terraceSupports"
-    scale="1 100 1"
-    position="22.5 -50.55 -14.5">
-    </a-box>
+        <a-box class="terraceSupports"
+        scale="1 100 1"
+        position="22.5 -50.55 -14.5">
+        </a-box>
 
-    <!--?information text-->
-    <a-text id="project information text"
-    value="Here it goes the \n project's information 
-    \n bla bla bla bla bla bla bla \n bla bla bla bla bla bla bla
-    \n bla bla bla bla bla bla bla \n bla bla bla bla bla bla bla
-    \n bla bla bla bla bla bla bla \n bla bla bla bla bla bla bla"
-    align="center"
-    position="-1.5 1.5 -1.5"
-    rotation="0 45 0"
-    color="black">
-    </a-text>
-
-    <!--?CodeCity-->
-    <a-box id="firstCityPodium"
-    scale="5.5 1 5.5"
-    position="7.5 0 -10"
-    color="grey"
-    static-body>
-        <a-text value="city's \n information"
-        scale="0.5 1.2 0.5"
+        <!--?information text-->
+        <a-text id="project information text"
+        value="Here it goes the \n project's information 
+        \n bla bla bla bla bla bla bla \n bla bla bla bla bla bla bla
+        \n bla bla bla bla bla bla bla \n bla bla bla bla bla bla bla
+        \n bla bla bla bla bla bla bla \n bla bla bla bla bla bla bla"
         align="center"
-        position="0 0.15 .5">
+        position="-1.5 1.5 -1.5"
+        rotation="0 45 0"
+        color="black">
         </a-text>
 
-        <a-entity position="0 0.5 0" rotation="0 0 0" scale="0.05 0.2 0.05"
+        <!--?CodeCity podium-->
+        <a-entity id="firstCityPodium"
+        info-podium
+        position="7.5 0 -10">
+            <a-text value="city's \n information"
+            scale="2 2 2"
+            align="center"
+            position="0 0 2.75">
+            </a-text>
 
-                codecity='width: 20; depth: 20; streets: true; color: green;
-                          extra: 1.5; base_thick: 0.3; split: naive; fmaxarea: area;
-                          data:
-        {"id": "Root",
-        "children":
-            [{"id": "BlockA",
-            "children": [{"id": "BlockA0",
-                    "children": [{"id": "A0A", "area": 2, "height": 1}]},
-                    {"id": "BlockA1",
-                    "children": [{"id": "A1A", "area": 2, "height": 1},
-                                {"id": "A1B", "area": 5, "height": 4},
-                                {"id": "A1C", "area": 4, "height": 6},
-                                {"id": "A1D", "area": 6, "height": 2}]},
-                    {"id": "BlockA2",
-                    "children": [{"id": "A2A", "area": 1, "height": 3},
-                                {"id": "A2B", "area": 5, "height": 6},
-                                {"id": "A2C", "area": 8, "height": 4}]},
-                    {"id": "BlockA3",
-                    "children": [{"id": "A3A", "area": 4, "height": 7},
-                                {"id": "A3B", "area": 5, "height": 3},
-                                {"id": "A3C", "area": 8, "height": 1}]}
-                    ]},
-            {"id": "BlockB",
-            "children": [{"id": "BlockB1",
-                    "children": [{"id": "B1A", "area": 3, "height": 5},
-                                {"id": "B1B", "area": 5, "height": 4},
-                                {"id": "B1C", "area": 1, "height": 3},
-                                {"id": "B1D", "area": 6, "height": 2},
-                                {"id": "B1E", "area": 4, "height": 6},
-                                {"id": "B1F", "area": 3, "height": 1},
-                                {"id": "B1G", "area": 2, "height": 5},
-                                {"id": "B1H", "area": 1, "height": 3}]},
-                    {"id": "BlockB2",
-                    "children": [{"id": "B2A", "area": 2, "height": 9},
-                                {"id": "B2B", "area": 6, "height": 3},
-                                {"id": "B2C", "area": 1, "height": 3},
-                                {"id": "B2D", "area": 8, "height": 1},
-                                {"id": "B2E", "area": 3, "height": 6},
-                                {"id": "B2F", "area": 1, "height": 7}]},
-                    {"id": "Block3",
-                    "children": [{"id": "B3A", "area": 6, "height": 2},
-                                {"id": "B3B", "area": 8, "height": 4},
-                                {"id": "B3C", "area": 3, "height": 6}]},
-                    {"id": "Block4",
-                    "children": [{"id": "B4A", "area": 2, "height": 9},
-                                {"id": "B4B", "area": 6, "height": 1},
-                                {"id": "B4C", "area": 7, "height": 6},
-                                {"id": "B4D", "area": 8, "height": 5},
-                                {"id": "B4E", "area": 3, "height": 6},
-                                {"id": "B4F", "area": 9, "height": 4}]},
-                    {"id": "Block5",
-                    "children": [{"id": "B5A", "area": 2, "height": 9},
-                                {"id": "B5B", "area": 6, "height": 3},
-                                {"id": "B5C", "area": 5, "height": 8},
-                                {"id": "B5D", "area": 5, "height": 7}]},
-                    {"id": "Block6",
-                    "children": [{"id": "B6A", "area": 2, "height": 9},
-                                {"id": "B6B", "area": 6, "height": 3},
-                                {"id": "B6C", "area": 2, "height": 6},
-                                {"id": "B6D", "area": 4, "height": 1},
-                                {"id": "B6E", "area": 6, "height": 6},
-                                {"id": "B6F", "area": 1, "height": 7},
-                                {"id": "B6G", "area": 4, "height": 3},
-                                {"id": "B6H", "area": 2, "height": 5},
-                                {"id": "B6I", "area": 7, "height": 1},
-                                {"id": "B6J", "area": 3, "height": 2},
-                                {"id": "B6K", "area": 1, "height": 3}]}
-                    ]}
-            ]
-        }'>
+            <a-entity position="0 0.5 0" rotation="0 0 0" scale="0.275 0.275 0.275"
+
+                    codecity='width: 20; depth: 20; streets: true; color: green;
+                            extra: 1.5; base_thick: 0.3; split: naive; fmaxarea: area;
+                            data:
+            {"id": "Root",
+            "children":
+                [{"id": "BlockA",
+                "children": [{"id": "BlockA0",
+                        "children": [{"id": "A0A", "area": 2, "height": 1}]},
+                        {"id": "BlockA1",
+                        "children": [{"id": "A1A", "area": 2, "height": 1},
+                                    {"id": "A1B", "area": 5, "height": 4},
+                                    {"id": "A1C", "area": 4, "height": 6},
+                                    {"id": "A1D", "area": 6, "height": 2}]},
+                        {"id": "BlockA2",
+                        "children": [{"id": "A2A", "area": 1, "height": 3},
+                                    {"id": "A2B", "area": 5, "height": 6},
+                                    {"id": "A2C", "area": 8, "height": 4}]},
+                        {"id": "BlockA3",
+                        "children": [{"id": "A3A", "area": 4, "height": 7},
+                                    {"id": "A3B", "area": 5, "height": 3},
+                                    {"id": "A3C", "area": 8, "height": 1}]}
+                        ]},
+                {"id": "BlockB",
+                "children": [{"id": "BlockB1",
+                        "children": [{"id": "B1A", "area": 3, "height": 5},
+                                    {"id": "B1B", "area": 5, "height": 4},
+                                    {"id": "B1C", "area": 1, "height": 3},
+                                    {"id": "B1D", "area": 6, "height": 2},
+                                    {"id": "B1E", "area": 4, "height": 6},
+                                    {"id": "B1F", "area": 3, "height": 1},
+                                    {"id": "B1G", "area": 2, "height": 5},
+                                    {"id": "B1H", "area": 1, "height": 3}]},
+                        {"id": "BlockB2",
+                        "children": [{"id": "B2A", "area": 2, "height": 9},
+                                    {"id": "B2B", "area": 6, "height": 3},
+                                    {"id": "B2C", "area": 1, "height": 3},
+                                    {"id": "B2D", "area": 8, "height": 1},
+                                    {"id": "B2E", "area": 3, "height": 6},
+                                    {"id": "B2F", "area": 1, "height": 7}]},
+                        {"id": "Block3",
+                        "children": [{"id": "B3A", "area": 6, "height": 2},
+                                    {"id": "B3B", "area": 8, "height": 4},
+                                    {"id": "B3C", "area": 3, "height": 6}]},
+                        {"id": "Block4",
+                        "children": [{"id": "B4A", "area": 2, "height": 9},
+                                    {"id": "B4B", "area": 6, "height": 1},
+                                    {"id": "B4C", "area": 7, "height": 6},
+                                    {"id": "B4D", "area": 8, "height": 5},
+                                    {"id": "B4E", "area": 3, "height": 6},
+                                    {"id": "B4F", "area": 9, "height": 4}]},
+                        {"id": "Block5",
+                        "children": [{"id": "B5A", "area": 2, "height": 9},
+                                    {"id": "B5B", "area": 6, "height": 3},
+                                    {"id": "B5C", "area": 5, "height": 8},
+                                    {"id": "B5D", "area": 5, "height": 7}]},
+                        {"id": "Block6",
+                        "children": [{"id": "B6A", "area": 2, "height": 9},
+                                    {"id": "B6B", "area": 6, "height": 3},
+                                    {"id": "B6C", "area": 2, "height": 6},
+                                    {"id": "B6D", "area": 4, "height": 1},
+                                    {"id": "B6E", "area": 6, "height": 6},
+                                    {"id": "B6F", "area": 1, "height": 7},
+                                    {"id": "B6G", "area": 4, "height": 3},
+                                    {"id": "B6H", "area": 2, "height": 5},
+                                    {"id": "B6I", "area": 7, "height": 1},
+                                    {"id": "B6J", "area": 3, "height": 2},
+                                    {"id": "B6K", "area": 1, "height": 3}]}
+                        ]}
+                ]
+            }'>
+            </a-entity>
         </a-entity>
-    </a-box>
+
 
         <!--?3dBarChart podium-->
-        <a-box id="barChartPodium"
-        scale="4 1 4"
+        <a-entity id="barChartPodium"
+        info-podium="podiumWidth: 4; podiumHeight: 1; podiumDepth: 4"
         position="-11.5 0 4.5"
-        roation="0 0 0"
-        color="grey"
-        static-body>
+        rotation="0 90 0">
             <a-text value="chart's \n information"
-            scale="0.5 1.2 0.5"
+            scale="2 2 2"
             align="center"
-            rotation="0 90 0"
-            position="0.5 0.15 0">
+            rotation="0 0 0"
+            position="0 0 2">
             </a-text>
 
             <!--?3d bar chart-->
             <a-entity geo3dbarchart='legend: true; palette: bussiness; title: ; animation: true;
             titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -6.6 0.5 -0.8; heightMax:15;
             data:[{"key":"David","key2":"2019","size":90},{"key":"David","key2":"2018","size":8},{"key":"David","key2":"2017","size":70},{"key":"David","key2":"2016","size":65},{"key":"David","key2":"2015","size":5},{"key":"Pete","key2":"2011","size":80},{"key":"Pete","key2":"2014","size":7},{"key":"Josh","key2":"2016","size":65},{"key":"Josh","key2":"2015","size":55},{"key":"Jesus","key2":"2016","size":90},{"key":"Jesus","key2":"2011","size":80},{"key":"Jesus","key2":"2014","size":75},{"key":"Jesus","key2":"2016","size":60},{"key":"Jesus","key2":"2015","size":5},{"key":"Jesus","key2":"2016","size":95},{"key":"Steve","key2":"2016","size":90},{"key":"Steve","key2":"2017","size":8},{"key":"Steve","key2":"2014","size":7},{"key":"Steve","key2":"2013","size":60},{"key":"Moreno","key2":"2015","size":45},{"key":"Jesus","key2":"2019","size":100},{"key":"Pete","key2":"2019","size":10}]' 
-            position="-0.25 0.5 0.25" 
-            rotation="0 90 0"
-            scale="0.075 0.3 0.075">
+            position="-0.75 0.5 -1" 
+            rotation="0 0 0"
+            scale="0.3 0.3 0.3">
             </a-entity>
-        </a-box>
+        </a-entity>
 
         <!--?geo pie chart podium-->
-        <a-box id="piePodium"
-        scale="5 1 4"
-        position="7 0 11"
-        color="grey"
-        static-body>
+        <a-entity id="piePodium"
+        info-podium="podiumWidth: 5; podiumHeight: 1; podiumDepth: 4"
+        position="7 0 11">
             <a-text value="pie's \n information"
-            scale="0.5 1.5 0.5"
+            scale="2 2 2"
             align="center"
             rotation="0 180 0"
-            position="0 0 -0.5">
+            position="0 0 -2">
             </a-text>
 
             <!--?geo pie chart-->
             <a-entity geopiechart='legend: true; palette: blues; title: ; titleColor: #FFFFFF;
             titleFont: #optimerBoldFont; titlePosition: -5 0.5 0; animation: false;
             data: [{"key":"kbn_network","size":10},{"key":"Maria","size":5},{"key":"Dave","size":9},{"key":"Jhon","size":12},{"key":"Sara","size":16},{"key":"Lemar","size":2},{"key":"Dawn","size":1},{"key":"Jesus","size":8},{"key":"Bitergia","size":3},{"key":"URJC","size":6},{"key":"Alice","size":22},{"key":"Pete","size":2},{"key":"Seth","size":6},{"key":"Martin","size":9}]'
-            position="0 2.5 0" rotation="90 180 0" scale="0.35 0.35 1.4"></a-entity>
-        </a-box>
+            position="0 2.5 0" rotation="90 180 0" scale="1.4 1.4 1.4"></a-entity>
+        </a-entity>
 
         <!--?bubble chart podium-->
-        <a-box id="bubblePodium"
-        scale="5 1 5"
-        position="-5 0 10.75"
-        color="grey"
-        static-body>
+        <a-entity id="bubblePodium"
+        info-podium="podiumWidth: 5; podiumHeight: 1; podiumDepth: 5"
+        position="-5 0 10.75">
             <a-text value="pie's \n information"
-            scale="0.5 1.5 0.5"
+            scale="2 2 2"
             align="center"
             rotation="0 180 0"
-            position="0 0 -0.5">
+            position="0 0 -2.5">
             </a-text>
 
             <!--?bubble chart-->
             <a-entity geobubbleschart='legend: true; palette: foxy; animation: false; title: geobubbleschart;
             titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -7.5 0.5 0; heightMax: 15; radiusMax: 1;
             data: [{"key":"David","key2":"2019","height":1,"radius":9},{"key":"David","key2":"2018","height":20,"radius":8},{"key":"David","key2":"2017","height":3,"radius":7},{"key":"David","key2":"2016","height":7,"radius":6},{"key":"David","key2":"2015","height":10,"radius":5},{"key":"Pete","key2":"2011","height":7,"radius":8},{"key":"Pete","key2":"2014","height":3,"radius":7},{"key":"Josh","key2":"2016","height":8,"radius":6},{"key":"Josh","key2":"2015","height":11,"radius":5},{"key":"Jesus","key2":"2016","height":9,"radius":9},{"key":"Jesus","key2":"2011","height":3,"radius":8},{"key":"Jesus","key2":"2014","height":12,"radius":7},{"key":"Jesus","key2":"2000","height":6,"radius":6},{"key":"Jesus","key2":"2015","height":1,"radius":5},{"key":"Jesus","key2":"2008","height":5,"radius":9},{"key":"Steve","key2":"2016","height":6,"radius":9},{"key":"Steve","key2":"2017","height":8,"radius":8},{"key":"Steve","key2":"2014","height":0,"radius":7},{"key":"Steve","key2":"2013","height":3,"radius":6},{"key":"Moreno","key2":"2015","height":2,"radius":5},{"key":"Jesus","key2":"2019","height":9,"radius":10},{"key":"Pete","key2":"2019","height":12,"radius":10}]'
-            position="0.25 0.5 0.4" rotation="0 180 0" scale="0.045 0.18 0.045"></a-entity>
-        </a-box>
+            position="0.75 0.5 1.25" rotation="0 180 0" scale="0.18 0.18 0.18"></a-entity>
+        </a-entity>
 
         <!--?doughnut chart podium-->
-        <a-box id="bubblePodium"
-        scale="5 1 5"
+        <a-entity id="bubblePodium"
+        info-podium="podiumWidth: 5; podiumHeight: 1; podiumDepth: 5"
         position="-4 0 -10"
-        rotation="0 180 0"
-        color="grey"
-        static-body>
+        rotation="0 180 0">
             <a-text value="doughnut's \n information"
-            scale="0.5 1.5 0.5"
+            scale="2 2 2"
             align="center"
             rotation="0 180 0"
-            position="0 0 -0.5">
+            position="0 0 -2.5">
             </a-text>
 
             <!--?doughnut chart-->
             <a-entity geodoughnutchart='legend: true; palette: flat; title: geodoughnutchart; titleColor: #FFFFFF;
             titleFont: #optimerBoldFont; titlePosition: -2.65 0 2.2; animation: false;
             data: [{"key":"kbn_network","size":10},{"key":"Maria","size":5},{"key":"Dave","size":9},{"key":"Jhon","size":12},{"key":"Sara","size":16},{"key":"Lemar","size":2},{"key":"Dawn","size":1},{"key":"Jesus","size":8},{"key":"Bitergia","size":3},{"key":"URJC","size":6},{"key":"Alice","size":22},{"key":"Pete","size":2},{"key":"Seth","size":6},{"key":"Martin","size":9}]'
-            position="0 3.25 0" scale="0.35 0.35 1.6" rotation="90 180 0"></a-entity>
-        </a-box>
+            position="0 3.25 0" scale="1.4 1.4 1.4" rotation="90 180 0"></a-entity>
+        </a-entity>
 
         <!--?3d cylinder chart podium-->
-        <a-box id="cylinderChartPodium"
-        scale="4.25 1 4.25"
-        position="-11.5 0 -4"
-        roation="0 0 0"
-        color="grey"
-        static-body>
+        <a-entity id="cylinderChartPodium"
+        info-podium="podiumWidth: 4.25; podiumHeight: 1; podiumDepth: 4.25"
+        position="-11.5 0 -4">
             <a-text value="chart's \n information"
-            scale="0.5 1.2 0.5"
+            scale="2 2 2"
             align="center"
             rotation="0 90 0"
-            position="0.5 0.15 0">
+            position="2.125 0 0">
             </a-text>
 
             <!--?3d cylinder chart-->
-            <a-entity scale = "0.035 0.14 0.035" geo3dcylinderchart='legend: true; animation: false; title: geo3dcylinderchart;
+            <a-entity scale = "0.14 0.14 0.14" geo3dcylinderchart='legend: true; animation: false; title: geo3dcylinderchart;
             titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -13 0.5 -5.5; heightMax: 40; radiusMax: 2;
             data: [{"key":"Andrea","key2":"2018","height":15,"radius":2},{"key":"Jesus","key2":"2018","height":3,"radius":5},{"key":"David","key2":"2021","height":5,"radius":1},{"key":"Jesus","key2":"2020","height":25,"radius":1},{"key":"Jesus","key2":"2021","height":10,"radius":4},{"key":"Andrea","key2":"2020","height":6,"radius":4},{"key":"David","key2":"2019","height":17,"radius":3}]'
-            position="-0.2 0.5 0.15" rotation="0 90 0"></a-entity>
-        </a-box>
+            position="-0.85 0.5 1" rotation="0 90 0"></a-entity>
+        </a-entity>
 
 
         <!--?Sofa physics

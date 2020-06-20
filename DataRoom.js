@@ -1,24 +1,31 @@
 AFRAME.registerComponent('info-podium', {
     schema: {
-        chartType: {type: 'string', default: ''},
+        podiumWidth: {type: 'string', default: '5.5'},
+        podiumHeight: {type: 'string', default: '1'},
+        podiumDepth: {type: 'string', default: '5.5'},
+        podiumColor: {type: 'string', default: 'grey'},
     },
 
     init: function() {
         let data = this.data;
         let el = this.el;  
 
-        let scene = document.getElementById(scene);
+        let scene = document.getElementById('scene');
 
         let podium = document.createElement('a-box');
 
-        let chart = document.createElement('a-entity');
+        el.appendChild(podium);
 
-        scene.appendChild(podium);
+        podium.setAttribute('width', data.podiumWidth);
 
-        podium.setAttribute('scale', {x: 5.5, y: 1, z: 5.5});
-        
-        scene.appendChild(chart);
+        podium.setAttribute('heigth', data.podiumHeight);
 
-        chart.setAttribute();
+        podium.setAttribute('depth', data.podiumDepth);
+
+        podium.setAttribute('color', data.podiumColor);
+
+        podium.setAttribute('position', data.podiumPosition);
+
+        podium.setAttribute('static-body', '');
     }
 });
