@@ -29,6 +29,8 @@
 
             <img id="nightSky" src="textures/nightTexture.jpg">
 
+            <img id="daySky" src="textures/dayTextureFree.jpeg">
+
             <img id="terraceFloor" src="textures/freeFloor2.jpg">
 
             <img id="interiorFloor" src="textures/interiorFloorFree2.jpg">
@@ -115,7 +117,7 @@
         <a-plane position="0 9 0" width="30" height="30" rotation="90 0 0" side="double" static-body roughness="0.5">
             <!--<a-entity gltf-model="#lampSrc" position="0 -1.5 0" rotation="-90 0 0"></a-entity>-->
         </a-plane>
-        <a-light type="point" color="lightgrey" intensity="0.5" position="0 8.5 0"></a-light><!--TODO: color="lightgrey"-->
+        <a-light id="roomLight" type="point" color="lightgrey" intensity="0.5" position="0 8.5 0"></a-light><!--TODO: color="lightgrey"-->
 
         <!--?terrace-->
         <a-plane id="terrace"
@@ -467,7 +469,7 @@
 
         <a-entity kinematic-body="radius: 0.3" movement-controls="fly: false" rotation="0 45 0" position="1.7 1.5 1.7">
             <a-entity cursor="rayOrigin:mouse"></a-entity>
-            <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc" interface-container-displayer world-map-displayer></a-entity>
+            <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc" time-changer></a-entity>
             <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" laser-controls="hand:right" raycaster="showline: true"></a-entity>
             <a-entity id="camera" camera position="0 1.2 0" look-controls="pointerLockEnabled: false;">
         </a-entity>
