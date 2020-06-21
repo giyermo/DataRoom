@@ -46,11 +46,15 @@ AFRAME.registerComponent('time-changer', {
                 if(time == 'night') {
                     sky.setAttribute('src', '#daySky');
 
+                    sky.setAttribute('scale', '5 5 5');
+
                     roomLight.setAttribute('color', '#EEF66C');
 
                     time = 'day';
                 } else {
                     sky.setAttribute('src', '#nightSky');
+
+                    sky.setAttribute('scale', '0.2 0.2 0.2');
 
                     roomLight.setAttribute('color', 'lightgrey');
 
@@ -67,11 +71,15 @@ AFRAME.registerComponent('time-changer', {
             if(time == 'night') {
                 sky.setAttribute('src', '#daySky');
 
+                sky.setAttribute('scale', '5 5 5');
+
                 roomLight.setAttribute('color', '#EEF66C');
 
                 time = 'day';
             } else {
                 sky.setAttribute('src', '#nightSky');
+
+                sky.setAttribute('scale', '0.2 0.2 0.2');
 
                 roomLight.setAttribute('color', 'lightgrey');
 
