@@ -37,11 +37,33 @@ AFRAME.registerComponent('time-changer', {
         let data = this.data;
         let el = this.el;  
 
-        let sky = document.getElementById('sky');
+        window.addEventListener('keydown', function(event) {
+            let sky = document.getElementById('sky');
 
-        let roomLight = document.getElementById('roomLight');
+            let roomLight = document.getElementById('roomLight');
 
-        el.addEventListener('ybuttondown', function(evt) {
+            if(event.keyCode == 89) {
+                if(time == 'night') {
+                    sky.setAttribute('src', '#daySky');
+
+                    roomLight.setAttribute('color', '#EEF66C');
+
+                    time = 'day';
+                } else {
+                    sky.setAttribute('src', '#nightSky');
+
+                    roomLight.setAttribute('color', 'lightgrey');
+
+                    time = 'night';
+                };
+            };
+        });
+
+        el.addEventListener('ybuttondown', function(event) {
+            let sky = document.getElementById('sky');
+
+            let roomLight = document.getElementById('roomLight');
+            
             if(time == 'night') {
                 sky.setAttribute('src', '#daySky');
 
