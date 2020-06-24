@@ -7,12 +7,10 @@
     <meta name="description" content="Basic example of data museum"></meta>
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
-    <script src="https://babiaxr.gitlab.io/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
     <script src="https://unpkg.com/aframe-environment-component@1.0.0/dist/aframe-environment-component.min.js"></script>
     <script src="https://unpkg.com/aframe-geometry-merger-component/dist/aframe-geometry-merger-component.min.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script> 
-    <!--!<script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>-->
-    <!--!<script src="https://unpkg.com/aframe-text-geometry-component@0.5.1/dist/aframe-text-geometry-component.min.js"></script>-->
+    <script src="https://babiaxr.gitlab.io/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
     <script src="DataRoom.js"></script>
 </head>
 
@@ -83,201 +81,205 @@
 
         </a-assets>
 
-        <!--?information text-->
-        <a-text id="project information text"
-        value="Here it goes the \n project's information\n 
-        This is a protoype of a data \n room. This room's purpose\n is to show data in the form \n of 3D graphics and charts.\n
-        You can change between day \n and night by pressing y"
-        align="center"
-        position="-1.5 1.5 -1.5"
-        rotation="0 45 0"
-        color="black">
-        </a-text>
-
-        <!--?CodeCity podium-->
-        <a-entity id="firstCityPodium"
-        info-podium
-        position="7.5 0 -10">
-            <a-text value="city's \n information"
-            scale="2 2 2"
+        <a-entity id="roomEntity"
+        position="0 0 0"
+        room-creator>
+            <!--?information text-->
+            <a-text id="project information text"
+            value="Here it goes the \n project's information\n 
+            This is a protoype of a data \n room. This room's purpose\n is to show data in the form \n of 3D graphics and charts.\n
+            You can change between day \n and night by pressing y"
             align="center"
-            position="0 0 2.8">
+            position="-1.5 1.5 -1.5"
+            rotation="0 45 0"
+            color="black">
             </a-text>
 
-            <a-entity position="0 0.5 0" rotation="0 0 0" scale="0.275 0.275 0.275"
+            <!--?CodeCity podium-->
+            <a-entity id="firstCityPodium"
+            info-podium
+            position="7.5 0 -10">
+                <a-text value="city's \n information"
+                scale="2 2 2"
+                align="center"
+                position="0 0 2.8">
+                </a-text>
 
-                    codecity='width: 20; depth: 20; streets: true; color: green;
-                            extra: 1.5; base_thick: 0.3; split: naive; fmaxarea: area;
-                            data:
-            {"id": "Root",
-            "children":
-                [{"id": "BlockA",
-                "children": [{"id": "BlockA0",
-                        "children": [{"id": "A0A", "area": 2, "height": 1}]},
-                        {"id": "BlockA1",
-                        "children": [{"id": "A1A", "area": 2, "height": 1},
-                                    {"id": "A1B", "area": 5, "height": 4},
-                                    {"id": "A1C", "area": 4, "height": 6},
-                                    {"id": "A1D", "area": 6, "height": 2}]},
-                        {"id": "BlockA2",
-                        "children": [{"id": "A2A", "area": 1, "height": 3},
-                                    {"id": "A2B", "area": 5, "height": 6},
-                                    {"id": "A2C", "area": 8, "height": 4}]},
-                        {"id": "BlockA3",
-                        "children": [{"id": "A3A", "area": 4, "height": 7},
-                                    {"id": "A3B", "area": 5, "height": 3},
-                                    {"id": "A3C", "area": 8, "height": 1}]}
-                        ]},
-                {"id": "BlockB",
-                "children": [{"id": "BlockB1",
-                        "children": [{"id": "B1A", "area": 3, "height": 5},
-                                    {"id": "B1B", "area": 5, "height": 4},
-                                    {"id": "B1C", "area": 1, "height": 3},
-                                    {"id": "B1D", "area": 6, "height": 2},
-                                    {"id": "B1E", "area": 4, "height": 6},
-                                    {"id": "B1F", "area": 3, "height": 1},
-                                    {"id": "B1G", "area": 2, "height": 5},
-                                    {"id": "B1H", "area": 1, "height": 3}]},
-                        {"id": "BlockB2",
-                        "children": [{"id": "B2A", "area": 2, "height": 9},
-                                    {"id": "B2B", "area": 6, "height": 3},
-                                    {"id": "B2C", "area": 1, "height": 3},
-                                    {"id": "B2D", "area": 8, "height": 1},
-                                    {"id": "B2E", "area": 3, "height": 6},
-                                    {"id": "B2F", "area": 1, "height": 7}]},
-                        {"id": "Block3",
-                        "children": [{"id": "B3A", "area": 6, "height": 2},
-                                    {"id": "B3B", "area": 8, "height": 4},
-                                    {"id": "B3C", "area": 3, "height": 6}]},
-                        {"id": "Block4",
-                        "children": [{"id": "B4A", "area": 2, "height": 9},
-                                    {"id": "B4B", "area": 6, "height": 1},
-                                    {"id": "B4C", "area": 7, "height": 6},
-                                    {"id": "B4D", "area": 8, "height": 5},
-                                    {"id": "B4E", "area": 3, "height": 6},
-                                    {"id": "B4F", "area": 9, "height": 4}]},
-                        {"id": "Block5",
-                        "children": [{"id": "B5A", "area": 2, "height": 9},
-                                    {"id": "B5B", "area": 6, "height": 3},
-                                    {"id": "B5C", "area": 5, "height": 8},
-                                    {"id": "B5D", "area": 5, "height": 7}]},
-                        {"id": "Block6",
-                        "children": [{"id": "B6A", "area": 2, "height": 9},
-                                    {"id": "B6B", "area": 6, "height": 3},
-                                    {"id": "B6C", "area": 2, "height": 6},
-                                    {"id": "B6D", "area": 4, "height": 1},
-                                    {"id": "B6E", "area": 6, "height": 6},
-                                    {"id": "B6F", "area": 1, "height": 7},
-                                    {"id": "B6G", "area": 4, "height": 3},
-                                    {"id": "B6H", "area": 2, "height": 5},
-                                    {"id": "B6I", "area": 7, "height": 1},
-                                    {"id": "B6J", "area": 3, "height": 2},
-                                    {"id": "B6K", "area": 1, "height": 3}]}
-                        ]}
-                ]
-            }'>
+                <a-entity position="0 0.5 0" rotation="0 0 0" scale="0.275 0.275 0.275"
+
+                        codecity='width: 20; depth: 20; streets: true; color: green;
+                                extra: 1.5; base_thick: 0.3; split: naive; fmaxarea: area;
+                                data:
+                {"id": "Root",
+                "children":
+                    [{"id": "BlockA",
+                    "children": [{"id": "BlockA0",
+                            "children": [{"id": "A0A", "area": 2, "height": 1}]},
+                            {"id": "BlockA1",
+                            "children": [{"id": "A1A", "area": 2, "height": 1},
+                                        {"id": "A1B", "area": 5, "height": 4},
+                                        {"id": "A1C", "area": 4, "height": 6},
+                                        {"id": "A1D", "area": 6, "height": 2}]},
+                            {"id": "BlockA2",
+                            "children": [{"id": "A2A", "area": 1, "height": 3},
+                                        {"id": "A2B", "area": 5, "height": 6},
+                                        {"id": "A2C", "area": 8, "height": 4}]},
+                            {"id": "BlockA3",
+                            "children": [{"id": "A3A", "area": 4, "height": 7},
+                                        {"id": "A3B", "area": 5, "height": 3},
+                                        {"id": "A3C", "area": 8, "height": 1}]}
+                            ]},
+                    {"id": "BlockB",
+                    "children": [{"id": "BlockB1",
+                            "children": [{"id": "B1A", "area": 3, "height": 5},
+                                        {"id": "B1B", "area": 5, "height": 4},
+                                        {"id": "B1C", "area": 1, "height": 3},
+                                        {"id": "B1D", "area": 6, "height": 2},
+                                        {"id": "B1E", "area": 4, "height": 6},
+                                        {"id": "B1F", "area": 3, "height": 1},
+                                        {"id": "B1G", "area": 2, "height": 5},
+                                        {"id": "B1H", "area": 1, "height": 3}]},
+                            {"id": "BlockB2",
+                            "children": [{"id": "B2A", "area": 2, "height": 9},
+                                        {"id": "B2B", "area": 6, "height": 3},
+                                        {"id": "B2C", "area": 1, "height": 3},
+                                        {"id": "B2D", "area": 8, "height": 1},
+                                        {"id": "B2E", "area": 3, "height": 6},
+                                        {"id": "B2F", "area": 1, "height": 7}]},
+                            {"id": "Block3",
+                            "children": [{"id": "B3A", "area": 6, "height": 2},
+                                        {"id": "B3B", "area": 8, "height": 4},
+                                        {"id": "B3C", "area": 3, "height": 6}]},
+                            {"id": "Block4",
+                            "children": [{"id": "B4A", "area": 2, "height": 9},
+                                        {"id": "B4B", "area": 6, "height": 1},
+                                        {"id": "B4C", "area": 7, "height": 6},
+                                        {"id": "B4D", "area": 8, "height": 5},
+                                        {"id": "B4E", "area": 3, "height": 6},
+                                        {"id": "B4F", "area": 9, "height": 4}]},
+                            {"id": "Block5",
+                            "children": [{"id": "B5A", "area": 2, "height": 9},
+                                        {"id": "B5B", "area": 6, "height": 3},
+                                        {"id": "B5C", "area": 5, "height": 8},
+                                        {"id": "B5D", "area": 5, "height": 7}]},
+                            {"id": "Block6",
+                            "children": [{"id": "B6A", "area": 2, "height": 9},
+                                        {"id": "B6B", "area": 6, "height": 3},
+                                        {"id": "B6C", "area": 2, "height": 6},
+                                        {"id": "B6D", "area": 4, "height": 1},
+                                        {"id": "B6E", "area": 6, "height": 6},
+                                        {"id": "B6F", "area": 1, "height": 7},
+                                        {"id": "B6G", "area": 4, "height": 3},
+                                        {"id": "B6H", "area": 2, "height": 5},
+                                        {"id": "B6I", "area": 7, "height": 1},
+                                        {"id": "B6J", "area": 3, "height": 2},
+                                        {"id": "B6K", "area": 1, "height": 3}]}
+                            ]}
+                    ]
+                }'>
+                </a-entity>
             </a-entity>
-        </a-entity>
 
 
-        <!--?3dBarChart podium-->
-        <a-entity id="barChartPodium"
-        info-podium="podiumWidth: 4; podiumHeight: 1; podiumDepth: 4"
-        position="-11.5 0 6.5"
-        rotation="0 90 0">
-            <a-text value="chart's \n information"
-            scale="2 2 2"
-            align="center"
-            rotation="0 0 0"
-            position="0 0 2.05">
-            </a-text>
+            <!--?3dBarChart podium-->
+            <a-entity id="barChartPodium"
+            info-podium="podiumWidth: 4; podiumHeight: 1; podiumDepth: 4"
+            position="-11.5 0 6.5"
+            rotation="0 90 0">
+                <a-text value="chart's \n information"
+                scale="2 2 2"
+                align="center"
+                rotation="0 0 0"
+                position="0 0 2.05">
+                </a-text>
 
-            <!--?3d bar chart-->
-            <a-entity geo3dbarchart='legend: true; palette: bussiness; title: ; animation: true;
-            titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -6.6 0.5 -0.8; heightMax:15;
-            data:[{"key":"David","key2":"2019","size":90},{"key":"David","key2":"2018","size":8},{"key":"David","key2":"2017","size":70},{"key":"David","key2":"2016","size":65},{"key":"David","key2":"2015","size":5},{"key":"Pete","key2":"2011","size":80},{"key":"Pete","key2":"2014","size":7},{"key":"Josh","key2":"2016","size":65},{"key":"Josh","key2":"2015","size":55},{"key":"Jesus","key2":"2016","size":90},{"key":"Jesus","key2":"2011","size":80},{"key":"Jesus","key2":"2014","size":75},{"key":"Jesus","key2":"2016","size":60},{"key":"Jesus","key2":"2015","size":5},{"key":"Jesus","key2":"2016","size":95},{"key":"Steve","key2":"2016","size":90},{"key":"Steve","key2":"2017","size":8},{"key":"Steve","key2":"2014","size":7},{"key":"Steve","key2":"2013","size":60},{"key":"Moreno","key2":"2015","size":45},{"key":"Jesus","key2":"2019","size":100},{"key":"Pete","key2":"2019","size":10}]' 
-            position="-0.75 0.5 -1" 
-            rotation="0 0 0"
-            scale="0.3 0.3 0.3">
+                <!--?3d bar chart-->
+                <a-entity geo3dbarchart='legend: true; palette: bussiness; title: ; animation: true;
+                titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -6.6 0.5 -0.8; heightMax:15;
+                data:[{"key":"David","key2":"2019","size":90},{"key":"David","key2":"2018","size":8},{"key":"David","key2":"2017","size":70},{"key":"David","key2":"2016","size":65},{"key":"David","key2":"2015","size":5},{"key":"Pete","key2":"2011","size":80},{"key":"Pete","key2":"2014","size":7},{"key":"Josh","key2":"2016","size":65},{"key":"Josh","key2":"2015","size":55},{"key":"Jesus","key2":"2016","size":90},{"key":"Jesus","key2":"2011","size":80},{"key":"Jesus","key2":"2014","size":75},{"key":"Jesus","key2":"2016","size":60},{"key":"Jesus","key2":"2015","size":5},{"key":"Jesus","key2":"2016","size":95},{"key":"Steve","key2":"2016","size":90},{"key":"Steve","key2":"2017","size":8},{"key":"Steve","key2":"2014","size":7},{"key":"Steve","key2":"2013","size":60},{"key":"Moreno","key2":"2015","size":45},{"key":"Jesus","key2":"2019","size":100},{"key":"Pete","key2":"2019","size":10}]' 
+                position="-0.75 0.5 -1" 
+                rotation="0 0 0"
+                scale="0.3 0.3 0.3">
+                </a-entity>
             </a-entity>
-        </a-entity>
 
-        <!--?geo pie chart podium-->
-        <a-entity id="piePodium"
-        info-podium="podiumWidth: 5; podiumHeight: 1; podiumDepth: 4"
-        position="7 0 11">
-            <a-text value="pie's \n information"
-            scale="2 2 2"
-            align="center"
-            rotation="0 180 0"
-            position="0 0 -2.05">
-            </a-text>
+            <!--?geo pie chart podium-->
+            <a-entity id="piePodium"
+            info-podium="podiumWidth: 5; podiumHeight: 1; podiumDepth: 4"
+            position="7 0 11">
+                <a-text value="pie's \n information"
+                scale="2 2 2"
+                align="center"
+                rotation="0 180 0"
+                position="0 0 -2.05">
+                </a-text>
 
-            <!--?geo pie chart-->
-            <a-entity geopiechart='legend: true; palette: blues; title: ; titleColor: #FFFFFF;
-            titleFont: #optimerBoldFont; titlePosition: -5 0.5 0; animation: false;
-            data: [{"key":"kbn_network","size":10},{"key":"Maria","size":5},{"key":"Dave","size":9},{"key":"Jhon","size":12},{"key":"Sara","size":16},{"key":"Lemar","size":2},{"key":"Dawn","size":1},{"key":"Jesus","size":8},{"key":"Bitergia","size":3},{"key":"URJC","size":6},{"key":"Alice","size":22},{"key":"Pete","size":2},{"key":"Seth","size":6},{"key":"Martin","size":9}]'
-            position="0 2.5 0" rotation="90 180 0" scale="1.4 1.4 1.4"></a-entity>
-        </a-entity>
+                <!--?geo pie chart-->
+                <a-entity geopiechart='legend: true; palette: blues; title: ; titleColor: #FFFFFF;
+                titleFont: #optimerBoldFont; titlePosition: -5 0.5 0; animation: false;
+                data: [{"key":"kbn_network","size":10},{"key":"Maria","size":5},{"key":"Dave","size":9},{"key":"Jhon","size":12},{"key":"Sara","size":16},{"key":"Lemar","size":2},{"key":"Dawn","size":1},{"key":"Jesus","size":8},{"key":"Bitergia","size":3},{"key":"URJC","size":6},{"key":"Alice","size":22},{"key":"Pete","size":2},{"key":"Seth","size":6},{"key":"Martin","size":9}]'
+                position="0 2.5 0" rotation="90 180 0" scale="1.4 1.4 1.4"></a-entity>
+            </a-entity>
 
-        <!--?bubble chart podium-->
-        <a-entity id="bubblePodium"
-        info-podium="podiumWidth: 4.5; podiumHeight: 1; podiumDepth: 5"
-        position="-2 0 10.75">
-            <a-text value="pie's \n information"
-            scale="2 2 2"
-            align="center"
-            rotation="0 180 0"
-            position="0 0 -2.55">
-            </a-text>
+            <!--?bubble chart podium-->
+            <a-entity id="bubblePodium"
+            info-podium="podiumWidth: 4.5; podiumHeight: 1; podiumDepth: 5"
+            position="-2 0 10.75">
+                <a-text value="pie's \n information"
+                scale="2 2 2"
+                align="center"
+                rotation="0 180 0"
+                position="0 0 -2.55">
+                </a-text>
 
-            <!--?bubble chart-->
-            <a-entity geobubbleschart='legend: true; palette: foxy; animation: false; title: geobubbleschart;
-            titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -7.5 0.5 0; heightMax: 15; radiusMax: 1;
-            data: [{"key":"David","key2":"2019","height":1,"radius":9},{"key":"David","key2":"2018","height":20,"radius":8},{"key":"David","key2":"2017","height":3,"radius":7},{"key":"David","key2":"2016","height":7,"radius":6},{"key":"David","key2":"2015","height":10,"radius":5},{"key":"Pete","key2":"2011","height":7,"radius":8},{"key":"Pete","key2":"2014","height":3,"radius":7},{"key":"Josh","key2":"2016","height":8,"radius":6},{"key":"Josh","key2":"2015","height":11,"radius":5},{"key":"Jesus","key2":"2016","height":9,"radius":9},{"key":"Jesus","key2":"2011","height":3,"radius":8},{"key":"Jesus","key2":"2014","height":12,"radius":7},{"key":"Jesus","key2":"2000","height":6,"radius":6},{"key":"Jesus","key2":"2015","height":1,"radius":5},{"key":"Jesus","key2":"2008","height":5,"radius":9},{"key":"Steve","key2":"2016","height":6,"radius":9},{"key":"Steve","key2":"2017","height":8,"radius":8},{"key":"Steve","key2":"2014","height":0,"radius":7},{"key":"Steve","key2":"2013","height":3,"radius":6},{"key":"Moreno","key2":"2015","height":2,"radius":5},{"key":"Jesus","key2":"2019","height":9,"radius":10},{"key":"Pete","key2":"2019","height":12,"radius":10}]'
-            position="0.75 0.5 2.25" rotation="0 180 0" scale="0.23 0.23 0.23"></a-entity>
-        </a-entity>
+                <!--?bubble chart-->
+                <a-entity geobubbleschart='legend: true; palette: foxy; animation: false; title: geobubbleschart;
+                titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -7.5 0.5 0; heightMax: 15; radiusMax: 1;
+                data: [{"key":"David","key2":"2019","height":1,"radius":9},{"key":"David","key2":"2018","height":20,"radius":8},{"key":"David","key2":"2017","height":3,"radius":7},{"key":"David","key2":"2016","height":7,"radius":6},{"key":"David","key2":"2015","height":10,"radius":5},{"key":"Pete","key2":"2011","height":7,"radius":8},{"key":"Pete","key2":"2014","height":3,"radius":7},{"key":"Josh","key2":"2016","height":8,"radius":6},{"key":"Josh","key2":"2015","height":11,"radius":5},{"key":"Jesus","key2":"2016","height":9,"radius":9},{"key":"Jesus","key2":"2011","height":3,"radius":8},{"key":"Jesus","key2":"2014","height":12,"radius":7},{"key":"Jesus","key2":"2000","height":6,"radius":6},{"key":"Jesus","key2":"2015","height":1,"radius":5},{"key":"Jesus","key2":"2008","height":5,"radius":9},{"key":"Steve","key2":"2016","height":6,"radius":9},{"key":"Steve","key2":"2017","height":8,"radius":8},{"key":"Steve","key2":"2014","height":0,"radius":7},{"key":"Steve","key2":"2013","height":3,"radius":6},{"key":"Moreno","key2":"2015","height":2,"radius":5},{"key":"Jesus","key2":"2019","height":9,"radius":10},{"key":"Pete","key2":"2019","height":12,"radius":10}]'
+                position="0.75 0.5 2.25" rotation="0 180 0" scale="0.23 0.23 0.23"></a-entity>
+            </a-entity>
 
-        <!--?doughnut chart podium-->
-        <a-entity id="bubblePodium"
-        info-podium="podiumWidth: 5; podiumHeight: 1; podiumDepth: 5"
-        position="-2 0 -10"
-        rotation="0 180 0">
-            <a-text value="doughnut's \n information"
-            scale="2 2 2"
-            align="center"
-            rotation="0 180 0"
-            position="0 0 -2.55">
-            </a-text>
+            <!--?doughnut chart podium-->
+            <a-entity id="bubblePodium"
+            info-podium="podiumWidth: 5; podiumHeight: 1; podiumDepth: 5"
+            position="-2 0 -10"
+            rotation="0 180 0">
+                <a-text value="doughnut's \n information"
+                scale="2 2 2"
+                align="center"
+                rotation="0 180 0"
+                position="0 0 -2.55">
+                </a-text>
 
-            <!--?doughnut chart-->
-            <a-entity geodoughnutchart='legend: true; palette: flat; title: geodoughnutchart; titleColor: #FFFFFF;
-            titleFont: #optimerBoldFont; titlePosition: -2.65 0 2.2; animation: false;
-            data: [{"key":"kbn_network","size":10},{"key":"Maria","size":5},{"key":"Dave","size":9},{"key":"Jhon","size":12},{"key":"Sara","size":16},{"key":"Lemar","size":2},{"key":"Dawn","size":1},{"key":"Jesus","size":8},{"key":"Bitergia","size":3},{"key":"URJC","size":6},{"key":"Alice","size":22},{"key":"Pete","size":2},{"key":"Seth","size":6},{"key":"Martin","size":9}]'
-            position="0 3.25 0" scale="1.4 1.4 1.4" rotation="90 180 0"></a-entity>
-        </a-entity>
+                <!--?doughnut chart-->
+                <a-entity geodoughnutchart='legend: true; palette: flat; title: geodoughnutchart; titleColor: #FFFFFF;
+                titleFont: #optimerBoldFont; titlePosition: -2.65 0 2.2; animation: false;
+                data: [{"key":"kbn_network","size":10},{"key":"Maria","size":5},{"key":"Dave","size":9},{"key":"Jhon","size":12},{"key":"Sara","size":16},{"key":"Lemar","size":2},{"key":"Dawn","size":1},{"key":"Jesus","size":8},{"key":"Bitergia","size":3},{"key":"URJC","size":6},{"key":"Alice","size":22},{"key":"Pete","size":2},{"key":"Seth","size":6},{"key":"Martin","size":9}]'
+                position="0 3.25 0" scale="1.4 1.4 1.4" rotation="90 180 0"></a-entity>
+            </a-entity>
 
-        <!--?3d cylinder chart podium-->
-        <a-entity id="cylinderChartPodium"
-        info-podium="podiumWidth: 4.25; podiumHeight: 1; podiumDepth: 4.25"
-        position="-11.5 0 -6.5">
-            <a-text value="chart's \n information"
-            scale="2 2 2"
-            align="center"
-            rotation="0 90 0"
-            position="2.175 0 0">
-            </a-text>
+            <!--?3d cylinder chart podium-->
+            <a-entity id="cylinderChartPodium"
+            info-podium="podiumWidth: 4.25; podiumHeight: 1; podiumDepth: 4.25"
+            position="-11.5 0 -6.5">
+                <a-text value="chart's \n information"
+                scale="2 2 2"
+                align="center"
+                rotation="0 90 0"
+                position="2.175 0 0">
+                </a-text>
 
-            <!--?3d cylinder chart-->
-            <a-entity scale = "0.14 0.14 0.14" geo3dcylinderchart='legend: true; animation: false; title: geo3dcylinderchart;
-            titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -13 0.5 -5.5; heightMax: 40; radiusMax: 2;
-            data: [{"key":"Andrea","key2":"2018","height":15,"radius":2},{"key":"Jesus","key2":"2018","height":3,"radius":5},{"key":"David","key2":"2021","height":5,"radius":1},{"key":"Jesus","key2":"2020","height":25,"radius":1},{"key":"Jesus","key2":"2021","height":10,"radius":4},{"key":"Andrea","key2":"2020","height":6,"radius":4},{"key":"David","key2":"2019","height":17,"radius":3}]'
-            position="-0.85 0.5 1" rotation="0 90 0"></a-entity>
+                <!--?3d cylinder chart-->
+                <a-entity scale = "0.14 0.14 0.14" geo3dcylinderchart='legend: true; animation: false; title: geo3dcylinderchart;
+                titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -13 0.5 -5.5; heightMax: 40; radiusMax: 2;
+                data: [{"key":"Andrea","key2":"2018","height":15,"radius":2},{"key":"Jesus","key2":"2018","height":3,"radius":5},{"key":"David","key2":"2021","height":5,"radius":1},{"key":"Jesus","key2":"2020","height":25,"radius":1},{"key":"Jesus","key2":"2021","height":10,"radius":4},{"key":"Andrea","key2":"2020","height":6,"radius":4},{"key":"David","key2":"2019","height":17,"radius":3}]'
+                position="-0.85 0.5 1" rotation="0 90 0"></a-entity>
+            </a-entity>
         </a-entity>
 
         <a-entity kinematic-body="radius: 0.3" movement-controls="fly: false" rotation="0 45 0" position="1.7 1.5 1.7">
             <a-entity cursor="rayOrigin:mouse"></a-entity>
-            <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc" time-changer room-creator></a-entity>
+            <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc" time-changer></a-entity>
             <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" laser-controls="hand:right" raycaster="showline: true" line="color: orange; opacity: 1"></a-entity>
             <a-entity id="camera" camera position="0 1.2 0" look-controls="pointerLockEnabled: false;">
         </a-entity>

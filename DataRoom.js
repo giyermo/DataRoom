@@ -96,8 +96,10 @@ AFRAME.registerComponent('room-creator', {
 
         let scene = document.getElementById('scene');
 
+        let roomEntity = document.getElementById('roomEntity');
+
         let sky = document.createElement('a-sky');
-        scene.appendChild(sky);
+        roomEntity.appendChild(sky);
         sky.setAttribute('id', 'sky');
         sky.setAttribute('src', '#nightSky');
         sky.setAttribute('rotation', '0 270 0');
@@ -105,7 +107,7 @@ AFRAME.registerComponent('room-creator', {
         sky.setAttribute('scale', '0.2 0.2 0.2');
 
         let roomFloor = document.createElement('a-plane');
-        scene.appendChild(roomFloor);
+        roomEntity.appendChild(roomFloor);
         roomFloor.setAttribute('class', 'roomFloor');
         roomFloor.setAttribute('src', '#interiorFloor');
         roomFloor.setAttribute('color', 'lightgrey');
@@ -117,7 +119,7 @@ AFRAME.registerComponent('room-creator', {
         roomFloor.setAttribute('static-body', '');
 
         let wall1 = document.createElement('a-plane');
-        scene.appendChild(wall1);
+        roomEntity.appendChild(wall1);
         wall1.setAttribute('class', 'walls');
         wall1.setAttribute('src', '#wall');
         wall1.setAttribute('repeat', '20 20 1');
@@ -129,7 +131,7 @@ AFRAME.registerComponent('room-creator', {
         wall1.setAttribute('static-body', '');
 
         let babiaLogo = document.createElement('a-plane');
-        scene.appendChild(babiaLogo);
+        roomEntity.appendChild(babiaLogo);
         babiaLogo.setAttribute('position', '-14.95 4 0');
         babiaLogo.setAttribute('rotation', '0 90 0');
         babiaLogo.setAttribute('width', '7.52');
@@ -137,7 +139,7 @@ AFRAME.registerComponent('room-creator', {
         babiaLogo.setAttribute('src', '#babiaLogo');
 
         let wall2 = document.createElement('a-plane');
-        scene.appendChild(wall2);
+        roomEntity.appendChild(wall2);
         wall2.setAttribute('class', 'walls');
         wall2.setAttribute('src', '#wall');
         wall2.setAttribute('repeat', '20 20 1');
@@ -149,7 +151,7 @@ AFRAME.registerComponent('room-creator', {
         wall2.setAttribute('static-body', '');
 
         let wall3 = document.createElement('a-plane');
-        scene.appendChild(wall3);
+        roomEntity.appendChild(wall3);
         wall3.setAttribute('class', 'walls');
         wall3.setAttribute('src', '#wall');
         wall3.setAttribute('repeat', '20 20 1');
@@ -161,7 +163,7 @@ AFRAME.registerComponent('room-creator', {
         wall3.setAttribute('static-body', '');
 
         let ceiling = document.createElement('a-plane');
-        scene.appendChild(ceiling);
+        roomEntity.appendChild(ceiling);
         ceiling.setAttribute('class', 'ceiling');
         ceiling.setAttribute('position', '0 9 0');
         ceiling.setAttribute('width', '30');
@@ -171,7 +173,7 @@ AFRAME.registerComponent('room-creator', {
         ceiling.setAttribute('static-body', '');
 
         let roomLight = document.createElement('a-light');
-        scene.appendChild(roomLight);
+        roomEntity.appendChild(roomLight);
         roomLight.setAttribute('id', 'roomLight');
         roomLight.setAttribute('type', 'point');
         roomLight.setAttribute('color', 'lightgrey');
@@ -179,7 +181,7 @@ AFRAME.registerComponent('room-creator', {
         roomLight.setAttribute('position', '0 8.5 0');
 
         let terraceFloor = document.createElement('a-plane');
-        scene.appendChild(terraceFloor);
+        roomEntity.appendChild(terraceFloor);
         terraceFloor.setAttribute('id', 'terraceFloor');
         terraceFloor.setAttribute('src', '#terraceFloor');
         terraceFloor.setAttribute('repeat', '12 2 1');
@@ -192,7 +194,7 @@ AFRAME.registerComponent('room-creator', {
         terraceFloor.setAttribute('static-body', '');
 
         let terraceGlass1 = document.createElement('a-plane');
-        scene.appendChild(terraceGlass1);
+        roomEntity.appendChild(terraceGlass1);
         terraceGlass1.setAttribute('class', 'glassPanes');
         terraceGlass1.setAttribute('width', '30');
         terraceGlass1.setAttribute('height', '1');
@@ -203,7 +205,7 @@ AFRAME.registerComponent('room-creator', {
         terraceGlass1.setAttribute('static-body', '');
 
         let terraceGlass2 = document.createElement('a-plane');
-        scene.appendChild(terraceGlass2);
+        roomEntity.appendChild(terraceGlass2);
         terraceGlass2.setAttribute('class', 'glassPanes');
         terraceGlass2.setAttribute('width', '8');
         terraceGlass2.setAttribute('height', '1');
@@ -214,7 +216,7 @@ AFRAME.registerComponent('room-creator', {
         terraceGlass2.setAttribute('static-body', '');
 
         let terraceGlass3 = document.createElement('a-plane');
-        scene.appendChild(terraceGlass3);
+        roomEntity.appendChild(terraceGlass3);
         terraceGlass3.setAttribute('class', 'glassPanes');
         terraceGlass3.setAttribute('width', '8');
         terraceGlass3.setAttribute('height', '1');
@@ -225,7 +227,7 @@ AFRAME.registerComponent('room-creator', {
         terraceGlass3.setAttribute('static-body', '');
 
         let separation = document.createElement('a-box');
-        scene.appendChild(separation);
+        roomEntity.appendChild(separation);
         separation.setAttribute('id', 'separation');
         separation.setAttribute('color', 'lightgrey');
         separation.setAttribute('scale', '0.1 0.1 30');
@@ -233,7 +235,7 @@ AFRAME.registerComponent('room-creator', {
         separation.setAttribute('static-body', '');
 
         let glassPaneMark1 = document.createElement('a-box');
-        scene.appendChild(glassPaneMark1);
+        roomEntity.appendChild(glassPaneMark1);
         glassPaneMark1.setAttribute('class', 'glassPaneMarks');
         glassPaneMark1.setAttribute('color', 'grey');
         glassPaneMark1.setAttribute('scale', '0.1 0.1 30');
@@ -241,7 +243,7 @@ AFRAME.registerComponent('room-creator', {
         glassPaneMark1.setAttribute('static-body', '');
 
         let glassPaneMark2 = document.createElement('a-box');
-        scene.appendChild(glassPaneMark2);
+        roomEntity.appendChild(glassPaneMark2);
         glassPaneMark2.setAttribute('class', 'glassPaneMarks');
         glassPaneMark2.setAttribute('color', 'grey');
         glassPaneMark2.setAttribute('scale', '8 0.1 0.1');
@@ -249,7 +251,7 @@ AFRAME.registerComponent('room-creator', {
         glassPaneMark2.setAttribute('static-body', '');
 
         let glassPaneMark3 = document.createElement('a-box');
-        scene.appendChild(glassPaneMark3);
+        roomEntity.appendChild(glassPaneMark3);
         glassPaneMark3.setAttribute('class', 'glassPaneMarks');
         glassPaneMark3.setAttribute('color', 'grey');
         glassPaneMark3.setAttribute('scale', '8 0.1 0.1');
@@ -257,7 +259,7 @@ AFRAME.registerComponent('room-creator', {
         glassPaneMark3.setAttribute('static-body', '');
 
         let glassPaneMark4 = document.createElement('a-box');
-        scene.appendChild(glassPaneMark4);
+        roomEntity.appendChild(glassPaneMark4);
         glassPaneMark4.setAttribute('class', 'glassPaneMarks');
         glassPaneMark4.setAttribute('color', 'grey');
         glassPaneMark4.setAttribute('scale', '0.03 1 0.03');
@@ -266,7 +268,7 @@ AFRAME.registerComponent('room-creator', {
         glassPaneMark4.setAttribute('static-body', '');
 
         let glassPaneMark5 = document.createElement('a-box');
-        scene.appendChild(glassPaneMark5);
+        roomEntity.appendChild(glassPaneMark5);
         glassPaneMark5.setAttribute('class', 'glassPaneMarks');
         glassPaneMark5.setAttribute('color', 'grey');
         glassPaneMark5.setAttribute('scale', '0.03 1 0.03');
