@@ -18,7 +18,7 @@
 
     <a-scene id="scene"
     stats
-    physics="debug: true">
+    physics="debug: false">
 
         <a-assets>
             <canvas id="wallCam"></canvas>
@@ -83,11 +83,14 @@
 
         <a-entity id="roomEntity"
         position="0 0 0"
-        room-creator-params="sky: true; skyTexture: #nightSky;
-        ceiling: false;
+        room-creator="sky: true; skyTexture: #nightSky;
+        rightWall: false;
+        ceiling: true;
         width: 30; height: 10; depth: 30; 
         floorTexture: #interiorFloor; 
-        wallTexture: #wall; wallTextureRepeat: 20 20 1">
+        wallTexture: #wall; wallTextureRepeat: 20 20 1;
+        rightTerrace: true; rightTerraceWidth: 40; rightTerraceDepth: 8;
+        rightTerraceTexture: #terraceFloor; rightTerraceTextureRepeat: 12 2 1">
             <!--?information text-->
             <a-text id="project information text"
             value="Here it goes the \n project's information\n 
@@ -104,7 +107,7 @@
             src="#babiaLogo"
             width="7.52"
             height="6.66"
-            position="-14.95 4 0"
+            position="-14.95 4.5 0"
             rotation="0 90 0">
             </a-plane>
 
@@ -290,7 +293,7 @@
             </a-entity>
         </a-entity>
 
-        <a-entity kinematic-body="radius: 0.3" movement-controls="fly: false" rotation="0 0 0" position="1.7 1.5 1.7">
+        <a-entity kinematic-body="radius: 0.3" movement-controls="fly: false" rotation="0 45 0" position="1.7 1.5 1.7">
             <a-entity cursor="rayOrigin:mouse"></a-entity>
             <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc" time-changer></a-entity>
             <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" laser-controls="hand:right" raycaster="showline: true" line="color: orange; opacity: 1"></a-entity>

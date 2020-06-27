@@ -89,20 +89,58 @@ AFRAME.registerComponent('time-changer', {
     }
 });
 
-AFRAME.registerComponent('room-creator-params', {
+AFRAME.registerComponent('room-creator', {
     schema: {
         sky: {type: 'boolean', default: false},
         skyColor: {type: 'color', default: 'lightblue'},
         skyTexture: {type: 'string'},
+
         width: {type: 'number', default: 30},
         height: {type: 'number', default: 12},
         depth: {type: 'number', default: 30},
-        wallNumber: {type: 'number', default: 4},
+
+        frontWall: {type: 'boolean', default: true},
+        backWall: {type: 'boolean', default: true},
+        leftWall: {type: 'boolean', default: true},
+        rightWall: {type: 'boolean', default: true},
+        
+        ceiling: {type: 'boolean', default: true},
+
+        wallColor: {type: 'color', default: 'lightgrey'},
         wallTexture: {type: 'string'},
         wallTextureRepeat: {type: 'string'},
+
+        floorColor: {type: 'color', default: 'grey'},
         floorTexture: {type: 'string'},
         floorTextureRepeat: {type: 'string'},
-        ceiling: {type: 'boolean', default: true},
+
+        frontTerrace: {type: 'boolean', default: false},
+        frontTerraceWidth: {type: 'number', default: 30},
+        frontTerraceDepth: {type: 'number', default: 8},
+        frontTerraceColor: {type: 'color', default: 'lightblue'},
+        frontTerraceTexture: {type: 'string'},
+        frontTerraceTextureRepeat: {type: 'string'},
+
+        backTerrace: {type: 'boolean', default: false},
+        backTerraceWidth: {type: 'number', default: 30},
+        backTerraceDepth: {type: 'number', default: 8},
+        backTerraceColor: {type: 'color', default: 'lightblue'},
+        backTerraceTexture: {type: 'string'},
+        backTerraceTextureRepeat: {type: 'string'},
+
+        leftTerrace: {type: 'boolean', default: false},
+        leftTerraceWidth: {type: 'number', default: 30},
+        leftTerraceDepth: {type: 'number', default: 8},
+        leftTerraceColor: {type: 'color', default: 'lightblue'},
+        leftTerraceTexture: {type: 'string'},
+        leftTerraceTextureRepeat: {type: 'string'},
+
+        rightTerrace: {type: 'boolean', default: false},
+        rightTerraceWidth: {type: 'number', default: 30},
+        rightTerraceDepth: {type: 'number', default: 8},
+        rightTerraceColor: {type: 'color', default: 'lightblue'},
+        rightTerraceTexture: {type: 'string'},
+        rightTerraceTextureRepeat: {type: 'string'},
     },
 
     init: function() {
@@ -135,72 +173,71 @@ AFRAME.registerComponent('room-creator-params', {
 
         let wallsPositionY = data.height / 2;
 
-        let wall1 = document.createElement('a-plane');
-        let wall1PositionX = data.depth / 2;
-        el.appendChild(wall1);
-        wall1.setAttribute('class', 'walls');
-        wall1.setAttribute('src', data.wallTexture);
-        wall1.setAttribute('repeat', data.wallTextureRepeat);
-        wall1.setAttribute('position', `-${wall1PositionX} ${wallsPositionY} 0`);
-        wall1.setAttribute('width', data.width);
-        wall1.setAttribute('height', data.height);
-        wall1.setAttribute('side', 'double');
-        wall1.setAttribute('rotation', '0 90 0');
-        wall1.setAttribute('static-body', '');
+        if(data.leftWall == true) {
+            let leftWall = document.createElement('a-plane');
+            let leftWallPositionX = data.depth / 2;
+            el.appendChild(leftWall);
+            leftWall.setAttribute('class', 'walls');
+            leftWall.setAttribute('src', data.wallTexture);
+            leftWall.setAttribute('repeat', data.wallTextureRepeat);
+            leftWall.setAttribute('position', `-${leftWallPositionX} ${wallsPositionY} 0`);
+            leftWall.setAttribute('width', data.width);
+            leftWall.setAttribute('height', data.height);
+            leftWall.setAttribute('side', 'double');
+            leftWall.setAttribute('rotation', '0 90 0');
+            leftWall.setAttribute('static-body', '');
+        };
 
-        /*
-        !let babiaLogo = document.createElement('a-plane');
-        roomEntity.appendChild(babiaLogo);
-        babiaLogo.setAttribute('position', '-14.95 4 0');
-        babiaLogo.setAttribute('rotation', '0 90 0');
-        babiaLogo.setAttribute('width', '7.52');
-        babiaLogo.setAttribute('height', '6.66');
-        babiaLogo.setAttribute('src', '#babiaLogo');*/
+        if(data.rightWall == true) {
+            let rightWall = document.createElement('a-plane');
+            let rightWallPositionX = data.depth / 2;
+            el.appendChild(rightWall);
+            rightWall.setAttribute('class', 'walls');
+            rightWall.setAttribute('src', data.wallTexture);
+            rightWall.setAttribute('repeat', data.wallTextureRepeat);
+            rightWall.setAttribute('position', `${rightWallPositionX} ${wallsPositionY} 0`);
+            rightWall.setAttribute('width', data.width);
+            rightWall.setAttribute('height', data.height);
+            rightWall.setAttribute('side', 'double');
+            rightWall.setAttribute('rotation', '0 90 0');
+            rightWall.setAttribute('static-body', '');
+        };
 
-        let wall2 = document.createElement('a-plane');
-        let wall2PositionX = data.depth / 2;
-        el.appendChild(wall2);
-        wall2.setAttribute('class', 'walls');
-        wall2.setAttribute('src', data.wallTexture);
-        wall2.setAttribute('repeat', data.wallTextureRepeat);
-        wall2.setAttribute('position', `${wall2PositionX} ${wallsPositionY} 0`);
-        wall2.setAttribute('width', data.width);
-        wall2.setAttribute('height', data.height);
-        wall2.setAttribute('side', 'double');
-        wall2.setAttribute('rotation', '0 90 0');
-        wall2.setAttribute('static-body', '');
+        if(data.frontWall == true) {
+            let frontWall = document.createElement('a-plane');
+            let frontWallpositionZ = data.width / 2
+            el.appendChild(frontWall);
+            frontWall.setAttribute('class', 'walls');
+            frontWall.setAttribute('src', data.wallTexture);
+            frontWall.setAttribute('repeat', data.wallTextureRepeat);
+            frontWall.setAttribute('position', `0 ${wallsPositionY} -${frontWallpositionZ}`);
+            frontWall.setAttribute('width', data.depth);
+            frontWall.setAttribute('height', data.height);
+            frontWall.setAttribute('side', 'double');
+            frontWall.setAttribute('rotation', '0 0 0');
+            frontWall.setAttribute('static-body', '');
+        };
 
-        let wall3 = document.createElement('a-plane');
-        let wall3positionZ = data.width / 2
-        el.appendChild(wall3);
-        wall3.setAttribute('class', 'walls');
-        wall3.setAttribute('src', data.wallTexture);
-        wall3.setAttribute('repeat', data.wallTextureRepeat);
-        wall3.setAttribute('position', `0 ${wallsPositionY} -${wall3positionZ}`);
-        wall3.setAttribute('width', data.depth);
-        wall3.setAttribute('height', data.height);
-        wall3.setAttribute('side', 'double');
-        wall3.setAttribute('rotation', '0 0 0');
-        wall3.setAttribute('static-body', '');
-
-        let wall4 = document.createElement('a-plane');
-        let wall4positionZ = data.width / 2
-        el.appendChild(wall4);
-        wall4.setAttribute('class', 'walls');
-        wall4.setAttribute('src', data.wallTexture);
-        wall4.setAttribute('repeat', data.wallTextureRepeat);
-        wall4.setAttribute('position', `0 ${wallsPositionY} ${wall4positionZ}`);
-        wall4.setAttribute('width', data.depth);
-        wall4.setAttribute('height', data.height);
-        wall4.setAttribute('side', 'double');
-        wall4.setAttribute('rotation', '0 0 0');
-        wall4.setAttribute('static-body', '');
+        if(data.backWall == true) {
+            let backWall = document.createElement('a-plane');
+            let backWallpositionZ = data.width / 2
+            el.appendChild(backWall);
+            backWall.setAttribute('class', 'walls');
+            backWall.setAttribute('src', data.wallTexture);
+            backWall.setAttribute('repeat', data.wallTextureRepeat);
+            backWall.setAttribute('position', `0 ${wallsPositionY} ${backWallpositionZ}`);
+            backWall.setAttribute('width', data.depth);
+            backWall.setAttribute('height', data.height);
+            backWall.setAttribute('side', 'double');
+            backWall.setAttribute('rotation', '0 0 0');
+            backWall.setAttribute('static-body', '');
+        };
 
         if(data.ceiling == true) {
             let ceiling = document.createElement('a-plane');
             el.appendChild(ceiling);
             ceiling.setAttribute('class', 'ceiling');
-            ceiling.setAttribute('position', '0 9 0');
+            ceiling.setAttribute('position', `0 ${data.height} 0`);
             ceiling.setAttribute('width', '30');
             ceiling.setAttribute('height', '30');
             ceiling.setAttribute('rotation', '90 0 0');
@@ -216,290 +253,164 @@ AFRAME.registerComponent('room-creator-params', {
         roomLight.setAttribute('intensity', '0.5');
         roomLight.setAttribute('position', '0 8.5 0');
 
-        /*
-        TODO: let terraceFloor = document.createElement('a-plane');
-        roomEntity.appendChild(terraceFloor);
-        terraceFloor.setAttribute('id', 'terraceFloor');
-        terraceFloor.setAttribute('src', '#terraceFloor');
-        terraceFloor.setAttribute('repeat', '12 2 1');
-        terraceFloor.setAttribute('width', '30');
-        terraceFloor.setAttribute('height', '8');
-        terraceFloor.setAttribute('rotation', '270 90 0');
-        terraceFloor.setAttribute('position', '19 -0.5 0');
-        terraceFloor.setAttribute('side', 'double');
-        terraceFloor.setAttribute('roughness', '1');
-        terraceFloor.setAttribute('static-body', '');
+        if(data.rightTerrace == true) {
+            let rightTerraceEntity = document.createElement('a-entity');
+            rightTerraceEntity.setAttribute('id', 'rightTerraceEntity');
 
-        let terraceGlass1 = document.createElement('a-plane');
-        roomEntity.appendChild(terraceGlass1);
-        terraceGlass1.setAttribute('class', 'glassPanes');
-        terraceGlass1.setAttribute('width', '30');
-        terraceGlass1.setAttribute('height', '1');
-        terraceGlass1.setAttribute('opacity', '0.05');
-        terraceGlass1.setAttribute('side', 'double');
-        terraceGlass1.setAttribute('rotation', '0 90 0');
-        terraceGlass1.setAttribute('position', ' 23 0 0');
-        terraceGlass1.setAttribute('static-body', '');
+            el.appendChild(rightTerraceEntity);
 
-        let terraceGlass2 = document.createElement('a-plane');
-        roomEntity.appendChild(terraceGlass2);
-        terraceGlass2.setAttribute('class', 'glassPanes');
-        terraceGlass2.setAttribute('width', '8');
-        terraceGlass2.setAttribute('height', '1');
-        terraceGlass2.setAttribute('opacity', '0.05');
-        terraceGlass2.setAttribute('side', 'double');
-        terraceGlass2.setAttribute('rotation', '0 0 0');
-        terraceGlass2.setAttribute('position', ' 19 0 15');
-        terraceGlass2.setAttribute('static-body', '');
+            let rightTerraceXPosition = data.width / 2 + data.rightTerraceDepth / 2;
 
-        let terraceGlass3 = document.createElement('a-plane');
-        roomEntity.appendChild(terraceGlass3);
-        terraceGlass3.setAttribute('class', 'glassPanes');
-        terraceGlass3.setAttribute('width', '8');
-        terraceGlass3.setAttribute('height', '1');
-        terraceGlass3.setAttribute('opacity', '0.05');
-        terraceGlass3.setAttribute('side', 'double');
-        terraceGlass3.setAttribute('rotation', '0 0 0');
-        terraceGlass3.setAttribute('position', ' 19 0 -15');
-        terraceGlass3.setAttribute('static-body', '');
+            rightTerraceEntity.setAttribute('position', `${rightTerraceXPosition} 0 0`);
 
-        let separation = document.createElement('a-box');
-        roomEntity.appendChild(separation);
-        separation.setAttribute('id', 'separation');
-        separation.setAttribute('color', 'lightgrey');
-        separation.setAttribute('scale', '0.1 0.1 30');
-        separation.setAttribute('position', '15 -0.5 0');
-        separation.setAttribute('static-body', '');
+            let terraceFloor = document.createElement('a-plane');
+            rightTerraceEntity.appendChild(terraceFloor);
+            terraceFloor.setAttribute('id', 'terraceFloor');
+            terraceFloor.setAttribute('src', data.rightTerraceTexture);
+            terraceFloor.setAttribute('repeat', data.rightTerraceTextureRepeat);
+            terraceFloor.setAttribute('width', data.rightTerraceWidth);
+            terraceFloor.setAttribute('height', data.rightTerraceDepth);
+            terraceFloor.setAttribute('rotation', '270 90 0');
+            terraceFloor.setAttribute('position', `0 0 0`);
+            terraceFloor.setAttribute('side', 'double');
+            terraceFloor.setAttribute('roughness', '1');
+            terraceFloor.setAttribute('static-body', '');
 
-        let glassPaneMark1 = document.createElement('a-box');
-        roomEntity.appendChild(glassPaneMark1);
-        glassPaneMark1.setAttribute('class', 'glassPaneMarks');
-        glassPaneMark1.setAttribute('color', 'grey');
-        glassPaneMark1.setAttribute('scale', '0.1 0.1 30');
-        glassPaneMark1.setAttribute('position', '23 -0.5 0');
-        glassPaneMark1.setAttribute('static-body', '');
+            let terraceGlassFrontXPosition = data.rightTerraceDepth / 2;
 
-        let glassPaneMark2 = document.createElement('a-box');
-        roomEntity.appendChild(glassPaneMark2);
-        glassPaneMark2.setAttribute('class', 'glassPaneMarks');
-        glassPaneMark2.setAttribute('color', 'grey');
-        glassPaneMark2.setAttribute('scale', '8 0.1 0.1');
-        glassPaneMark2.setAttribute('position', '19 -0.5 -15');
-        glassPaneMark2.setAttribute('static-body', '');
+            let terraceGlassFront = document.createElement('a-plane');
+            rightTerraceEntity.appendChild(terraceGlassFront);
+            terraceGlassFront.setAttribute('class', 'glassPanes');
+            terraceGlassFront.setAttribute('width', data.rightTerraceWidth);
+            terraceGlassFront.setAttribute('height', '1');
+            terraceGlassFront.setAttribute('opacity', '0.05');
+            terraceGlassFront.setAttribute('side', 'double');
+            terraceGlassFront.setAttribute('rotation', '0 90 0');
+            terraceGlassFront.setAttribute('position', `${terraceGlassFrontXPosition} 0.5 0`);
+            terraceGlassFront.setAttribute('static-body', '');
+    
+            let terraceGlassRightAndLeftXPosition = data.rightTerraceDepth / 2;
 
-        let glassPaneMark3 = document.createElement('a-box');
-        roomEntity.appendChild(glassPaneMark3);
-        glassPaneMark3.setAttribute('class', 'glassPaneMarks');
-        glassPaneMark3.setAttribute('color', 'grey');
-        glassPaneMark3.setAttribute('scale', '8 0.1 0.1');
-        glassPaneMark3.setAttribute('position', '19 -0.5 15');
-        glassPaneMark3.setAttribute('static-body', '');
+            let terraceGlassRightAndLeftZPosition = data.rightTerraceWidth / 2
 
-        let glassPaneMark4 = document.createElement('a-box');
-        roomEntity.appendChild(glassPaneMark4);
-        glassPaneMark4.setAttribute('class', 'glassPaneMarks');
-        glassPaneMark4.setAttribute('color', 'grey');
-        glassPaneMark4.setAttribute('scale', '0.03 1 0.03');
-        glassPaneMark4.setAttribute('opacity', '0.75');
-        glassPaneMark4.setAttribute('position', '23 0 15');
-        glassPaneMark4.setAttribute('static-body', '');
+            let terraceGlassRight = document.createElement('a-plane');
+            rightTerraceEntity.appendChild(terraceGlassRight);
+            terraceGlassRight.setAttribute('class', 'glassPanes');
+            terraceGlassRight.setAttribute('width', data.rightTerraceDepth);
+            terraceGlassRight.setAttribute('height', '1');
+            terraceGlassRight.setAttribute('opacity', '0.05');
+            terraceGlassRight.setAttribute('side', 'double');
+            terraceGlassRight.setAttribute('rotation', '0 0 0');
+            terraceGlassRight.setAttribute('position', `0 0.5 ${terraceGlassRightAndLeftZPosition}`);
+            terraceGlassRight.setAttribute('static-body', '');
+    
+            let terraceGlassLeft = document.createElement('a-plane');
+            rightTerraceEntity.appendChild(terraceGlassLeft);
+            terraceGlassLeft.setAttribute('class', 'glassPanes');
+            terraceGlassLeft.setAttribute('width', data.rightTerraceDepth);
+            terraceGlassLeft.setAttribute('height', '1');
+            terraceGlassLeft.setAttribute('opacity', '0.05');
+            terraceGlassLeft.setAttribute('side', 'double');
+            terraceGlassLeft.setAttribute('rotation', '0 0 0');
+            terraceGlassLeft.setAttribute('position', `0 0.5 -${terraceGlassRightAndLeftZPosition}`);
+            terraceGlassLeft.setAttribute('static-body', '');
 
-        let glassPaneMark5 = document.createElement('a-box');
-        roomEntity.appendChild(glassPaneMark5);
-        glassPaneMark5.setAttribute('class', 'glassPaneMarks');
-        glassPaneMark5.setAttribute('color', 'grey');
-        glassPaneMark5.setAttribute('scale', '0.03 1 0.03');
-        glassPaneMark5.setAttribute('opacity', '0.75');
-        glassPaneMark5.setAttribute('position', '23 0 -15');
-        glassPaneMark5.setAttribute('static-body', '');*/
-    }
-});
+            if(data.width < data.rightTerraceWidth) {
+                let additionalGlassPanesWidth = (data.rightTerraceWidth - data.width) / 2;
 
-AFRAME.registerComponent('room-creator', {
-    init: function() {
-        let data = this.data;
-        let el = this.el;  
+                let additionalGlassPanesZposition = data.width / 2 + additionalGlassPanesWidth / 2;
 
-        let scene = document.getElementById('scene');
+                let terraceGlassBackLeft = document.createElement('a-plane');
+                rightTerraceEntity.appendChild(terraceGlassBackLeft);
+                terraceGlassBackLeft.setAttribute('class', 'glassPanes');
+                terraceGlassBackLeft.setAttribute('width', `${additionalGlassPanesWidth}`);
+                terraceGlassBackLeft.setAttribute('height', '1');
+                terraceGlassBackLeft.setAttribute('opacity', '0.05');
+                terraceGlassBackLeft.setAttribute('side', 'double');
+                terraceGlassBackLeft.setAttribute('rotation', '0 90 0');
+                terraceGlassBackLeft.setAttribute('position', `-${terraceGlassFrontXPosition} 0.5 -${additionalGlassPanesZposition}`);
+                terraceGlassBackLeft.setAttribute('static-body', '');
 
-        let roomEntity = document.getElementById('roomEntity');
+                let terraceGlassBackRight = document.createElement('a-plane');
+                rightTerraceEntity.appendChild(terraceGlassBackRight);
+                terraceGlassBackRight.setAttribute('class', 'glassPanes');
+                terraceGlassBackRight.setAttribute('width', `${additionalGlassPanesWidth}`);
+                terraceGlassBackRight.setAttribute('height', '1');
+                terraceGlassBackRight.setAttribute('opacity', '0.05');
+                terraceGlassBackRight.setAttribute('side', 'double');
+                terraceGlassBackRight.setAttribute('rotation', '0 90 0');
+                terraceGlassBackRight.setAttribute('position', `-${terraceGlassFrontXPosition} 0.5 ${additionalGlassPanesZposition}`);
+                terraceGlassBackRight.setAttribute('static-body', '');
+            };
+    
+            let terraceSeparation = document.createElement('a-box');
+            rightTerraceEntity.appendChild(terraceSeparation);
+            terraceSeparation.setAttribute('id', 'rightTerraceSeparation');
+            terraceSeparation.setAttribute('color', 'lightgrey');
+            terraceSeparation.setAttribute('scale', `0.1 0.1 ${data.rightTerraceWidth}`);
+            terraceSeparation.setAttribute('position', `-${terraceGlassRightAndLeftXPosition} 0 0`);
+            terraceSeparation.setAttribute('static-body', '');
+    
+            let terraceGlassPaneMarkFront = document.createElement('a-box');
+            rightTerraceEntity.appendChild(terraceGlassPaneMarkFront);
+            terraceGlassPaneMarkFront.setAttribute('class', 'glassPaneMarks');
+            terraceGlassPaneMarkFront.setAttribute('color', 'grey');
+            terraceGlassPaneMarkFront.setAttribute('scale', `0.1 0.1 ${data.rightTerraceWidth}`);
+            terraceGlassPaneMarkFront.setAttribute('position', `${terraceGlassRightAndLeftXPosition} 0 0`);
+            terraceGlassPaneMarkFront.setAttribute('static-body', '');
+    
+            let terraceGlassPaneMarkLeft = document.createElement('a-box');
+            rightTerraceEntity.appendChild(terraceGlassPaneMarkLeft);
+            terraceGlassPaneMarkLeft.setAttribute('class', 'glassPaneMarks');
+            terraceGlassPaneMarkLeft.setAttribute('color', 'grey');
+            terraceGlassPaneMarkLeft.setAttribute('scale', `${data.rightTerraceDepth} 0.1 0.1`);
+            terraceGlassPaneMarkLeft.setAttribute('position', `0 0 -${terraceGlassRightAndLeftZPosition}`);
+            terraceGlassPaneMarkLeft.setAttribute('static-body', '');
+    
+            let terraceGlassPaneMarkRight = document.createElement('a-box');
+            rightTerraceEntity.appendChild(terraceGlassPaneMarkRight);
+            terraceGlassPaneMarkRight.setAttribute('class', 'glassPaneMarks');
+            terraceGlassPaneMarkRight.setAttribute('color', 'grey');
+            terraceGlassPaneMarkRight.setAttribute('scale', `${data.rightTerraceDepth} 0.1 0.1`);
+            terraceGlassPaneMarkRight.setAttribute('position', `0 0 ${terraceGlassRightAndLeftZPosition}`);
+            terraceGlassPaneMarkRight.setAttribute('static-body', '');
+    
+            let terraceGlassPaneMarkFrontRightUp = document.createElement('a-box');
+            rightTerraceEntity.appendChild(terraceGlassPaneMarkFrontRightUp);
+            terraceGlassPaneMarkFrontRightUp.setAttribute('class', 'glassPaneMarks');
+            terraceGlassPaneMarkFrontRightUp.setAttribute('color', 'grey');
+            terraceGlassPaneMarkFrontRightUp.setAttribute('scale', '0.03 1 0.03');
+            terraceGlassPaneMarkFrontRightUp.setAttribute('opacity', '0.75');
+            terraceGlassPaneMarkFrontRightUp.setAttribute('position', `${terraceGlassFrontXPosition} 0.5 ${terraceGlassRightAndLeftZPosition}`);
+            terraceGlassPaneMarkFrontRightUp.setAttribute('static-body', '');
+    
+            let terraceGlassPaneMarkFrontLeftUp = document.createElement('a-box');
+            rightTerraceEntity.appendChild(terraceGlassPaneMarkFrontLeftUp);
+            terraceGlassPaneMarkFrontLeftUp.setAttribute('class', 'glassPaneMarks');
+            terraceGlassPaneMarkFrontLeftUp.setAttribute('color', 'grey');
+            terraceGlassPaneMarkFrontLeftUp.setAttribute('scale', '0.03 1 0.03');
+            terraceGlassPaneMarkFrontLeftUp.setAttribute('opacity', '0.75');
+            terraceGlassPaneMarkFrontLeftUp.setAttribute('position', `${terraceGlassFrontXPosition} 0.5 -${terraceGlassRightAndLeftZPosition}`);
+            terraceGlassPaneMarkFrontLeftUp.setAttribute('static-body', '');
 
-        let sky = document.createElement('a-sky');
-        roomEntity.appendChild(sky);
-        sky.setAttribute('id', 'sky');
-        sky.setAttribute('src', '#nightSky');
-        sky.setAttribute('rotation', '0 270 0');
-        sky.setAttribute('opacity', '1');
-        sky.setAttribute('scale', '0.2 0.2 0.2');
+            let terraceGlassPaneMarkBackRightUp = document.createElement('a-box');
+            rightTerraceEntity.appendChild(terraceGlassPaneMarkBackRightUp);
+            terraceGlassPaneMarkBackRightUp.setAttribute('class', 'glassPaneMarks');
+            terraceGlassPaneMarkBackRightUp.setAttribute('color', 'grey');
+            terraceGlassPaneMarkBackRightUp.setAttribute('scale', '0.03 1 0.03');
+            terraceGlassPaneMarkBackRightUp.setAttribute('opacity', '0.75');
+            terraceGlassPaneMarkBackRightUp.setAttribute('position', `-${terraceGlassFrontXPosition} 0.5 ${terraceGlassRightAndLeftZPosition}`);
+            terraceGlassPaneMarkBackRightUp.setAttribute('static-body', '');
+    
+            let terraceGlassPaneMarkBackLeftUp = document.createElement('a-box');
+            rightTerraceEntity.appendChild(terraceGlassPaneMarkBackLeftUp);
+            terraceGlassPaneMarkBackLeftUp.setAttribute('class', 'glassPaneMarks');
+            terraceGlassPaneMarkBackLeftUp.setAttribute('color', 'grey');
+            terraceGlassPaneMarkBackLeftUp.setAttribute('scale', '0.03 1 0.03');
+            terraceGlassPaneMarkBackLeftUp.setAttribute('opacity', '0.75');
+            terraceGlassPaneMarkBackLeftUp.setAttribute('position', `-${terraceGlassFrontXPosition} 0.5 -${terraceGlassRightAndLeftZPosition}`);
+            terraceGlassPaneMarkBackLeftUp.setAttribute('static-body', '');
+        };
 
-        let roomFloor = document.createElement('a-plane');
-        roomEntity.appendChild(roomFloor);
-        roomFloor.setAttribute('class', 'roomFloor');
-        roomFloor.setAttribute('src', '#interiorFloor');
-        roomFloor.setAttribute('color', 'lightgrey');
-        roomFloor.setAttribute('position', '0 -0.5 0');
-        roomFloor.setAttribute('width', '30');
-        roomFloor.setAttribute('height', '30');
-        roomFloor.setAttribute('rotation', '270 0 0');
-        roomFloor.setAttribute('side', 'double');
-        roomFloor.setAttribute('static-body', '');
-
-        let wall1 = document.createElement('a-plane');
-        roomEntity.appendChild(wall1);
-        wall1.setAttribute('class', 'walls');
-        wall1.setAttribute('src', '#wall');
-        wall1.setAttribute('repeat', '20 20 1');
-        wall1.setAttribute('position', '0 -1 15');
-        wall1.setAttribute('width', '30');
-        wall1.setAttribute('height', '20');
-        wall1.setAttribute('side', 'double');
-        wall1.setAttribute('rotation', '0 0 0');
-        wall1.setAttribute('static-body', '');
-
-        let babiaLogo = document.createElement('a-plane');
-        roomEntity.appendChild(babiaLogo);
-        babiaLogo.setAttribute('position', '-14.95 4 0');
-        babiaLogo.setAttribute('rotation', '0 90 0');
-        babiaLogo.setAttribute('width', '7.52');
-        babiaLogo.setAttribute('height', '6.66');
-        babiaLogo.setAttribute('src', '#babiaLogo');
-
-        let wall2 = document.createElement('a-plane');
-        roomEntity.appendChild(wall2);
-        wall2.setAttribute('class', 'walls');
-        wall2.setAttribute('src', '#wall');
-        wall2.setAttribute('repeat', '20 20 1');
-        wall2.setAttribute('position', '0 -1 -15');
-        wall2.setAttribute('width', '30');
-        wall2.setAttribute('height', '20');
-        wall2.setAttribute('side', 'double');
-        wall2.setAttribute('rotation', '0 0 0');
-        wall2.setAttribute('static-body', '');
-
-        let wall3 = document.createElement('a-plane');
-        roomEntity.appendChild(wall3);
-        wall3.setAttribute('class', 'walls');
-        wall3.setAttribute('src', '#wall');
-        wall3.setAttribute('repeat', '20 20 1');
-        wall3.setAttribute('position', '-15 -1 0');
-        wall3.setAttribute('width', '30');
-        wall3.setAttribute('height', '20');
-        wall3.setAttribute('side', 'double');
-        wall3.setAttribute('rotation', '0 90 0');
-        wall3.setAttribute('static-body', '');
-
-        let ceiling = document.createElement('a-plane');
-        roomEntity.appendChild(ceiling);
-        ceiling.setAttribute('class', 'ceiling');
-        ceiling.setAttribute('position', '0 9 0');
-        ceiling.setAttribute('width', '30');
-        ceiling.setAttribute('height', '30');
-        ceiling.setAttribute('rotation', '90 0 0');
-        ceiling.setAttribute('side', 'double');
-        ceiling.setAttribute('static-body', '');
-
-        let roomLight = document.createElement('a-light');
-        roomEntity.appendChild(roomLight);
-        roomLight.setAttribute('id', 'roomLight');
-        roomLight.setAttribute('type', 'point');
-        roomLight.setAttribute('color', 'lightgrey');
-        roomLight.setAttribute('intensity', '0.5');
-        roomLight.setAttribute('position', '0 8.5 0');
-
-        let terraceFloor = document.createElement('a-plane');
-        roomEntity.appendChild(terraceFloor);
-        terraceFloor.setAttribute('id', 'terraceFloor');
-        terraceFloor.setAttribute('src', '#terraceFloor');
-        terraceFloor.setAttribute('repeat', '12 2 1');
-        terraceFloor.setAttribute('width', '30');
-        terraceFloor.setAttribute('height', '8');
-        terraceFloor.setAttribute('rotation', '270 90 0');
-        terraceFloor.setAttribute('position', '19 -0.5 0');
-        terraceFloor.setAttribute('side', 'double');
-        terraceFloor.setAttribute('roughness', '1');
-        terraceFloor.setAttribute('static-body', '');
-
-        let terraceGlass1 = document.createElement('a-plane');
-        roomEntity.appendChild(terraceGlass1);
-        terraceGlass1.setAttribute('class', 'glassPanes');
-        terraceGlass1.setAttribute('width', '30');
-        terraceGlass1.setAttribute('height', '1');
-        terraceGlass1.setAttribute('opacity', '0.05');
-        terraceGlass1.setAttribute('side', 'double');
-        terraceGlass1.setAttribute('rotation', '0 90 0');
-        terraceGlass1.setAttribute('position', ' 23 0 0');
-        terraceGlass1.setAttribute('static-body', '');
-
-        let terraceGlass2 = document.createElement('a-plane');
-        roomEntity.appendChild(terraceGlass2);
-        terraceGlass2.setAttribute('class', 'glassPanes');
-        terraceGlass2.setAttribute('width', '8');
-        terraceGlass2.setAttribute('height', '1');
-        terraceGlass2.setAttribute('opacity', '0.05');
-        terraceGlass2.setAttribute('side', 'double');
-        terraceGlass2.setAttribute('rotation', '0 0 0');
-        terraceGlass2.setAttribute('position', ' 19 0 15');
-        terraceGlass2.setAttribute('static-body', '');
-
-        let terraceGlass3 = document.createElement('a-plane');
-        roomEntity.appendChild(terraceGlass3);
-        terraceGlass3.setAttribute('class', 'glassPanes');
-        terraceGlass3.setAttribute('width', '8');
-        terraceGlass3.setAttribute('height', '1');
-        terraceGlass3.setAttribute('opacity', '0.05');
-        terraceGlass3.setAttribute('side', 'double');
-        terraceGlass3.setAttribute('rotation', '0 0 0');
-        terraceGlass3.setAttribute('position', ' 19 0 -15');
-        terraceGlass3.setAttribute('static-body', '');
-
-        let separation = document.createElement('a-box');
-        roomEntity.appendChild(separation);
-        separation.setAttribute('id', 'separation');
-        separation.setAttribute('color', 'lightgrey');
-        separation.setAttribute('scale', '0.1 0.1 30');
-        separation.setAttribute('position', '15 -0.5 0');
-        separation.setAttribute('static-body', '');
-
-        let glassPaneMark1 = document.createElement('a-box');
-        roomEntity.appendChild(glassPaneMark1);
-        glassPaneMark1.setAttribute('class', 'glassPaneMarks');
-        glassPaneMark1.setAttribute('color', 'grey');
-        glassPaneMark1.setAttribute('scale', '0.1 0.1 30');
-        glassPaneMark1.setAttribute('position', '23 -0.5 0');
-        glassPaneMark1.setAttribute('static-body', '');
-
-        let glassPaneMark2 = document.createElement('a-box');
-        roomEntity.appendChild(glassPaneMark2);
-        glassPaneMark2.setAttribute('class', 'glassPaneMarks');
-        glassPaneMark2.setAttribute('color', 'grey');
-        glassPaneMark2.setAttribute('scale', '8 0.1 0.1');
-        glassPaneMark2.setAttribute('position', '19 -0.5 -15');
-        glassPaneMark2.setAttribute('static-body', '');
-
-        let glassPaneMark3 = document.createElement('a-box');
-        roomEntity.appendChild(glassPaneMark3);
-        glassPaneMark3.setAttribute('class', 'glassPaneMarks');
-        glassPaneMark3.setAttribute('color', 'grey');
-        glassPaneMark3.setAttribute('scale', '8 0.1 0.1');
-        glassPaneMark3.setAttribute('position', '19 -0.5 15');
-        glassPaneMark3.setAttribute('static-body', '');
-
-        let glassPaneMark4 = document.createElement('a-box');
-        roomEntity.appendChild(glassPaneMark4);
-        glassPaneMark4.setAttribute('class', 'glassPaneMarks');
-        glassPaneMark4.setAttribute('color', 'grey');
-        glassPaneMark4.setAttribute('scale', '0.03 1 0.03');
-        glassPaneMark4.setAttribute('opacity', '0.75');
-        glassPaneMark4.setAttribute('position', '23 0 15');
-        glassPaneMark4.setAttribute('static-body', '');
-
-        let glassPaneMark5 = document.createElement('a-box');
-        roomEntity.appendChild(glassPaneMark5);
-        glassPaneMark5.setAttribute('class', 'glassPaneMarks');
-        glassPaneMark5.setAttribute('color', 'grey');
-        glassPaneMark5.setAttribute('scale', '0.03 1 0.03');
-        glassPaneMark5.setAttribute('opacity', '0.75');
-        glassPaneMark5.setAttribute('position', '23 0 -15');
-        glassPaneMark5.setAttribute('static-body', '');
     }
 });
