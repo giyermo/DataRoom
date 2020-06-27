@@ -18,7 +18,7 @@
 
     <a-scene id="scene"
     stats
-    physics="debug: false">
+    physics="debug: true">
 
         <a-assets>
             <canvas id="wallCam"></canvas>
@@ -83,7 +83,11 @@
 
         <a-entity id="roomEntity"
         position="0 0 0"
-        room-creator>
+        room-creator-params="sky: true; skyTexture: #nightSky;
+        ceiling: false;
+        width: 30; height: 10; depth: 30; 
+        floorTexture: #interiorFloor; 
+        wallTexture: #wall; wallTextureRepeat: 20 20 1">
             <!--?information text-->
             <a-text id="project information text"
             value="Here it goes the \n project's information\n 
@@ -95,10 +99,19 @@
             color="black">
             </a-text>
 
+            <!--?babia logo-->
+            <a-plane id="babiaLogo"
+            src="#babiaLogo"
+            width="7.52"
+            height="6.66"
+            position="-14.95 4 0"
+            rotation="0 90 0">
+            </a-plane>
+
             <!--?CodeCity podium-->
             <a-entity id="firstCityPodium"
             info-podium
-            position="7.5 0 -10">
+            position="7.5 0.5 -10">
                 <a-text value="city's \n information"
                 scale="2 2 2"
                 align="center"
@@ -184,7 +197,7 @@
             <!--?3dBarChart podium-->
             <a-entity id="barChartPodium"
             info-podium="podiumWidth: 4; podiumHeight: 1; podiumDepth: 4"
-            position="-11.5 0 6.5"
+            position="-11.5 0.5 6.5"
             rotation="0 90 0">
                 <a-text value="chart's \n information"
                 scale="2 2 2"
@@ -206,7 +219,7 @@
             <!--?geo pie chart podium-->
             <a-entity id="piePodium"
             info-podium="podiumWidth: 5; podiumHeight: 1; podiumDepth: 4"
-            position="7 0 11">
+            position="7 0.5 11">
                 <a-text value="pie's \n information"
                 scale="2 2 2"
                 align="center"
@@ -224,7 +237,7 @@
             <!--?bubble chart podium-->
             <a-entity id="bubblePodium"
             info-podium="podiumWidth: 4.5; podiumHeight: 1; podiumDepth: 5"
-            position="-2 0 10.75">
+            position="-2 0.5 10.75">
                 <a-text value="pie's \n information"
                 scale="2 2 2"
                 align="center"
@@ -242,7 +255,7 @@
             <!--?doughnut chart podium-->
             <a-entity id="bubblePodium"
             info-podium="podiumWidth: 5; podiumHeight: 1; podiumDepth: 5"
-            position="-2 0 -10"
+            position="-2 0.5 -10"
             rotation="0 180 0">
                 <a-text value="doughnut's \n information"
                 scale="2 2 2"
@@ -261,7 +274,7 @@
             <!--?3d cylinder chart podium-->
             <a-entity id="cylinderChartPodium"
             info-podium="podiumWidth: 4.25; podiumHeight: 1; podiumDepth: 4.25"
-            position="-11.5 0 -6.5">
+            position="-11.5 0.5 -6.5">
                 <a-text value="chart's \n information"
                 scale="2 2 2"
                 align="center"
@@ -277,7 +290,7 @@
             </a-entity>
         </a-entity>
 
-        <a-entity kinematic-body="radius: 0.3" movement-controls="fly: false" rotation="0 45 0" position="1.7 1.5 1.7">
+        <a-entity kinematic-body="radius: 0.3" movement-controls="fly: false" rotation="0 0 0" position="1.7 1.5 1.7">
             <a-entity cursor="rayOrigin:mouse"></a-entity>
             <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc" time-changer></a-entity>
             <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" laser-controls="hand:right" raycaster="showline: true" line="color: orange; opacity: 1"></a-entity>
