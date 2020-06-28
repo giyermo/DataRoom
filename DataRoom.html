@@ -84,13 +84,30 @@
         <a-entity id="roomEntity"
         position="0 0 0"
         room-creator="sky: true; skyTexture: #nightSky;
-        rightWall: false;
-        ceiling: true;
         width: 30; height: 10; depth: 30; 
+
+        frontWall: false;
+        backWall: false;
+        rightWall: false;
+        leftWall: false;
+
+        ceiling: false;
+
         floorTexture: #interiorFloor; 
+
         wallTexture: #wall; wallTextureRepeat: 20 20 1;
-        rightTerrace: true; rightTerraceWidth: 40; rightTerraceDepth: 8;
-        rightTerraceTexture: #terraceFloor; rightTerraceTextureRepeat: 12 2 1">
+
+        frontTerrace: true; frontTerraceWidth: 30; frontTerraceDepth: 8;
+        frontTerraceTexture: #terraceFloor; frontTerraceTextureRepeat: 12 2 1;
+
+        backTerrace: true; backTerraceWidth: 30; backTerraceDepth: 8;
+        backTerraceTexture: #terraceFloor; backTerraceTextureRepeat: 12 2 1;
+
+        rightTerrace: true; rightTerraceWidth: 30; rightTerraceDepth: 8;
+        rightTerraceTexture: #terraceFloor; rightTerraceTextureRepeat: 12 2 1;
+
+        leftTerrace: true; leftTerraceWidth: 30; leftTerraceDepth: 8;
+        leftTerraceTexture: #terraceFloor; leftTerraceTextureRepeat: 12 2 1;">
             <!--?information text-->
             <a-text id="project information text"
             value="Here it goes the \n project's information\n 
