@@ -114,6 +114,8 @@ AFRAME.registerComponent('room-creator', {
         floorTexture: {type: 'string'},
         floorTextureRepeat: {type: 'string'},
 
+        terraceMerge: {type: 'boolean', default: true},
+
         frontTerrace: {type: 'boolean', default: false},
         frontTerraceWidth: {type: 'number', default: 30},
         frontTerraceDepth: {type: 'number', default: 8},
@@ -253,36 +255,36 @@ AFRAME.registerComponent('room-creator', {
         roomLight.setAttribute('intensity', '0.5');
         roomLight.setAttribute('position', '0 8.5 0');
 
-        if(data.rightTerrace == true) {
-            console.log('creating right terrace');
-            let rightTerraceEntity = document.createElement('a-entity');
-            rightTerraceEntity.setAttribute('id', 'rightTerraceEntity');
 
-            el.appendChild(rightTerraceEntity);
+        let terraceCreator = function(id, Xposition, Zposition, rotation, width, depth, color, texture, textureRepeat) {
+            let terrace = document.createElement('a-entity');
+            terrace.setAttribute('id', id);
 
-            let rightTerraceXPosition = data.width / 2 + data.rightTerraceDepth / 2;
+            el.appendChild(terrace);
 
-            rightTerraceEntity.setAttribute('position', `${rightTerraceXPosition} 0 0`);
+            terrace.setAttribute('position', `${Xposition} 0 ${Zposition}`);
+            terrace.setAttribute('rotation', `0 ${rotation} 0`);
 
             let terraceFloor = document.createElement('a-plane');
-            rightTerraceEntity.appendChild(terraceFloor);
+            terrace.appendChild(terraceFloor);
             terraceFloor.setAttribute('id', 'terraceFloor');
-            terraceFloor.setAttribute('src', data.rightTerraceTexture);
-            terraceFloor.setAttribute('repeat', data.rightTerraceTextureRepeat);
-            terraceFloor.setAttribute('width', data.rightTerraceWidth);
-            terraceFloor.setAttribute('height', data.rightTerraceDepth);
+            terraceFloor.setAttribute('src', texture);
+            terraceFloor.setAttribute('color', color);
+            terraceFloor.setAttribute('repeat', textureRepeat);
+            terraceFloor.setAttribute('width', width);
+            terraceFloor.setAttribute('height', depth);
             terraceFloor.setAttribute('rotation', '270 90 0');
             terraceFloor.setAttribute('position', `0 0 0`);
             terraceFloor.setAttribute('side', 'double');
             terraceFloor.setAttribute('roughness', '1');
             terraceFloor.setAttribute('static-body', '');
 
-            let terraceGlassFrontXPosition = data.rightTerraceDepth / 2;
+            let terraceGlassFrontXPosition = depth / 2;
 
             let terraceGlassFront = document.createElement('a-plane');
-            rightTerraceEntity.appendChild(terraceGlassFront);
+            terrace.appendChild(terraceGlassFront);
             terraceGlassFront.setAttribute('class', 'glassPanes');
-            terraceGlassFront.setAttribute('width', data.rightTerraceWidth);
+            terraceGlassFront.setAttribute('width', width);
             terraceGlassFront.setAttribute('height', '1');
             terraceGlassFront.setAttribute('opacity', '0.05');
             terraceGlassFront.setAttribute('side', 'double');
@@ -290,14 +292,14 @@ AFRAME.registerComponent('room-creator', {
             terraceGlassFront.setAttribute('position', `${terraceGlassFrontXPosition} 0.5 0`);
             terraceGlassFront.setAttribute('static-body', '');
     
-            let terraceGlassRightAndLeftXPosition = data.rightTerraceDepth / 2;
+            let terraceGlassRightAndLeftXPosition = depth / 2;
 
-            let terraceGlassRightAndLeftZPosition = data.rightTerraceWidth / 2
+            let terraceGlassRightAndLeftZPosition = width / 2
 
             let terraceGlassRight = document.createElement('a-plane');
-            rightTerraceEntity.appendChild(terraceGlassRight);
+            terrace.appendChild(terraceGlassRight);
             terraceGlassRight.setAttribute('class', 'glassPanes');
-            terraceGlassRight.setAttribute('width', data.rightTerraceDepth);
+            terraceGlassRight.setAttribute('width', depth);
             terraceGlassRight.setAttribute('height', '1');
             terraceGlassRight.setAttribute('opacity', '0.05');
             terraceGlassRight.setAttribute('side', 'double');
@@ -306,9 +308,9 @@ AFRAME.registerComponent('room-creator', {
             terraceGlassRight.setAttribute('static-body', '');
     
             let terraceGlassLeft = document.createElement('a-plane');
-            rightTerraceEntity.appendChild(terraceGlassLeft);
+            terrace.appendChild(terraceGlassLeft);
             terraceGlassLeft.setAttribute('class', 'glassPanes');
-            terraceGlassLeft.setAttribute('width', data.rightTerraceDepth);
+            terraceGlassLeft.setAttribute('width', depth);
             terraceGlassLeft.setAttribute('height', '1');
             terraceGlassLeft.setAttribute('opacity', '0.05');
             terraceGlassLeft.setAttribute('side', 'double');
@@ -316,13 +318,13 @@ AFRAME.registerComponent('room-creator', {
             terraceGlassLeft.setAttribute('position', `0 0.5 -${terraceGlassRightAndLeftZPosition}`);
             terraceGlassLeft.setAttribute('static-body', '');
 
-            if(data.width < data.rightTerraceWidth) {
-                let additionalGlassPanesWidth = (data.rightTerraceWidth - data.width) / 2;
+            if(data.width < width) {
+                let additionalGlassPanesWidth = (width - data.width) / 2;
 
                 let additionalGlassPanesZposition = data.width / 2 + additionalGlassPanesWidth / 2;
 
                 let terraceGlassBackLeft = document.createElement('a-plane');
-                rightTerraceEntity.appendChild(terraceGlassBackLeft);
+                terrace.appendChild(terraceGlassBackLeft);
                 terraceGlassBackLeft.setAttribute('class', 'glassPanes');
                 terraceGlassBackLeft.setAttribute('width', `${additionalGlassPanesWidth}`);
                 terraceGlassBackLeft.setAttribute('height', '1');
@@ -333,7 +335,7 @@ AFRAME.registerComponent('room-creator', {
                 terraceGlassBackLeft.setAttribute('static-body', '');
 
                 let terraceGlassBackRight = document.createElement('a-plane');
-                rightTerraceEntity.appendChild(terraceGlassBackRight);
+                terrace.appendChild(terraceGlassBackRight);
                 terraceGlassBackRight.setAttribute('class', 'glassPanes');
                 terraceGlassBackRight.setAttribute('width', `${additionalGlassPanesWidth}`);
                 terraceGlassBackRight.setAttribute('height', '1');
@@ -345,39 +347,39 @@ AFRAME.registerComponent('room-creator', {
             };
     
             let terraceSeparation = document.createElement('a-box');
-            rightTerraceEntity.appendChild(terraceSeparation);
-            terraceSeparation.setAttribute('id', 'rightTerraceSeparation');
+            terrace.appendChild(terraceSeparation);
+            terraceSeparation.setAttribute('class', 'terraceSeparation');
             terraceSeparation.setAttribute('color', 'lightgrey');
-            terraceSeparation.setAttribute('scale', `0.1 0.1 ${data.rightTerraceWidth}`);
+            terraceSeparation.setAttribute('scale', `0.1 0.1 ${width}`);
             terraceSeparation.setAttribute('position', `-${terraceGlassRightAndLeftXPosition} 0 0`);
             terraceSeparation.setAttribute('static-body', '');
     
             let terraceGlassPaneMarkFront = document.createElement('a-box');
-            rightTerraceEntity.appendChild(terraceGlassPaneMarkFront);
+            terrace.appendChild(terraceGlassPaneMarkFront);
             terraceGlassPaneMarkFront.setAttribute('class', 'glassPaneMarks');
             terraceGlassPaneMarkFront.setAttribute('color', 'grey');
-            terraceGlassPaneMarkFront.setAttribute('scale', `0.1 0.1 ${data.rightTerraceWidth}`);
+            terraceGlassPaneMarkFront.setAttribute('scale', `0.1 0.1 ${width}`);
             terraceGlassPaneMarkFront.setAttribute('position', `${terraceGlassRightAndLeftXPosition} 0 0`);
             terraceGlassPaneMarkFront.setAttribute('static-body', '');
     
             let terraceGlassPaneMarkLeft = document.createElement('a-box');
-            rightTerraceEntity.appendChild(terraceGlassPaneMarkLeft);
+            terrace.appendChild(terraceGlassPaneMarkLeft);
             terraceGlassPaneMarkLeft.setAttribute('class', 'glassPaneMarks');
             terraceGlassPaneMarkLeft.setAttribute('color', 'grey');
-            terraceGlassPaneMarkLeft.setAttribute('scale', `${data.rightTerraceDepth} 0.1 0.1`);
+            terraceGlassPaneMarkLeft.setAttribute('scale', `${depth} 0.1 0.1`);
             terraceGlassPaneMarkLeft.setAttribute('position', `0 0 -${terraceGlassRightAndLeftZPosition}`);
             terraceGlassPaneMarkLeft.setAttribute('static-body', '');
     
             let terraceGlassPaneMarkRight = document.createElement('a-box');
-            rightTerraceEntity.appendChild(terraceGlassPaneMarkRight);
+            terrace.appendChild(terraceGlassPaneMarkRight);
             terraceGlassPaneMarkRight.setAttribute('class', 'glassPaneMarks');
             terraceGlassPaneMarkRight.setAttribute('color', 'grey');
-            terraceGlassPaneMarkRight.setAttribute('scale', `${data.rightTerraceDepth} 0.1 0.1`);
+            terraceGlassPaneMarkRight.setAttribute('scale', `${depth} 0.1 0.1`);
             terraceGlassPaneMarkRight.setAttribute('position', `0 0 ${terraceGlassRightAndLeftZPosition}`);
             terraceGlassPaneMarkRight.setAttribute('static-body', '');
     
             let terraceGlassPaneMarkFrontRightUp = document.createElement('a-box');
-            rightTerraceEntity.appendChild(terraceGlassPaneMarkFrontRightUp);
+            terrace.appendChild(terraceGlassPaneMarkFrontRightUp);
             terraceGlassPaneMarkFrontRightUp.setAttribute('class', 'glassPaneMarks');
             terraceGlassPaneMarkFrontRightUp.setAttribute('color', 'grey');
             terraceGlassPaneMarkFrontRightUp.setAttribute('scale', '0.03 1 0.03');
@@ -386,7 +388,7 @@ AFRAME.registerComponent('room-creator', {
             terraceGlassPaneMarkFrontRightUp.setAttribute('static-body', '');
     
             let terraceGlassPaneMarkFrontLeftUp = document.createElement('a-box');
-            rightTerraceEntity.appendChild(terraceGlassPaneMarkFrontLeftUp);
+            terrace.appendChild(terraceGlassPaneMarkFrontLeftUp);
             terraceGlassPaneMarkFrontLeftUp.setAttribute('class', 'glassPaneMarks');
             terraceGlassPaneMarkFrontLeftUp.setAttribute('color', 'grey');
             terraceGlassPaneMarkFrontLeftUp.setAttribute('scale', '0.03 1 0.03');
@@ -395,7 +397,7 @@ AFRAME.registerComponent('room-creator', {
             terraceGlassPaneMarkFrontLeftUp.setAttribute('static-body', '');
 
             let terraceGlassPaneMarkBackRightUp = document.createElement('a-box');
-            rightTerraceEntity.appendChild(terraceGlassPaneMarkBackRightUp);
+            terrace.appendChild(terraceGlassPaneMarkBackRightUp);
             terraceGlassPaneMarkBackRightUp.setAttribute('class', 'glassPaneMarks');
             terraceGlassPaneMarkBackRightUp.setAttribute('color', 'grey');
             terraceGlassPaneMarkBackRightUp.setAttribute('scale', '0.03 1 0.03');
@@ -404,496 +406,91 @@ AFRAME.registerComponent('room-creator', {
             terraceGlassPaneMarkBackRightUp.setAttribute('static-body', '');
     
             let terraceGlassPaneMarkBackLeftUp = document.createElement('a-box');
-            rightTerraceEntity.appendChild(terraceGlassPaneMarkBackLeftUp);
+            terrace.appendChild(terraceGlassPaneMarkBackLeftUp);
             terraceGlassPaneMarkBackLeftUp.setAttribute('class', 'glassPaneMarks');
             terraceGlassPaneMarkBackLeftUp.setAttribute('color', 'grey');
             terraceGlassPaneMarkBackLeftUp.setAttribute('scale', '0.03 1 0.03');
             terraceGlassPaneMarkBackLeftUp.setAttribute('opacity', '0.75');
             terraceGlassPaneMarkBackLeftUp.setAttribute('position', `-${terraceGlassFrontXPosition} 0.5 -${terraceGlassRightAndLeftZPosition}`);
             terraceGlassPaneMarkBackLeftUp.setAttribute('static-body', '');
+
+            return terrace;
         };
 
-        if(data.leftTerrace == true) {
-            console.log('creating left terrace');
-            let leftTerraceEntity = document.createElement('a-entity');
-            leftTerraceEntity.setAttribute('id', 'leftTerraceEntity');
 
-            el.appendChild(leftTerraceEntity);
+        let frontTerraceXPosition = 0;
 
-            let leftTerraceXPosition = data.width / 2 + data.leftTerraceDepth / 2;
+        let frontTerraceZPosition = -(data.depth / 2 + data.frontTerraceDepth / 2);
 
-            leftTerraceEntity.setAttribute('position', `-${leftTerraceXPosition} 0 0`);
-            leftTerraceEntity.setAttribute('rotation', `0 180 0`);
+        let frontTerraceWidth = data.frontTerraceWidth;
 
-            let terraceFloor = document.createElement('a-plane');
-            leftTerraceEntity.appendChild(terraceFloor);
-            terraceFloor.setAttribute('id', 'terraceFloor');
-            terraceFloor.setAttribute('src', data.leftTerraceTexture);
-            terraceFloor.setAttribute('repeat', data.leftTerraceTextureRepeat);
-            terraceFloor.setAttribute('width', data.leftTerraceWidth);
-            terraceFloor.setAttribute('height', data.leftTerraceDepth);
-            terraceFloor.setAttribute('rotation', '270 90 0');
-            terraceFloor.setAttribute('position', `0 0 0`);
-            terraceFloor.setAttribute('side', 'double');
-            terraceFloor.setAttribute('roughness', '1');
-            terraceFloor.setAttribute('static-body', '');
+        let frontTerraceDepth = data.frontTerraceDepth;
 
-            let terraceGlassFrontXPosition = data.leftTerraceDepth / 2;
+        let frontTerraceColor = data.frontTerraceColor;
 
-            let terraceGlassFront = document.createElement('a-plane');
-            leftTerraceEntity.appendChild(terraceGlassFront);
-            terraceGlassFront.setAttribute('class', 'glassPanes');
-            terraceGlassFront.setAttribute('width', data.leftTerraceWidth);
-            terraceGlassFront.setAttribute('height', '1');
-            terraceGlassFront.setAttribute('opacity', '0.05');
-            terraceGlassFront.setAttribute('side', 'double');
-            terraceGlassFront.setAttribute('rotation', '0 90 0');
-            terraceGlassFront.setAttribute('position', `${terraceGlassFrontXPosition} 0.5 0`);
-            terraceGlassFront.setAttribute('static-body', '');
-    
-            let terraceGlassRightAndLeftXPosition = data.leftTerraceDepth / 2;
+        let frontTerraceTexture = data.frontTerraceTexture;
 
-            let terraceGlassRightAndLeftZPosition = data.leftTerraceWidth / 2
-
-            let terraceGlassRight = document.createElement('a-plane');
-            leftTerraceEntity.appendChild(terraceGlassRight);
-            terraceGlassRight.setAttribute('class', 'glassPanes');
-            terraceGlassRight.setAttribute('width', data.leftTerraceDepth);
-            terraceGlassRight.setAttribute('height', '1');
-            terraceGlassRight.setAttribute('opacity', '0.05');
-            terraceGlassRight.setAttribute('side', 'double');
-            terraceGlassRight.setAttribute('rotation', '0 0 0');
-            terraceGlassRight.setAttribute('position', `0 0.5 ${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassRight.setAttribute('static-body', '');
-    
-            let terraceGlassLeft = document.createElement('a-plane');
-            leftTerraceEntity.appendChild(terraceGlassLeft);
-            terraceGlassLeft.setAttribute('class', 'glassPanes');
-            terraceGlassLeft.setAttribute('width', data.leftTerraceDepth);
-            terraceGlassLeft.setAttribute('height', '1');
-            terraceGlassLeft.setAttribute('opacity', '0.05');
-            terraceGlassLeft.setAttribute('side', 'double');
-            terraceGlassLeft.setAttribute('rotation', '0 0 0');
-            terraceGlassLeft.setAttribute('position', `0 0.5 -${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassLeft.setAttribute('static-body', '');
-
-            if(data.width < data.leftTerraceWidth) {
-                let additionalGlassPanesWidth = (data.leftTerraceWidth - data.width) / 2;
-
-                let additionalGlassPanesZposition = data.width / 2 + additionalGlassPanesWidth / 2;
-
-                let terraceGlassBackLeft = document.createElement('a-plane');
-                leftTerraceEntity.appendChild(terraceGlassBackLeft);
-                terraceGlassBackLeft.setAttribute('class', 'glassPanes');
-                terraceGlassBackLeft.setAttribute('width', `${additionalGlassPanesWidth}`);
-                terraceGlassBackLeft.setAttribute('height', '1');
-                terraceGlassBackLeft.setAttribute('opacity', '0.05');
-                terraceGlassBackLeft.setAttribute('side', 'double');
-                terraceGlassBackLeft.setAttribute('rotation', '0 90 0');
-                terraceGlassBackLeft.setAttribute('position', `-${terraceGlassFrontXPosition} 0.5 -${additionalGlassPanesZposition}`);
-                terraceGlassBackLeft.setAttribute('static-body', '');
-
-                let terraceGlassBackRight = document.createElement('a-plane');
-                leftTerraceEntity.appendChild(terraceGlassBackRight);
-                terraceGlassBackRight.setAttribute('class', 'glassPanes');
-                terraceGlassBackRight.setAttribute('width', `${additionalGlassPanesWidth}`);
-                terraceGlassBackRight.setAttribute('height', '1');
-                terraceGlassBackRight.setAttribute('opacity', '0.05');
-                terraceGlassBackRight.setAttribute('side', 'double');
-                terraceGlassBackRight.setAttribute('rotation', '0 90 0');
-                terraceGlassBackRight.setAttribute('position', `-${terraceGlassFrontXPosition} 0.5 ${additionalGlassPanesZposition}`);
-                terraceGlassBackRight.setAttribute('static-body', '');
-            };
-    
-            let terraceSeparation = document.createElement('a-box');
-            leftTerraceEntity.appendChild(terraceSeparation);
-            terraceSeparation.setAttribute('id', 'leftTerraceSeparation');
-            terraceSeparation.setAttribute('color', 'lightgrey');
-            terraceSeparation.setAttribute('scale', `0.1 0.1 ${data.leftTerraceWidth}`);
-            terraceSeparation.setAttribute('position', `-${terraceGlassRightAndLeftXPosition} 0 0`);
-            terraceSeparation.setAttribute('static-body', '');
-    
-            let terraceGlassPaneMarkFront = document.createElement('a-box');
-            leftTerraceEntity.appendChild(terraceGlassPaneMarkFront);
-            terraceGlassPaneMarkFront.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkFront.setAttribute('color', 'grey');
-            terraceGlassPaneMarkFront.setAttribute('scale', `0.1 0.1 ${data.leftTerraceWidth}`);
-            terraceGlassPaneMarkFront.setAttribute('position', `${terraceGlassRightAndLeftXPosition} 0 0`);
-            terraceGlassPaneMarkFront.setAttribute('static-body', '');
-    
-            let terraceGlassPaneMarkLeft = document.createElement('a-box');
-            leftTerraceEntity.appendChild(terraceGlassPaneMarkLeft);
-            terraceGlassPaneMarkLeft.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkLeft.setAttribute('color', 'grey');
-            terraceGlassPaneMarkLeft.setAttribute('scale', `${data.leftTerraceDepth} 0.1 0.1`);
-            terraceGlassPaneMarkLeft.setAttribute('position', `0 0 -${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassPaneMarkLeft.setAttribute('static-body', '');
-    
-            let terraceGlassPaneMarkRight = document.createElement('a-box');
-            leftTerraceEntity.appendChild(terraceGlassPaneMarkRight);
-            terraceGlassPaneMarkRight.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkRight.setAttribute('color', 'grey');
-            terraceGlassPaneMarkRight.setAttribute('scale', `${data.leftTerraceDepth} 0.1 0.1`);
-            terraceGlassPaneMarkRight.setAttribute('position', `0 0 ${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassPaneMarkRight.setAttribute('static-body', '');
-    
-            let terraceGlassPaneMarkFrontRightUp = document.createElement('a-box');
-            leftTerraceEntity.appendChild(terraceGlassPaneMarkFrontRightUp);
-            terraceGlassPaneMarkFrontRightUp.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkFrontRightUp.setAttribute('color', 'grey');
-            terraceGlassPaneMarkFrontRightUp.setAttribute('scale', '0.03 1 0.03');
-            terraceGlassPaneMarkFrontRightUp.setAttribute('opacity', '0.75');
-            terraceGlassPaneMarkFrontRightUp.setAttribute('position', `${terraceGlassFrontXPosition} 0.5 ${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassPaneMarkFrontRightUp.setAttribute('static-body', '');
-    
-            let terraceGlassPaneMarkFrontLeftUp = document.createElement('a-box');
-            leftTerraceEntity.appendChild(terraceGlassPaneMarkFrontLeftUp);
-            terraceGlassPaneMarkFrontLeftUp.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkFrontLeftUp.setAttribute('color', 'grey');
-            terraceGlassPaneMarkFrontLeftUp.setAttribute('scale', '0.03 1 0.03');
-            terraceGlassPaneMarkFrontLeftUp.setAttribute('opacity', '0.75');
-            terraceGlassPaneMarkFrontLeftUp.setAttribute('position', `${terraceGlassFrontXPosition} 0.5 -${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassPaneMarkFrontLeftUp.setAttribute('static-body', '');
-
-            let terraceGlassPaneMarkBackRightUp = document.createElement('a-box');
-            leftTerraceEntity.appendChild(terraceGlassPaneMarkBackRightUp);
-            terraceGlassPaneMarkBackRightUp.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkBackRightUp.setAttribute('color', 'grey');
-            terraceGlassPaneMarkBackRightUp.setAttribute('scale', '0.03 1 0.03');
-            terraceGlassPaneMarkBackRightUp.setAttribute('opacity', '0.75');
-            terraceGlassPaneMarkBackRightUp.setAttribute('position', `-${terraceGlassFrontXPosition} 0.5 ${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassPaneMarkBackRightUp.setAttribute('static-body', '');
-    
-            let terraceGlassPaneMarkBackLeftUp = document.createElement('a-box');
-            leftTerraceEntity.appendChild(terraceGlassPaneMarkBackLeftUp);
-            terraceGlassPaneMarkBackLeftUp.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkBackLeftUp.setAttribute('color', 'grey');
-            terraceGlassPaneMarkBackLeftUp.setAttribute('scale', '0.03 1 0.03');
-            terraceGlassPaneMarkBackLeftUp.setAttribute('opacity', '0.75');
-            terraceGlassPaneMarkBackLeftUp.setAttribute('position', `-${terraceGlassFrontXPosition} 0.5 -${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassPaneMarkBackLeftUp.setAttribute('static-body', '');
-        };
+        let frontTerraceTextureRepeat = data.frontTerraceTextureRepeat;
 
         if(data.frontTerrace == true) {
-            console.log('creating front terrace');
-            let frontTerraceEntity = document.createElement('a-entity');
-            frontTerraceEntity.setAttribute('id', 'frontTerraceEntity');
-
-            el.appendChild(frontTerraceEntity);
-
-            let frontTerraceZPosition = data.depth / 2 + data.frontTerraceDepth / 2;
-
-            frontTerraceEntity.setAttribute('position', `0 0 -${frontTerraceZPosition}`);
-            frontTerraceEntity.setAttribute('rotation', `0 90 0`);
-
-            let terraceFloor = document.createElement('a-plane');
-            frontTerraceEntity.appendChild(terraceFloor);
-            terraceFloor.setAttribute('id', 'terraceFloor');
-            terraceFloor.setAttribute('src', data.frontTerraceTexture);
-            terraceFloor.setAttribute('repeat', data.frontTerraceTextureRepeat);
-            terraceFloor.setAttribute('width', data.frontTerraceWidth);
-            terraceFloor.setAttribute('height', data.frontTerraceDepth);
-            terraceFloor.setAttribute('rotation', '270 90 0');
-            terraceFloor.setAttribute('position', `0 0 0`);
-            terraceFloor.setAttribute('side', 'double');
-            terraceFloor.setAttribute('roughness', '1');
-            terraceFloor.setAttribute('static-body', '');
-
-            let terraceGlassFrontXPosition = data.frontTerraceDepth / 2;
-
-            let terraceGlassFront = document.createElement('a-plane');
-            frontTerraceEntity.appendChild(terraceGlassFront);
-            terraceGlassFront.setAttribute('class', 'glassPanes');
-            terraceGlassFront.setAttribute('width', data.frontTerraceWidth);
-            terraceGlassFront.setAttribute('height', '1');
-            terraceGlassFront.setAttribute('opacity', '0.05');
-            terraceGlassFront.setAttribute('side', 'double');
-            terraceGlassFront.setAttribute('rotation', '0 90 0');
-            terraceGlassFront.setAttribute('position', `${terraceGlassFrontXPosition} 0.5 0`);
-            terraceGlassFront.setAttribute('static-body', '');
-    
-            let terraceGlassRightAndLeftXPosition = data.frontTerraceDepth / 2;
-
-            let terraceGlassRightAndLeftZPosition = data.frontTerraceWidth / 2
-
-            let terraceGlassRight = document.createElement('a-plane');
-            frontTerraceEntity.appendChild(terraceGlassRight);
-            terraceGlassRight.setAttribute('class', 'glassPanes');
-            terraceGlassRight.setAttribute('width', data.frontTerraceDepth);
-            terraceGlassRight.setAttribute('height', '1');
-            terraceGlassRight.setAttribute('opacity', '0.05');
-            terraceGlassRight.setAttribute('side', 'double');
-            terraceGlassRight.setAttribute('rotation', '0 0 0');
-            terraceGlassRight.setAttribute('position', `0 0.5 ${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassRight.setAttribute('static-body', '');
-    
-            let terraceGlassLeft = document.createElement('a-plane');
-            frontTerraceEntity.appendChild(terraceGlassLeft);
-            terraceGlassLeft.setAttribute('class', 'glassPanes');
-            terraceGlassLeft.setAttribute('width', data.frontTerraceDepth);
-            terraceGlassLeft.setAttribute('height', '1');
-            terraceGlassLeft.setAttribute('opacity', '0.05');
-            terraceGlassLeft.setAttribute('side', 'double');
-            terraceGlassLeft.setAttribute('rotation', '0 0 0');
-            terraceGlassLeft.setAttribute('position', `0 0.5 -${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassLeft.setAttribute('static-body', '');
-
-            if(data.width < data.frontTerraceWidth) {
-                let additionalGlassPanesWidth = (data.frontTerraceWidth - data.width) / 2;
-
-                let additionalGlassPanesZposition = data.width / 2 + additionalGlassPanesWidth / 2;
-
-                let terraceGlassBackLeft = document.createElement('a-plane');
-                frontTerraceEntity.appendChild(terraceGlassBackLeft);
-                terraceGlassBackLeft.setAttribute('class', 'glassPanes');
-                terraceGlassBackLeft.setAttribute('width', `${additionalGlassPanesWidth}`);
-                terraceGlassBackLeft.setAttribute('height', '1');
-                terraceGlassBackLeft.setAttribute('opacity', '0.05');
-                terraceGlassBackLeft.setAttribute('side', 'double');
-                terraceGlassBackLeft.setAttribute('rotation', '0 90 0');
-                terraceGlassBackLeft.setAttribute('position', `-${terraceGlassFrontXPosition} 0.5 -${additionalGlassPanesZposition}`);
-                terraceGlassBackLeft.setAttribute('static-body', '');
-
-                let terraceGlassBackRight = document.createElement('a-plane');
-                frontTerraceEntity.appendChild(terraceGlassBackRight);
-                terraceGlassBackRight.setAttribute('class', 'glassPanes');
-                terraceGlassBackRight.setAttribute('width', `${additionalGlassPanesWidth}`);
-                terraceGlassBackRight.setAttribute('height', '1');
-                terraceGlassBackRight.setAttribute('opacity', '0.05');
-                terraceGlassBackRight.setAttribute('side', 'double');
-                terraceGlassBackRight.setAttribute('rotation', '0 90 0');
-                terraceGlassBackRight.setAttribute('position', `-${terraceGlassFrontXPosition} 0.5 ${additionalGlassPanesZposition}`);
-                terraceGlassBackRight.setAttribute('static-body', '');
-            };
-    
-            let terraceSeparation = document.createElement('a-box');
-            frontTerraceEntity.appendChild(terraceSeparation);
-            terraceSeparation.setAttribute('id', 'frontTerraceSeparation');
-            terraceSeparation.setAttribute('color', 'lightgrey');
-            terraceSeparation.setAttribute('scale', `0.1 0.1 ${data.frontTerraceWidth}`);
-            terraceSeparation.setAttribute('position', `-${terraceGlassRightAndLeftXPosition} 0 0`);
-            terraceSeparation.setAttribute('static-body', '');
-    
-            let terraceGlassPaneMarkFront = document.createElement('a-box');
-            frontTerraceEntity.appendChild(terraceGlassPaneMarkFront);
-            terraceGlassPaneMarkFront.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkFront.setAttribute('color', 'grey');
-            terraceGlassPaneMarkFront.setAttribute('scale', `0.1 0.1 ${data.frontTerraceWidth}`);
-            terraceGlassPaneMarkFront.setAttribute('position', `${terraceGlassRightAndLeftXPosition} 0 0`);
-            terraceGlassPaneMarkFront.setAttribute('static-body', '');
-    
-            let terraceGlassPaneMarkLeft = document.createElement('a-box');
-            frontTerraceEntity.appendChild(terraceGlassPaneMarkLeft);
-            terraceGlassPaneMarkLeft.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkLeft.setAttribute('color', 'grey');
-            terraceGlassPaneMarkLeft.setAttribute('scale', `${data.frontTerraceDepth} 0.1 0.1`);
-            terraceGlassPaneMarkLeft.setAttribute('position', `0 0 -${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassPaneMarkLeft.setAttribute('static-body', '');
-    
-            let terraceGlassPaneMarkRight = document.createElement('a-box');
-            frontTerraceEntity.appendChild(terraceGlassPaneMarkRight);
-            terraceGlassPaneMarkRight.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkRight.setAttribute('color', 'grey');
-            terraceGlassPaneMarkRight.setAttribute('scale', `${data.frontTerraceDepth} 0.1 0.1`);
-            terraceGlassPaneMarkRight.setAttribute('position', `0 0 ${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassPaneMarkRight.setAttribute('static-body', '');
-    
-            let terraceGlassPaneMarkFrontRightUp = document.createElement('a-box');
-            frontTerraceEntity.appendChild(terraceGlassPaneMarkFrontRightUp);
-            terraceGlassPaneMarkFrontRightUp.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkFrontRightUp.setAttribute('color', 'grey');
-            terraceGlassPaneMarkFrontRightUp.setAttribute('scale', '0.03 1 0.03');
-            terraceGlassPaneMarkFrontRightUp.setAttribute('opacity', '0.75');
-            terraceGlassPaneMarkFrontRightUp.setAttribute('position', `${terraceGlassFrontXPosition} 0.5 ${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassPaneMarkFrontRightUp.setAttribute('static-body', '');
-    
-            let terraceGlassPaneMarkFrontLeftUp = document.createElement('a-box');
-            frontTerraceEntity.appendChild(terraceGlassPaneMarkFrontLeftUp);
-            terraceGlassPaneMarkFrontLeftUp.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkFrontLeftUp.setAttribute('color', 'grey');
-            terraceGlassPaneMarkFrontLeftUp.setAttribute('scale', '0.03 1 0.03');
-            terraceGlassPaneMarkFrontLeftUp.setAttribute('opacity', '0.75');
-            terraceGlassPaneMarkFrontLeftUp.setAttribute('position', `${terraceGlassFrontXPosition} 0.5 -${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassPaneMarkFrontLeftUp.setAttribute('static-body', '');
-
-            let terraceGlassPaneMarkBackRightUp = document.createElement('a-box');
-            frontTerraceEntity.appendChild(terraceGlassPaneMarkBackRightUp);
-            terraceGlassPaneMarkBackRightUp.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkBackRightUp.setAttribute('color', 'grey');
-            terraceGlassPaneMarkBackRightUp.setAttribute('scale', '0.03 1 0.03');
-            terraceGlassPaneMarkBackRightUp.setAttribute('opacity', '0.75');
-            terraceGlassPaneMarkBackRightUp.setAttribute('position', `-${terraceGlassFrontXPosition} 0.5 ${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassPaneMarkBackRightUp.setAttribute('static-body', '');
-    
-            let terraceGlassPaneMarkBackLeftUp = document.createElement('a-box');
-            frontTerraceEntity.appendChild(terraceGlassPaneMarkBackLeftUp);
-            terraceGlassPaneMarkBackLeftUp.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkBackLeftUp.setAttribute('color', 'grey');
-            terraceGlassPaneMarkBackLeftUp.setAttribute('scale', '0.03 1 0.03');
-            terraceGlassPaneMarkBackLeftUp.setAttribute('opacity', '0.75');
-            terraceGlassPaneMarkBackLeftUp.setAttribute('position', `-${terraceGlassFrontXPosition} 0.5 -${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassPaneMarkBackLeftUp.setAttribute('static-body', '');
+            var frontTerraceEntity = terraceCreator('frontTerraceEntity', frontTerraceXPosition, frontTerraceZPosition, 90, frontTerraceWidth, frontTerraceDepth, frontTerraceColor, frontTerraceTexture, frontTerraceTextureRepeat);
         };
 
+
+        let backTerraceXPosition = 0;
+
+        let backTerraceZPosition = data.depth / 2 + data.backTerraceDepth / 2;
+
+        let backTerraceWidth = data.backTerraceWidth;
+
+        let backTerraceDepth = data.backTerraceDepth;
+
+        let backTerraceColor = data.backTerraceColor;
+
+        let backTerraceTexture = data.backTerraceTexture;
+
+        let backTerraceTextureRepeat = data.backTerraceTextureRepeat;
+
         if(data.backTerrace == true) {
-            console.log('creating back terrace');
-            let backTerraceEntity = document.createElement('a-entity');
-            backTerraceEntity.setAttribute('id', 'backTerraceEntity');
+            var backTerraceEntity = terraceCreator('backTerraceEntity', backTerraceXPosition, backTerraceZPosition, -90, backTerraceWidth, backTerraceDepth, backTerraceColor, backTerraceTexture, backTerraceTextureRepeat);
+        };
 
-            el.appendChild(backTerraceEntity);
+        
+        let rightTerraceXPosition = data.width / 2 + data.rightTerraceDepth / 2;
 
-            let backTerraceZPosition = data.depth / 2 + data.backTerraceDepth / 2;
+        let rightTerraceZPosition = 0;
 
-            backTerraceEntity.setAttribute('position', `0 0 ${backTerraceZPosition}`);
-            backTerraceEntity.setAttribute('rotation', `0 -90 0`);
+        let rightTerraceWidth = data.rightTerraceWidth;
 
-            let terraceFloor = document.createElement('a-plane');
-            backTerraceEntity.appendChild(terraceFloor);
-            terraceFloor.setAttribute('id', 'terraceFloor');
-            terraceFloor.setAttribute('src', data.backTerraceTexture);
-            terraceFloor.setAttribute('repeat', data.backTerraceTextureRepeat);
-            terraceFloor.setAttribute('width', data.backTerraceWidth);
-            terraceFloor.setAttribute('height', data.backTerraceDepth);
-            terraceFloor.setAttribute('rotation', '270 90 0');
-            terraceFloor.setAttribute('position', `0 0 0`);
-            terraceFloor.setAttribute('side', 'double');
-            terraceFloor.setAttribute('roughness', '1');
-            terraceFloor.setAttribute('static-body', '');
+        let rightTerraceDepth = data.rightTerraceDepth;
 
-            let terraceGlassFrontXPosition = data.backTerraceDepth / 2;
+        let rightTerraceColor = data.rightTerraceColor;
 
-            let terraceGlassFront = document.createElement('a-plane');
-            backTerraceEntity.appendChild(terraceGlassFront);
-            terraceGlassFront.setAttribute('class', 'glassPanes');
-            terraceGlassFront.setAttribute('width', data.backTerraceWidth);
-            terraceGlassFront.setAttribute('height', '1');
-            terraceGlassFront.setAttribute('opacity', '0.05');
-            terraceGlassFront.setAttribute('side', 'double');
-            terraceGlassFront.setAttribute('rotation', '0 90 0');
-            terraceGlassFront.setAttribute('position', `${terraceGlassFrontXPosition} 0.5 0`);
-            terraceGlassFront.setAttribute('static-body', '');
-    
-            let terraceGlassRightAndLeftXPosition = data.backTerraceDepth / 2;
+        let rightTerraceTexture = data.rightTerraceTexture;
 
-            let terraceGlassRightAndLeftZPosition = data.backTerraceWidth / 2
+        let rightTerraceTextureRepeat = data.rightTerraceTextureRepeat;
 
-            let terraceGlassRight = document.createElement('a-plane');
-            backTerraceEntity.appendChild(terraceGlassRight);
-            terraceGlassRight.setAttribute('class', 'glassPanes');
-            terraceGlassRight.setAttribute('width', data.backTerraceDepth);
-            terraceGlassRight.setAttribute('height', '1');
-            terraceGlassRight.setAttribute('opacity', '0.05');
-            terraceGlassRight.setAttribute('side', 'double');
-            terraceGlassRight.setAttribute('rotation', '0 0 0');
-            terraceGlassRight.setAttribute('position', `0 0.5 ${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassRight.setAttribute('static-body', '');
-    
-            let terraceGlassLeft = document.createElement('a-plane');
-            backTerraceEntity.appendChild(terraceGlassLeft);
-            terraceGlassLeft.setAttribute('class', 'glassPanes');
-            terraceGlassLeft.setAttribute('width', data.backTerraceDepth);
-            terraceGlassLeft.setAttribute('height', '1');
-            terraceGlassLeft.setAttribute('opacity', '0.05');
-            terraceGlassLeft.setAttribute('side', 'double');
-            terraceGlassLeft.setAttribute('rotation', '0 0 0');
-            terraceGlassLeft.setAttribute('position', `0 0.5 -${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassLeft.setAttribute('static-body', '');
+        if(data.rightTerrace == true) {
+            var rightTerraceEntity = terraceCreator('rightTerraceEntity', rightTerraceXPosition, rightTerraceZPosition, 0, rightTerraceWidth, rightTerraceDepth, rightTerraceColor, rightTerraceTexture, rightTerraceTextureRepeat);
+        };
 
-            if(data.width < data.backTerraceWidth) {
-                let additionalGlassPanesWidth = (data.backTerraceWidth - data.width) / 2;
 
-                let additionalGlassPanesZposition = data.width / 2 + additionalGlassPanesWidth / 2;
+        let leftTerraceXPosition = -(data.width / 2 + data.leftTerraceDepth / 2);
 
-                let terraceGlassBackLeft = document.createElement('a-plane');
-                backTerraceEntity.appendChild(terraceGlassBackLeft);
-                terraceGlassBackLeft.setAttribute('class', 'glassPanes');
-                terraceGlassBackLeft.setAttribute('width', `${additionalGlassPanesWidth}`);
-                terraceGlassBackLeft.setAttribute('height', '1');
-                terraceGlassBackLeft.setAttribute('opacity', '0.05');
-                terraceGlassBackLeft.setAttribute('side', 'double');
-                terraceGlassBackLeft.setAttribute('rotation', '0 90 0');
-                terraceGlassBackLeft.setAttribute('position', `-${terraceGlassFrontXPosition} 0.5 -${additionalGlassPanesZposition}`);
-                terraceGlassBackLeft.setAttribute('static-body', '');
+        let leftTerraceZPosition = 0;
 
-                let terraceGlassBackRight = document.createElement('a-plane');
-                backTerraceEntity.appendChild(terraceGlassBackRight);
-                terraceGlassBackRight.setAttribute('class', 'glassPanes');
-                terraceGlassBackRight.setAttribute('width', `${additionalGlassPanesWidth}`);
-                terraceGlassBackRight.setAttribute('height', '1');
-                terraceGlassBackRight.setAttribute('opacity', '0.05');
-                terraceGlassBackRight.setAttribute('side', 'double');
-                terraceGlassBackRight.setAttribute('rotation', '0 90 0');
-                terraceGlassBackRight.setAttribute('position', `-${terraceGlassFrontXPosition} 0.5 ${additionalGlassPanesZposition}`);
-                terraceGlassBackRight.setAttribute('static-body', '');
-            };
-    
-            let terraceSeparation = document.createElement('a-box');
-            backTerraceEntity.appendChild(terraceSeparation);
-            terraceSeparation.setAttribute('id', 'backTerraceSeparation');
-            terraceSeparation.setAttribute('color', 'lightgrey');
-            terraceSeparation.setAttribute('scale', `0.1 0.1 ${data.backTerraceWidth}`);
-            terraceSeparation.setAttribute('position', `-${terraceGlassRightAndLeftXPosition} 0 0`);
-            terraceSeparation.setAttribute('static-body', '');
-    
-            let terraceGlassPaneMarkFront = document.createElement('a-box');
-            backTerraceEntity.appendChild(terraceGlassPaneMarkFront);
-            terraceGlassPaneMarkFront.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkFront.setAttribute('color', 'grey');
-            terraceGlassPaneMarkFront.setAttribute('scale', `0.1 0.1 ${data.backTerraceWidth}`);
-            terraceGlassPaneMarkFront.setAttribute('position', `${terraceGlassRightAndLeftXPosition} 0 0`);
-            terraceGlassPaneMarkFront.setAttribute('static-body', '');
-    
-            let terraceGlassPaneMarkLeft = document.createElement('a-box');
-            backTerraceEntity.appendChild(terraceGlassPaneMarkLeft);
-            terraceGlassPaneMarkLeft.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkLeft.setAttribute('color', 'grey');
-            terraceGlassPaneMarkLeft.setAttribute('scale', `${data.backTerraceDepth} 0.1 0.1`);
-            terraceGlassPaneMarkLeft.setAttribute('position', `0 0 -${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassPaneMarkLeft.setAttribute('static-body', '');
-    
-            let terraceGlassPaneMarkRight = document.createElement('a-box');
-            backTerraceEntity.appendChild(terraceGlassPaneMarkRight);
-            terraceGlassPaneMarkRight.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkRight.setAttribute('color', 'grey');
-            terraceGlassPaneMarkRight.setAttribute('scale', `${data.backTerraceDepth} 0.1 0.1`);
-            terraceGlassPaneMarkRight.setAttribute('position', `0 0 ${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassPaneMarkRight.setAttribute('static-body', '');
-    
-            let terraceGlassPaneMarkFrontRightUp = document.createElement('a-box');
-            backTerraceEntity.appendChild(terraceGlassPaneMarkFrontRightUp);
-            terraceGlassPaneMarkFrontRightUp.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkFrontRightUp.setAttribute('color', 'grey');
-            terraceGlassPaneMarkFrontRightUp.setAttribute('scale', '0.03 1 0.03');
-            terraceGlassPaneMarkFrontRightUp.setAttribute('opacity', '0.75');
-            terraceGlassPaneMarkFrontRightUp.setAttribute('position', `${terraceGlassFrontXPosition} 0.5 ${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassPaneMarkFrontRightUp.setAttribute('static-body', '');
-    
-            let terraceGlassPaneMarkFrontLeftUp = document.createElement('a-box');
-            backTerraceEntity.appendChild(terraceGlassPaneMarkFrontLeftUp);
-            terraceGlassPaneMarkFrontLeftUp.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkFrontLeftUp.setAttribute('color', 'grey');
-            terraceGlassPaneMarkFrontLeftUp.setAttribute('scale', '0.03 1 0.03');
-            terraceGlassPaneMarkFrontLeftUp.setAttribute('opacity', '0.75');
-            terraceGlassPaneMarkFrontLeftUp.setAttribute('position', `${terraceGlassFrontXPosition} 0.5 -${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassPaneMarkFrontLeftUp.setAttribute('static-body', '');
+        let leftTerraceWidth = data.leftTerraceWidth;
 
-            let terraceGlassPaneMarkBackRightUp = document.createElement('a-box');
-            backTerraceEntity.appendChild(terraceGlassPaneMarkBackRightUp);
-            terraceGlassPaneMarkBackRightUp.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkBackRightUp.setAttribute('color', 'grey');
-            terraceGlassPaneMarkBackRightUp.setAttribute('scale', '0.03 1 0.03');
-            terraceGlassPaneMarkBackRightUp.setAttribute('opacity', '0.75');
-            terraceGlassPaneMarkBackRightUp.setAttribute('position', `-${terraceGlassFrontXPosition} 0.5 ${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassPaneMarkBackRightUp.setAttribute('static-body', '');
-    
-            let terraceGlassPaneMarkBackLeftUp = document.createElement('a-box');
-            backTerraceEntity.appendChild(terraceGlassPaneMarkBackLeftUp);
-            terraceGlassPaneMarkBackLeftUp.setAttribute('class', 'glassPaneMarks');
-            terraceGlassPaneMarkBackLeftUp.setAttribute('color', 'grey');
-            terraceGlassPaneMarkBackLeftUp.setAttribute('scale', '0.03 1 0.03');
-            terraceGlassPaneMarkBackLeftUp.setAttribute('opacity', '0.75');
-            terraceGlassPaneMarkBackLeftUp.setAttribute('position', `-${terraceGlassFrontXPosition} 0.5 -${terraceGlassRightAndLeftZPosition}`);
-            terraceGlassPaneMarkBackLeftUp.setAttribute('static-body', '');
+        let leftTerraceDepth = data.leftTerraceDepth;
+
+        let leftTerraceColor = data.leftTerraceColor;
+
+        let leftTerraceTexture = data.leftTerraceTexture;
+
+        let leftTerraceTextureRepeat = data.leftTerraceTextureRepeat;
+
+        if(data.leftTerrace == true) {
+            var leftTerraceEntity = terraceCreator('leftTerraceEntity', leftTerraceXPosition, leftTerraceZPosition, 180, leftTerraceWidth, leftTerraceDepth, leftTerraceColor, leftTerraceTexture, leftTerraceTextureRepeat);
         };
     }
 });
