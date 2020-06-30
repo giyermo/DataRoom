@@ -119,28 +119,28 @@ AFRAME.registerComponent('room-creator', {
         frontTerrace: {type: 'boolean', default: false},
         frontTerraceWidth: {type: 'number', default: 30},
         frontTerraceDepth: {type: 'number', default: 8},
-        frontTerraceColor: {type: 'color', default: 'lightblue'},
+        frontTerraceColor: {type: 'color'},
         frontTerraceTexture: {type: 'string'},
         frontTerraceTextureRepeat: {type: 'string'},
 
         backTerrace: {type: 'boolean', default: false},
         backTerraceWidth: {type: 'number', default: 30},
         backTerraceDepth: {type: 'number', default: 8},
-        backTerraceColor: {type: 'color', default: 'lightblue'},
+        backTerraceColor: {type: 'color'},
         backTerraceTexture: {type: 'string'},
         backTerraceTextureRepeat: {type: 'string'},
 
         rightTerrace: {type: 'boolean', default: false},
         rightTerraceWidth: {type: 'number', default: 30},
         rightTerraceDepth: {type: 'number', default: 8},
-        rightTerraceColor: {type: 'color', default: 'lightblue'},
+        rightTerraceColor: {type: 'color'},
         rightTerraceTexture: {type: 'string'},
         rightTerraceTextureRepeat: {type: 'string'},
 
         leftTerrace: {type: 'boolean', default: false},
         leftTerraceWidth: {type: 'number', default: 30},
         leftTerraceDepth: {type: 'number', default: 8},
-        leftTerraceColor: {type: 'color', default: 'lightblue'},
+        leftTerraceColor: {type: 'color'},
         leftTerraceTexture: {type: 'string'},
         leftTerraceTextureRepeat: {type: 'string'},
     },
@@ -254,7 +254,6 @@ AFRAME.registerComponent('room-creator', {
         roomLight.setAttribute('color', 'lightgrey');
         roomLight.setAttribute('intensity', '0.5');
         roomLight.setAttribute('position', '0 8.5 0');
-
 
         let terraceCreator = function(id, Xposition, Zposition, rotation, width, depth, color, texture, textureRepeat) {
             let terrace = document.createElement('a-entity');
