@@ -149,6 +149,42 @@ AFRAME.registerComponent('room-creator', {
         let data = this.data;
         let el = this.el;  
 
+        let frontTerraceXPosition = 0;
+        let frontTerraceZPosition = -(data.depth / 2 + data.frontTerraceDepth / 2);
+        let frontTerraceWidth = data.frontTerraceWidth;
+        let frontTerraceDepth = data.frontTerraceDepth;
+        let frontTerraceColor = data.frontTerraceColor;
+        let frontTerraceTexture = data.frontTerraceTexture;
+        let frontTerraceTextureRepeat = data.frontTerraceTextureRepeat;
+
+
+        let backTerraceXPosition = 0;
+        let backTerraceZPosition = data.depth / 2 + data.backTerraceDepth / 2;
+        let backTerraceWidth = data.backTerraceWidth;
+        let backTerraceDepth = data.backTerraceDepth;
+        let backTerraceColor = data.backTerraceColor;
+        let backTerraceTexture = data.backTerraceTexture;
+        let backTerraceTextureRepeat = data.backTerraceTextureRepeat;
+
+    
+        let rightTerraceXPosition = data.width / 2 + data.rightTerraceDepth / 2;
+        let rightTerraceZPosition = 0;
+        let rightTerraceWidth = data.rightTerraceWidth;
+        let rightTerraceDepth = data.rightTerraceDepth;
+        let rightTerraceColor = data.rightTerraceColor;
+        let rightTerraceTexture = data.rightTerraceTexture;
+        let rightTerraceTextureRepeat = data.rightTerraceTextureRepeat;
+
+
+        let leftTerraceXPosition = -(data.width / 2 + data.leftTerraceDepth / 2);
+        let leftTerraceZPosition = 0;
+        let leftTerraceWidth = data.leftTerraceWidth;
+        let leftTerraceDepth = data.leftTerraceDepth;
+        let leftTerraceColor = data.leftTerraceColor;
+        let leftTerraceTexture = data.leftTerraceTexture;
+        let leftTerraceTextureRepeat = data.leftTerraceTextureRepeat;
+
+
         if(data.sky == true) {
             let sky = document.createElement('a-sky');
             el.appendChild(sky);
@@ -267,7 +303,7 @@ AFRAME.registerComponent('room-creator', {
             let terraceFloor = document.createElement('a-plane');
             terrace.appendChild(terraceFloor);
             terraceFloor.setAttribute('id', 'terraceFloor');
-            terraceFloor.setAttribute('src', texture);
+            terraceFloor.setAttribute('src', texture); 
             terraceFloor.setAttribute('color', color);
             terraceFloor.setAttribute('repeat', textureRepeat);
             terraceFloor.setAttribute('width', width);
@@ -416,77 +452,27 @@ AFRAME.registerComponent('room-creator', {
             return terrace;
         };
 
-
-        let frontTerraceXPosition = 0;
-
-        let frontTerraceZPosition = -(data.depth / 2 + data.frontTerraceDepth / 2);
-
-        let frontTerraceWidth = data.frontTerraceWidth;
-
-        let frontTerraceDepth = data.frontTerraceDepth;
-
-        let frontTerraceColor = data.frontTerraceColor;
-
-        let frontTerraceTexture = data.frontTerraceTexture;
-
-        let frontTerraceTextureRepeat = data.frontTerraceTextureRepeat;
+        if(data.terraceMerge) {
+            if(frontTerraceWidth > rightTerraceWidth) {
+                frontTerraceWidth = frontTerraceWidth + data.width / 2 + rightTerraceDepth - frontTerraceWidth / 2;
+                frontTerraceXPosition = frontTerraceXPosition + (data.width / 2 + rightTerraceDepth - frontTerraceWidth / 2);
+            };
+        };
 
         if(data.frontTerrace == true) {
             var frontTerraceEntity = terraceCreator('frontTerraceEntity', frontTerraceXPosition, frontTerraceZPosition, 90, frontTerraceWidth, frontTerraceDepth, frontTerraceColor, frontTerraceTexture, frontTerraceTextureRepeat);
         };
 
 
-        let backTerraceXPosition = 0;
-
-        let backTerraceZPosition = data.depth / 2 + data.backTerraceDepth / 2;
-
-        let backTerraceWidth = data.backTerraceWidth;
-
-        let backTerraceDepth = data.backTerraceDepth;
-
-        let backTerraceColor = data.backTerraceColor;
-
-        let backTerraceTexture = data.backTerraceTexture;
-
-        let backTerraceTextureRepeat = data.backTerraceTextureRepeat;
-
         if(data.backTerrace == true) {
             var backTerraceEntity = terraceCreator('backTerraceEntity', backTerraceXPosition, backTerraceZPosition, -90, backTerraceWidth, backTerraceDepth, backTerraceColor, backTerraceTexture, backTerraceTextureRepeat);
         };
 
-        
-        let rightTerraceXPosition = data.width / 2 + data.rightTerraceDepth / 2;
-
-        let rightTerraceZPosition = 0;
-
-        let rightTerraceWidth = data.rightTerraceWidth;
-
-        let rightTerraceDepth = data.rightTerraceDepth;
-
-        let rightTerraceColor = data.rightTerraceColor;
-
-        let rightTerraceTexture = data.rightTerraceTexture;
-
-        let rightTerraceTextureRepeat = data.rightTerraceTextureRepeat;
 
         if(data.rightTerrace == true) {
             var rightTerraceEntity = terraceCreator('rightTerraceEntity', rightTerraceXPosition, rightTerraceZPosition, 0, rightTerraceWidth, rightTerraceDepth, rightTerraceColor, rightTerraceTexture, rightTerraceTextureRepeat);
         };
 
-
-        let leftTerraceXPosition = -(data.width / 2 + data.leftTerraceDepth / 2);
-
-        let leftTerraceZPosition = 0;
-
-        let leftTerraceWidth = data.leftTerraceWidth;
-
-        let leftTerraceDepth = data.leftTerraceDepth;
-
-        let leftTerraceColor = data.leftTerraceColor;
-
-        let leftTerraceTexture = data.leftTerraceTexture;
-
-        let leftTerraceTextureRepeat = data.leftTerraceTextureRepeat;
 
         if(data.leftTerrace == true) {
             var leftTerraceEntity = terraceCreator('leftTerraceEntity', leftTerraceXPosition, leftTerraceZPosition, 180, leftTerraceWidth, leftTerraceDepth, leftTerraceColor, leftTerraceTexture, leftTerraceTextureRepeat);
