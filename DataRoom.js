@@ -453,9 +453,14 @@ AFRAME.registerComponent('room-creator', {
         };
 
         if(data.terraceMerge) {
-            if(frontTerraceWidth > rightTerraceWidth) {
-                frontTerraceWidth = frontTerraceWidth + data.width / 2 + rightTerraceDepth - frontTerraceWidth / 2;
-                frontTerraceXPosition = frontTerraceXPosition + (data.width / 2 + rightTerraceDepth - frontTerraceWidth / 2);
+            if(frontTerraceWidth > rightTerraceWidth && frontTerraceWidth > leftTerraceWidth) {
+                var terraceDiferenceF_R = data.width / 2 + rightTerraceDepth - frontTerraceWidth / 2;
+
+                var terraceDiferenceF_L = data.width / 2 + leftTerraceDepth - frontTerraceWidth / 2;
+
+                frontTerraceWidth = frontTerraceWidth + terraceDiferenceF_L + terraceDiferenceF_R;
+
+                frontTerraceXPosition = frontTerraceXPosition + terraceDiferenceF_L / 2 - terraceDiferenceF_R / 2;
             };
         };
 
