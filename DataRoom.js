@@ -292,7 +292,7 @@ AFRAME.registerComponent('room-creator', {
         el.appendChild(roomFloor);
         roomFloor.setAttribute('class', 'roomFloor');
         roomFloor.setAttribute('src', data.floorTexture);
-        roomFloor.setAttribute('repet', data.floorTextureRepeat);
+        roomFloor.setAttribute('repeat', data.floorTextureRepeat);
         roomFloor.setAttribute('color', data.floorColor);
         roomFloor.setAttribute('roughness', '0.45');
         roomFloor.setAttribute('position', '0 0 0');
