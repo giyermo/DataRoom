@@ -18,7 +18,7 @@
 
     <a-scene id="scene"
     stats
-    physics="debug: false">
+    physics="debug: false">    <!--!shadow="autoUpdate: true"-->
 
         <a-assets>
             <canvas id="wallCam"></canvas>
@@ -86,29 +86,29 @@
         room-creator="sky: true; skyTexture: #nightSky;
         width: 30; height: 10; depth: 30; 
 
-        frontWall: false;
-        backWall: false;
+        frontWall: true;
+        backWall: true;
         rightWall: false;
-        leftWall: false;
+        leftWall: true;
 
-        ceiling: false;
+        ceiling: true;
 
         floorTexture: #interiorFloor; 
 
         wallTexture: #wall; wallTextureRepeat: 20 20 1;
 
-        terraceMerge: true;
+        terraceMerge: false;
 
-        frontTerrace: true; frontTerraceWidth: 40; frontTerraceDepth: 8;
+        frontTerrace: false; frontTerraceWidth: 35; frontTerraceDepth: 8;
         frontTerraceTexture: #terraceFloor; frontTerraceTextureRepeat: 12 2 1;
 
-        backTerrace: true; backTerraceWidth: 40; backTerraceDepth: 8;
+        backTerrace: false; backTerraceWidth: 32; backTerraceDepth: 7;
         backTerraceTexture: #terraceFloor; backTerraceTextureRepeat: 12 2 1;
 
         rightTerrace: true; rightTerraceWidth: 35; rightTerraceDepth: 8;
         rightTerraceTexture: #terraceFloor; rightTerraceTextureRepeat: 12 2 1;
 
-        leftTerrace: true; leftTerraceWidth: 35; leftTerraceDepth: 8;
+        leftTerrace: false; leftTerraceWidth: 40; leftTerraceDepth: 8;
         leftTerraceTexture: #terraceFloor; leftTerraceTextureRepeat: 12 2 1;">
             <!--?information text-->
             <a-text id="project information text"
@@ -140,7 +140,7 @@
                 position="0 0 2.8">
                 </a-text>
 
-                <a-entity position="0 0.5 0" rotation="0 0 0" scale="0.275 0.275 0.275"
+                <a-entity position="0 0.5 0" rotation="0 0 0" scale="0.275 0.275 0.275" shadow="cast: true"
 
                         codecity='width: 20; depth: 20; streets: true; color: green;
                                 extra: 1.5; base_thick: 0.3; split: naive; fmaxarea: area;
@@ -234,7 +234,8 @@
                 data:[{"key":"David","key2":"2019","size":90},{"key":"David","key2":"2018","size":8},{"key":"David","key2":"2017","size":70},{"key":"David","key2":"2016","size":65},{"key":"David","key2":"2015","size":5},{"key":"Pete","key2":"2011","size":80},{"key":"Pete","key2":"2014","size":7},{"key":"Josh","key2":"2016","size":65},{"key":"Josh","key2":"2015","size":55},{"key":"Jesus","key2":"2016","size":90},{"key":"Jesus","key2":"2011","size":80},{"key":"Jesus","key2":"2014","size":75},{"key":"Jesus","key2":"2016","size":60},{"key":"Jesus","key2":"2015","size":5},{"key":"Jesus","key2":"2016","size":95},{"key":"Steve","key2":"2016","size":90},{"key":"Steve","key2":"2017","size":8},{"key":"Steve","key2":"2014","size":7},{"key":"Steve","key2":"2013","size":60},{"key":"Moreno","key2":"2015","size":45},{"key":"Jesus","key2":"2019","size":100},{"key":"Pete","key2":"2019","size":10}]' 
                 position="-0.75 0.5 -1" 
                 rotation="0 0 0"
-                scale="0.3 0.3 0.3">
+                scale="0.3 0.3 0.3"
+                shadow="cast: true">
                 </a-entity>
             </a-entity>
 
@@ -253,7 +254,7 @@
                 <a-entity geopiechart='legend: true; palette: blues; title: ; titleColor: #FFFFFF;
                 titleFont: #optimerBoldFont; titlePosition: -5 0.5 0; animation: false;
                 data: [{"key":"kbn_network","size":10},{"key":"Maria","size":5},{"key":"Dave","size":9},{"key":"Jhon","size":12},{"key":"Sara","size":16},{"key":"Lemar","size":2},{"key":"Dawn","size":1},{"key":"Jesus","size":8},{"key":"Bitergia","size":3},{"key":"URJC","size":6},{"key":"Alice","size":22},{"key":"Pete","size":2},{"key":"Seth","size":6},{"key":"Martin","size":9}]'
-                position="0 2.5 0" rotation="90 180 0" scale="1.4 1.4 1.4"></a-entity>
+                position="0 2.5 0" rotation="90 180 0" scale="1.4 1.4 1.4" shadow="cast: true"></a-entity>
             </a-entity>
 
             <!--?bubble chart podium-->
@@ -271,11 +272,11 @@
                 <a-entity geobubbleschart='legend: true; palette: foxy; animation: false; title: geobubbleschart;
                 titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -7.5 0.5 0; heightMax: 15; radiusMax: 1;
                 data: [{"key":"David","key2":"2019","height":1,"radius":9},{"key":"David","key2":"2018","height":20,"radius":8},{"key":"David","key2":"2017","height":3,"radius":7},{"key":"David","key2":"2016","height":7,"radius":6},{"key":"David","key2":"2015","height":10,"radius":5},{"key":"Pete","key2":"2011","height":7,"radius":8},{"key":"Pete","key2":"2014","height":3,"radius":7},{"key":"Josh","key2":"2016","height":8,"radius":6},{"key":"Josh","key2":"2015","height":11,"radius":5},{"key":"Jesus","key2":"2016","height":9,"radius":9},{"key":"Jesus","key2":"2011","height":3,"radius":8},{"key":"Jesus","key2":"2014","height":12,"radius":7},{"key":"Jesus","key2":"2000","height":6,"radius":6},{"key":"Jesus","key2":"2015","height":1,"radius":5},{"key":"Jesus","key2":"2008","height":5,"radius":9},{"key":"Steve","key2":"2016","height":6,"radius":9},{"key":"Steve","key2":"2017","height":8,"radius":8},{"key":"Steve","key2":"2014","height":0,"radius":7},{"key":"Steve","key2":"2013","height":3,"radius":6},{"key":"Moreno","key2":"2015","height":2,"radius":5},{"key":"Jesus","key2":"2019","height":9,"radius":10},{"key":"Pete","key2":"2019","height":12,"radius":10}]'
-                position="0.75 0.5 2.25" rotation="0 180 0" scale="0.23 0.23 0.23"></a-entity>
+                position="0.75 0.5 2.25" rotation="0 180 0" scale="0.23 0.23 0.23" shadow="cast: true"></a-entity>
             </a-entity>
 
             <!--?doughnut chart podium-->
-            <a-entity id="bubblePodium"
+            <a-entity id="doughnutPodium"
             info-podium="podiumWidth: 5; podiumHeight: 1; podiumDepth: 5"
             position="-2 0.5 -10"
             rotation="0 180 0">
@@ -290,7 +291,7 @@
                 <a-entity geodoughnutchart='legend: true; palette: flat; title: geodoughnutchart; titleColor: #FFFFFF;
                 titleFont: #optimerBoldFont; titlePosition: -2.65 0 2.2; animation: false;
                 data: [{"key":"kbn_network","size":10},{"key":"Maria","size":5},{"key":"Dave","size":9},{"key":"Jhon","size":12},{"key":"Sara","size":16},{"key":"Lemar","size":2},{"key":"Dawn","size":1},{"key":"Jesus","size":8},{"key":"Bitergia","size":3},{"key":"URJC","size":6},{"key":"Alice","size":22},{"key":"Pete","size":2},{"key":"Seth","size":6},{"key":"Martin","size":9}]'
-                position="0 3.25 0" scale="1.4 1.4 1.4" rotation="90 180 0"></a-entity>
+                position="0 3.25 0" scale="1.4 1.4 1.4" rotation="90 180 0" shadow="cast: true"></a-entity>
             </a-entity>
 
             <!--?3d cylinder chart podium-->
@@ -308,15 +309,20 @@
                 <a-entity scale = "0.14 0.14 0.14" geo3dcylinderchart='legend: true; animation: false; title: geo3dcylinderchart;
                 titleColor: #FFFFFF; titleFont: #optimerBoldFont; titlePosition: -13 0.5 -5.5; heightMax: 40; radiusMax: 2;
                 data: [{"key":"Andrea","key2":"2018","height":15,"radius":2},{"key":"Jesus","key2":"2018","height":3,"radius":5},{"key":"David","key2":"2021","height":5,"radius":1},{"key":"Jesus","key2":"2020","height":25,"radius":1},{"key":"Jesus","key2":"2021","height":10,"radius":4},{"key":"Andrea","key2":"2020","height":6,"radius":4},{"key":"David","key2":"2019","height":17,"radius":3}]'
-                position="-0.85 0.5 1" rotation="0 90 0"></a-entity>
+                position="-0.85 0.5 1" rotation="0 90 0" shadow="cast: true"></a-entity>
             </a-entity>
         </a-entity>
 
-        <a-entity kinematic-body="radius: 0.3" movement-controls="fly: false" rotation="0 45 0" position="1.7 1.5 1.7">
+        <a-entity kinematic-body="radius: 0.3" movement-controls="fly: false" rotation="0 0 0" position="1.7 1.5 1.7">
             <a-entity cursor="rayOrigin:mouse"></a-entity>
-            <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc" time-changer></a-entity>
-            <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" laser-controls="hand:right" raycaster="showline: true" line="color: orange; opacity: 1"></a-entity>
-            <a-entity id="camera" camera position="0 1.2 0" look-controls="pointerLockEnabled: false;">
+            <a-entity id="leftHand" shadow="cast: true" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc" time-changer></a-entity>
+            <a-entity id="rightHand" shadow="cast: true" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" laser-controls="hand:right" raycaster="showline: true" line="color: orange; opacity: 1"></a-entity>
+            <a-entity id="camera" camera position="0 1.2 0" look-controls="pointerLockEnabled: false;"></a-entity>
+        </a-entity>
+
+        <a-entity id="roomLight"
+        light="type: point; color: lightblue; castShadow: true; intensity: 0.3; distance: 25; shadowMapHeight: 3000; shadowMapWidth: 3000;"
+        position="0 8.5 0">
         </a-entity>
 
         <a-light type="ambient" intensity="0.75"></a-light>

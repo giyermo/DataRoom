@@ -29,6 +29,8 @@ AFRAME.registerComponent('info-podium', {
         podium.setAttribute('position', data.podiumPosition);
 
         podium.setAttribute('static-body', '');
+
+        podium.setAttribute('shadow', 'cast: true');
     }
 });
 
@@ -48,7 +50,10 @@ AFRAME.registerComponent('time-changer', {
 
                     sky.setAttribute('scale', '5 5 5');
 
-                    roomLight.setAttribute('color', '#EEF66C');
+                    roomLight.removeAttribute('light');
+
+                    roomLight.setAttribute('light', 'type: point; color: #FDB813; shadowMapWidth: 5120; shadowMapHeight: 5120; shadowCameraNear: 5; shadowCameraFar: 200; distance: 200; castShadow: true; intensity: 1; shadowCameraVisible: true;');
+                    roomLight.setAttribute('position', '100 35 2.5');
 
                     time = 'day';
                 } else {
@@ -56,7 +61,10 @@ AFRAME.registerComponent('time-changer', {
 
                     sky.setAttribute('scale', '0.2 0.2 0.2');
 
-                    roomLight.setAttribute('color', 'lightgrey');
+                    roomLight.removeAttribute('light');
+
+                    roomLight.setAttribute('light', 'type: point; color: lightblue; castShadow: true; intensity: 0.3; distance: 25; shadowMapHeight: 3000; shadowMapWidth: 3000; shadowCameraVisible: false; shadowCameraFar: 1000;');
+                    roomLight.setAttribute('position', '0 8.5 0');
 
                     time = 'night';
                 };
@@ -99,6 +107,7 @@ AFRAME.registerComponent('room-creator', {
         height: {type: 'number', default: 12},
         depth: {type: 'number', default: 30},
 
+        wallsDepth: {type: 'number', default: 0.3},
         frontWall: {type: 'boolean', default: true},
         backWall: {type: 'boolean', default: true},
         rightWall: {type: 'boolean', default: true},
@@ -110,7 +119,7 @@ AFRAME.registerComponent('room-creator', {
         wallTexture: {type: 'string'},
         wallTextureRepeat: {type: 'string'},
 
-        floorColor: {type: 'color', default: 'grey'},
+        floorColor: {type: 'color'},
         floorTexture: {type: 'string'},
         floorTextureRepeat: {type: 'string'},
 
@@ -185,13 +194,96 @@ AFRAME.registerComponent('room-creator', {
         let leftTerraceTextureRepeat = data.leftTerraceTextureRepeat;
 
 
+        var terraceDiferenceF_R = data.width / 2 + rightTerraceDepth - frontTerraceWidth / 2;
+        var terraceDiferenceF_L = data.width / 2 + leftTerraceDepth - frontTerraceWidth / 2;
+
+        var terraceDiferenceB_R = data.width / 2 + rightTerraceDepth - backTerraceWidth / 2;
+        var terraceDiferenceB_L = data.width / 2 + leftTerraceDepth - backTerraceWidth / 2;
+
+        var terraceDiferenceR_F = data.depth / 2 + frontTerraceDepth - rightTerraceWidth / 2;
+        var terraceDiferenceR_B = data.depth / 2 + backTerraceDepth - rightTerraceWidth / 2;
+
+        var terraceDiferenceL_F = data.depth / 2 + frontTerraceDepth - leftTerraceWidth / 2;
+        var terraceDiferenceL_B = data.depth / 2 + backTerraceDepth - leftTerraceWidth / 2;
+
+
+        let terraceMerger = function() {
+            console.log('executing merge ...');
+            console.log(el);
+
+            if(frontTerraceWidth >= rightTerraceWidth) {
+                frontTerraceWidth = frontTerraceWidth + terraceDiferenceF_R;
+                console.log('frontTerraceWidth is ', frontTerraceWidth);
+
+                frontTerraceXPosition = frontTerraceXPosition + terraceDiferenceF_R / 2;
+                console.log('front terrace X position is ', frontTerraceXPosition);
+            };
+
+            if(frontTerraceWidth >= leftTerraceWidth) {
+                frontTerraceWidth = frontTerraceWidth + terraceDiferenceF_L;
+                console.log('frontTerraceWidth is ', frontTerraceWidth);
+
+                frontTerraceXPosition = frontTerraceXPosition - terraceDiferenceF_L / 2;
+                console.log('front terrace X position is ', frontTerraceXPosition);
+            };
+
+            if(backTerraceWidth >= rightTerraceWidth) {
+                backTerraceWidth = backTerraceWidth + terraceDiferenceB_R;
+                console.log('backTerraceWidth is ', backTerraceWidth);
+
+                backTerraceXPosition = backTerraceXPosition + terraceDiferenceB_R / 2;
+                console.log('back terrace X position is ', backTerraceXPosition);
+            };
+
+            if(backTerraceWidth >= leftTerraceWidth) {
+                backTerraceWidth = backTerraceWidth + terraceDiferenceB_L;
+                console.log('backTerraceWidth is ', backTerraceWidth);
+
+                backTerraceXPosition = backTerraceXPosition - terraceDiferenceB_L / 2;
+                console.log('back terrace X position is ', backTerraceXPosition);
+            };
+
+            if(rightTerraceWidth > frontTerraceWidth) {
+                rightTerraceWidth = rightTerraceWidth + terraceDiferenceR_F;
+                console.log('rightTerraceWidth is', rightTerraceWidth);
+
+                rightTerraceZPosition = rightTerraceZPosition - terraceDiferenceR_F / 2;
+                console.log('right terrace Z position is ', rightTerraceZPosition);
+            };
+
+            if(rightTerraceWidth > backTerraceWidth) {
+                rightTerraceWidth = rightTerraceWidth + terraceDiferenceR_B;
+                console.log('rightTerraceWidth is', rightTerraceWidth);
+
+                rightTerraceZPosition = rightTerraceZPosition + terraceDiferenceR_B / 2;
+                console.log('right terrace Z position is ', rightTerraceZPosition);
+            };
+
+            if(leftTerraceWidth > frontTerraceWidth) {
+                leftTerraceWidth = leftTerraceWidth + terraceDiferenceL_F;
+                console.log('leftTerraceWidth is', leftTerraceWidth);
+
+                leftTerraceZPosition = leftTerraceZPosition - terraceDiferenceL_F / 2;
+                console.log('left terrace Z position is ', leftTerraceZPosition);
+            };
+
+            if(leftTerraceWidth > backTerraceWidth) {
+                leftTerraceWidth = leftTerraceWidth + terraceDiferenceL_B;
+                console.log('leftTerraceWidth is', leftTerraceWidth);
+
+                leftTerraceZPosition = leftTerraceZPosition + terraceDiferenceL_B / 2;
+                console.log('left terrace Z position is ', leftTerraceZPosition);
+            };
+        };
+
+
         if(data.sky == true) {
             let sky = document.createElement('a-sky');
             el.appendChild(sky);
             sky.setAttribute('id', 'sky');
             sky.setAttribute('color', data.color);
             sky.setAttribute('src', data.skyTexture);
-            sky.setAttribute('rotation', '0 270 0');
+            sky.setAttribute('rotation', '0 280 0');
             sky.setAttribute('opacity', '1');
             sky.setAttribute('scale', '1 1 1');
         };
@@ -201,18 +293,20 @@ AFRAME.registerComponent('room-creator', {
         roomFloor.setAttribute('class', 'roomFloor');
         roomFloor.setAttribute('src', data.floorTexture);
         roomFloor.setAttribute('repet', data.floorTextureRepeat);
-        roomFloor.setAttribute('color', 'lightgrey');
+        roomFloor.setAttribute('color', data.floorColor);
+        roomFloor.setAttribute('roughness', '0.45');
         roomFloor.setAttribute('position', '0 0 0');
         roomFloor.setAttribute('width', data.width);
         roomFloor.setAttribute('height', data.depth);
         roomFloor.setAttribute('rotation', '270 0 0');
         roomFloor.setAttribute('side', 'double');
         roomFloor.setAttribute('static-body', '');
+        roomFloor.setAttribute('shadow', 'receive: true');
 
         let wallsPositionY = data.height / 2;
 
         if(data.leftWall == true) {
-            let leftWall = document.createElement('a-plane');
+            let leftWall = document.createElement('a-box');
             let leftWallPositionX = data.depth / 2;
             el.appendChild(leftWall);
             leftWall.setAttribute('class', 'walls');
@@ -221,13 +315,14 @@ AFRAME.registerComponent('room-creator', {
             leftWall.setAttribute('position', `-${leftWallPositionX} ${wallsPositionY} 0`);
             leftWall.setAttribute('width', data.width);
             leftWall.setAttribute('height', data.height);
-            leftWall.setAttribute('side', 'double');
+            leftWall.setAttribute('depth', '0.3');
             leftWall.setAttribute('rotation', '0 90 0');
+            leftWall.setAttribute('shadow', 'cast: true');
             leftWall.setAttribute('static-body', '');
         };
 
         if(data.rightWall == true) {
-            let rightWall = document.createElement('a-plane');
+            let rightWall = document.createElement('a-box');
             let rightWallPositionX = data.depth / 2;
             el.appendChild(rightWall);
             rightWall.setAttribute('class', 'walls');
@@ -236,13 +331,14 @@ AFRAME.registerComponent('room-creator', {
             rightWall.setAttribute('position', `${rightWallPositionX} ${wallsPositionY} 0`);
             rightWall.setAttribute('width', data.width);
             rightWall.setAttribute('height', data.height);
-            rightWall.setAttribute('side', 'double');
+            rightWall.setAttribute('depth', '0.3');
             rightWall.setAttribute('rotation', '0 90 0');
+            rightWall.setAttribute('shadow', 'cast: true');
             rightWall.setAttribute('static-body', '');
         };
 
         if(data.frontWall == true) {
-            let frontWall = document.createElement('a-plane');
+            let frontWall = document.createElement('a-box');
             let frontWallpositionZ = data.width / 2
             el.appendChild(frontWall);
             frontWall.setAttribute('class', 'walls');
@@ -251,13 +347,14 @@ AFRAME.registerComponent('room-creator', {
             frontWall.setAttribute('position', `0 ${wallsPositionY} -${frontWallpositionZ}`);
             frontWall.setAttribute('width', data.depth);
             frontWall.setAttribute('height', data.height);
-            frontWall.setAttribute('side', 'double');
+            frontWall.setAttribute('depth', '0.3');
             frontWall.setAttribute('rotation', '0 0 0');
+            frontWall.setAttribute('shadow', 'cast: true');
             frontWall.setAttribute('static-body', '');
         };
 
         if(data.backWall == true) {
-            let backWall = document.createElement('a-plane');
+            let backWall = document.createElement('a-box');
             let backWallpositionZ = data.width / 2
             el.appendChild(backWall);
             backWall.setAttribute('class', 'walls');
@@ -266,37 +363,40 @@ AFRAME.registerComponent('room-creator', {
             backWall.setAttribute('position', `0 ${wallsPositionY} ${backWallpositionZ}`);
             backWall.setAttribute('width', data.depth);
             backWall.setAttribute('height', data.height);
-            backWall.setAttribute('side', 'double');
+            backWall.setAttribute('depth', '0.3');
             backWall.setAttribute('rotation', '0 0 0');
+            backWall.setAttribute('shadow', 'cast: true');
             backWall.setAttribute('static-body', '');
         };
 
         if(data.ceiling == true) {
-            let ceiling = document.createElement('a-plane');
+            let ceiling = document.createElement('a-box');
             el.appendChild(ceiling);
             ceiling.setAttribute('class', 'ceiling');
             ceiling.setAttribute('position', `0 ${data.height} 0`);
-            ceiling.setAttribute('width', '30');
-            ceiling.setAttribute('height', '30');
+            ceiling.setAttribute('width', data.width + data.wallsDepth / 2);
+            ceiling.setAttribute('height', data.depth + data.wallsDepth);
+            ceiling.setAttribute('depth', '0.3');
             ceiling.setAttribute('rotation', '90 0 0');
-            ceiling.setAttribute('side', 'double');
+            ceiling.setAttribute('shadow', 'cast: true');
             ceiling.setAttribute('static-body', '');
         };
 
-        let roomLight = document.createElement('a-light');
-        el.appendChild(roomLight);
-        roomLight.setAttribute('id', 'roomLight');
-        roomLight.setAttribute('type', 'point');
-        roomLight.setAttribute('color', 'lightgrey');
-        roomLight.setAttribute('intensity', '0.5');
-        roomLight.setAttribute('position', '0 8.5 0');
+        //let roomLight = document.createElement('a-entity');
+        //el.appendChild(roomLight);
+        //roomLight.setAttribute('id', 'roomLight');
+        //roomLight.setAttribute('light', 'type: point; color: lightblue; castShadow: true; intensity: 0.3; distance: 25; shadowMapHeight: 3000; shadowMapWidth: 3000; shadowCameraVisible: true; shadowCameraFar: 1000;');
+        //roomLight.setAttribute('position', '0 8.5 0');
 
-        let terraceCreator = function(id, Xposition, Zposition, rotation, width, depth, color, texture, textureRepeat) {
+
+        if(data.terraceMerge == true) {
+            terraceMerger();
+        };
+
+        let terraceCreator = function(id, Xposition, Zposition, rotation, width, depth, color, texture, textureRepeat) {            
             let terrace = document.createElement('a-entity');
-            terrace.setAttribute('id', id);
-
             el.appendChild(terrace);
-
+            terrace.setAttribute('id', id);
             terrace.setAttribute('position', `${Xposition} 0 ${Zposition}`);
             terrace.setAttribute('rotation', `0 ${rotation} 0`);
 
@@ -313,6 +413,7 @@ AFRAME.registerComponent('room-creator', {
             terraceFloor.setAttribute('side', 'double');
             terraceFloor.setAttribute('roughness', '1');
             terraceFloor.setAttribute('static-body', '');
+            terraceFloor.setAttribute('shadow', 'receive: true');
 
             let terraceGlassFrontXPosition = depth / 2;
 
@@ -452,17 +553,6 @@ AFRAME.registerComponent('room-creator', {
             return terrace;
         };
 
-        if(data.terraceMerge) {
-            if(frontTerraceWidth > rightTerraceWidth && frontTerraceWidth > leftTerraceWidth) {
-                var terraceDiferenceF_R = data.width / 2 + rightTerraceDepth - frontTerraceWidth / 2;
-
-                var terraceDiferenceF_L = data.width / 2 + leftTerraceDepth - frontTerraceWidth / 2;
-
-                frontTerraceWidth = frontTerraceWidth + terraceDiferenceF_L + terraceDiferenceF_R;
-
-                frontTerraceXPosition = frontTerraceXPosition + terraceDiferenceF_L / 2 - terraceDiferenceF_R / 2;
-            };
-        };
 
         if(data.frontTerrace == true) {
             var frontTerraceEntity = terraceCreator('frontTerraceEntity', frontTerraceXPosition, frontTerraceZPosition, 90, frontTerraceWidth, frontTerraceDepth, frontTerraceColor, frontTerraceTexture, frontTerraceTextureRepeat);
