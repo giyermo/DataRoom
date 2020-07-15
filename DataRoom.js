@@ -52,8 +52,8 @@ AFRAME.registerComponent('time-changer', {
 
                     roomLight.removeAttribute('light');
 
-                    roomLight.setAttribute('light', 'type: point; color: #FDB813; shadowMapWidth: 5120; shadowMapHeight: 5120; shadowCameraNear: 5; shadowCameraFar: 200; distance: 200; castShadow: true; intensity: 1; shadowCameraVisible: true;');
-                    roomLight.setAttribute('position', '100 35 2.5');
+                    roomLight.setAttribute('light', 'type: directional; color: #FDB813; shadowMapWidth: 7120; shadowMapHeight: 7120; castShadow: true; intensity: 0.6; shadowCameraTop: 20; shadowCameraBottom: -20; shadowCameraRight: 20; shadowCameraLeft: -20; shadowCameraVisible: true;');
+                    roomLight.setAttribute('position', '100 35 3.5');
 
                     time = 'day';
                 } else {
@@ -63,7 +63,7 @@ AFRAME.registerComponent('time-changer', {
 
                     roomLight.removeAttribute('light');
 
-                    roomLight.setAttribute('light', 'type: point; color: lightblue; castShadow: true; intensity: 0.3; distance: 25; shadowMapHeight: 3000; shadowMapWidth: 3000; shadowCameraVisible: false; shadowCameraFar: 1000;');
+                    roomLight.setAttribute('light', 'type: point; color: lightblue; castShadow: true; intensity: 0.3; distance: 25; shadowMapHeight: 6000; shadowMapWidth: 6000; shadowCameraVisible: false; shadowCameraFar: 1000;');
                     roomLight.setAttribute('position', '0 8.5 0');
 
                     time = 'night';
@@ -81,7 +81,10 @@ AFRAME.registerComponent('time-changer', {
 
                 sky.setAttribute('scale', '5 5 5');
 
-                roomLight.setAttribute('color', '#EEF66C');
+                roomLight.removeAttribute('light');
+
+                roomLight.setAttribute('light', 'type: directional; color: #FDB813; shadowMapWidth: 7120; shadowMapHeight: 7120; castShadow: true; intensity: 0.6; shadowCameraTop: 20; shadowCameraBottom: -20; shadowCameraRight: 20; shadowCameraLeft: -20; shadowCameraVisible: true;');
+                roomLight.setAttribute('position', '100 35 3.5');
 
                 time = 'day';
             } else {
@@ -89,7 +92,10 @@ AFRAME.registerComponent('time-changer', {
 
                 sky.setAttribute('scale', '0.2 0.2 0.2');
 
-                roomLight.setAttribute('color', 'lightgrey');
+                roomLight.removeAttribute('light');
+
+                roomLight.setAttribute('light', 'type: point; color: lightblue; castShadow: true; intensity: 0.3; distance: 25; shadowMapHeight: 6000; shadowMapWidth: 6000; shadowCameraVisible: false; shadowCameraFar: 1000;');
+                roomLight.setAttribute('position', '0 8.5 0');
 
                 time = 'night';
             };
@@ -382,11 +388,11 @@ AFRAME.registerComponent('room-creator', {
             ceiling.setAttribute('static-body', '');
         };
 
-        //let roomLight = document.createElement('a-entity');
-        //el.appendChild(roomLight);
-        //roomLight.setAttribute('id', 'roomLight');
-        //roomLight.setAttribute('light', 'type: point; color: lightblue; castShadow: true; intensity: 0.3; distance: 25; shadowMapHeight: 3000; shadowMapWidth: 3000; shadowCameraVisible: true; shadowCameraFar: 1000;');
-        //roomLight.setAttribute('position', '0 8.5 0');
+        let roomLight = document.createElement('a-entity');
+        el.appendChild(roomLight);
+        roomLight.setAttribute('id', 'roomLight');
+        roomLight.setAttribute('light', 'type: point; color: lightblue; castShadow: true; intensity: 0.3; distance: 25; shadowMapHeight: 6000; shadowMapWidth: 6000; shadowCameraVisible: true; shadowCameraFar: 1000;');
+        roomLight.setAttribute('position', '0 8.5 0');
 
 
         if(data.terraceMerge == true) {
