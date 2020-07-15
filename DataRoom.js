@@ -121,6 +121,8 @@ AFRAME.registerComponent('room-creator', {
         
         ceiling: {type: 'boolean', default: true},
 
+        roomLight: {type: 'boolean', default: true},
+
         wallColor: {type: 'color', default: 'lightgrey'},
         wallTexture: {type: 'string'},
         wallTextureRepeat: {type: 'string'},
@@ -388,11 +390,13 @@ AFRAME.registerComponent('room-creator', {
             ceiling.setAttribute('static-body', '');
         };
 
-        let roomLight = document.createElement('a-entity');
-        el.appendChild(roomLight);
-        roomLight.setAttribute('id', 'roomLight');
-        roomLight.setAttribute('light', 'type: point; color: lightblue; castShadow: true; intensity: 0.3; distance: 25; shadowMapHeight: 6000; shadowMapWidth: 6000; shadowCameraVisible: true; shadowCameraFar: 1000;');
-        roomLight.setAttribute('position', '0 8.5 0');
+        if(data.roomLight == true) {
+            let roomLight = document.createElement('a-entity');
+            el.appendChild(roomLight);
+            roomLight.setAttribute('id', 'roomLight');
+            roomLight.setAttribute('light', 'type: point; color: lightblue; castShadow: true; intensity: 0.3; distance: 25; shadowMapHeight: 6000; shadowMapWidth: 6000; shadowCameraVisible: true; shadowCameraFar: 1000;');
+            roomLight.setAttribute('position', '0 8.5 0');
+        };
 
 
         if(data.terraceMerge == true) {
